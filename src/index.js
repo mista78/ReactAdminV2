@@ -9,6 +9,7 @@ import { createGlobalStyle } from 'styled-components';
 const GlobalStyle = createGlobalStyle`
     html, body, #root {
         height: 100%;
+        background-color: #2F2F30;
     }
     * {
         margin: 0;

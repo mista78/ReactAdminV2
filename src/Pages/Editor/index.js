@@ -24,6 +24,7 @@ const Header = styled.div`
         justify-content: space-between;
         padding: 1rem;
         background-color: #1D1D1C;
+        margin-bottom: 1rem;
         .infos {
             display: flex;
             color: #fff;
@@ -51,7 +52,7 @@ const Header = styled.div`
 
 const BodyEditor = styled.div`
         width: 100%;
-        height: calc(100% - 80.8px);
+        height: calc(100% - 96.8px);
         background-color: #2F2F30;
         display: grid;
         grid-template-columns: 70px 2fr 6fr 2fr;
@@ -60,6 +61,10 @@ const BodyEditor = styled.div`
         .hiddenSlider {
             text-align: center;
             background-color: #1D1D1C;
+            padding-block-start: 1rem;
+            & > svg {
+                cursor: pointer;
+            }
         }
 
         .left {
@@ -192,7 +197,21 @@ const Editor = () => {
 
                 <BodyEditor>
                     <div className='hiddenSlider'>
-                        <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg onClick={
+                            () => {
+                                const components = state.components;
+                                components.push({
+                                    id: uuid(),
+                                    name: "Line",
+                                    parent: null,
+                                    children: []
+                                });
+                                dispatch({
+                                    type: 'ADD_COMPONENT'
+                                    , components
+                                });
+                            }
+                        } width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g clip-path="url(#clip0_195_3581)">
                                 <rect width="44" height="44" rx="5.5" fill="#504F50"/>
                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M12 22.5C12 21.6716 12.7462 21 13.6667 21H30.3333C31.2538 21 32 21.6716 32 22.5C32 23.3284 31.2538 24 30.3333 24H13.6667C12.7462 24 12 23.3284 12 22.5Z" fill="white"/>
@@ -207,24 +226,6 @@ const Editor = () => {
                     </div>
 
                     <div className="left">
-                        <Button onClick={
-                            () => {
-                                const components = state.components;
-                                components.push({
-                                    id: uuid(),
-                                    name: "Line",
-                                    parent: null,
-                                    children: []
-                                });
-                                dispatch({
-                                    type: 'ADD_COMPONENT'
-                                    , components
-                                });
-                            }
-                        }>
-                            Add new line
-                        </Button>
-
                         <div id="sidebar">
                             <View data={state.components} setting={true} />
                         </div>
