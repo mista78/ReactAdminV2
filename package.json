@@ -1,0 +1,38 @@
+{
+  "scripts": {
+    "dev": "gulp dev",
+    "build": "gulp js"
+  },
+  "dependencies": {
+    "@babel/core": "^7.14.2",
+    "@babel/plugin-transform-runtime": "^7.14.3",
+    "@babel/preset-env": "^7.14.2",
+    "@babel/preset-react": "^7.13.13",
+    "@emotion/css": "^11.10.5",
+    "@emotion/react": "^11.10.5",
+    "@tiptap/extension-color": "^2.0.0-beta.220",
+    "@tiptap/extension-list-item": "^2.0.0-beta.220",
+    "@tiptap/extension-text-style": "^2.0.0-beta.220",
+    "@tiptap/pm": "^2.0.0-beta.220",
+    "@tiptap/react": "^2.0.0-beta.220",
+    "@tiptap/starter-kit": "^2.0.0-beta.220",
+    "axios": "^0.21.1",
+    "babel-loader": "^8.2.2",
+    "core-js": "3",
+    "express": "^4.17.1",
+    "gulp": "^4.0.2",
+    "gulp-clean": "^0.4.0",
+    "gulp-live-server": "^0.0.31",
+    "gulp-plumber": "^1.2.1",
+    "gulp-uglify": "^3.0.2",
+    "net": "^1.0.2",
+    "path": "^0.12.7",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-frame-component": "^5.2.6",
+    "react-spinner-loader": "^1.1.1",
+    "styled-components": "^5.3.0",
+    "webpack": "^5.37.0",
+    "webpack-stream": "^6.1.2"
+  }
+}
