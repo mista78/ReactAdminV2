@@ -11,4 +11,4 @@ export const kebabize = str => {
             ? `${idx !== 0 ? '-' : ''}${letter.toLowerCase()}`
             : letter;
     }).join('');
-}
+};

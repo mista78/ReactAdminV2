@@ -16,6 +16,13 @@ const GlobalStyle = createGlobalStyle`
         padding: 0;
         box-sizing: border-box;
     }
+    .btn {
+      display: grid;
+      align-items: center;
+    }
+    svg {
+      cursor: pointer;
+    }
 `;
 
 const Component = Data["Editor"];

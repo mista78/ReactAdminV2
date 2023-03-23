@@ -12,7 +12,8 @@ import styled from 'styled-components';
 import AllComponent from '../index';
 
 const Lines = styled.div`
-    border: 1px solid #000;
+    border: 1px dashed pink;
+    min-height: 260px;
 `;
 
 const Line = ({ data, children, ...props }) => {
@@ -49,9 +50,11 @@ Line.setting = ({ data, children, ...props }) => {
     };
 
     return <Fragment>
-        <button onClick={e => {
+        <Details title={`Line ${data.id}`} visible={true} onClick={e => {
             dispatch({ type: 'CURRENT_SETTING', currentSetting: data.id });
-        }}>Setting {data.id}</button>
+        }}>
+            lorem  ipsum
+        </Details>
         <Portal id="setting">
             <Details title="Setting" id={data.id} open={true}>
                 <div>Setting : {data.id}</div>

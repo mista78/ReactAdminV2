@@ -12,7 +12,6 @@ const InjectFrameStyles = (props) => {
 
 const Iframe = styled.iframe`
         height: 100%;
-        border: 1px dashed #ccc;
         margin: 0;
         padding: 0;
         overflow: hidden;
@@ -43,7 +42,7 @@ const IFrames = ({
             width={`${state.breaksize ? state.breaksize + "%" : "100%"}`}
             style={{
                 height: "100%",
-                border: "1px dashed #ccc",
+                border: "none",
                 margin: "0",
                 padding: "0",
                 overflow: "hidden",
