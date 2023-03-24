@@ -4,12 +4,13 @@ import updatePropertyById from '../../../../Utils/updatePropertyById';
 import { kebabize, uuid } from '../../../../Utils/tools';
 import Portal from '../../../../Components/Portal';
 import Reorder from '../../../../Components/Reorder';
+import Tiptap from '../../../../Components/Tiptap';
 import Remove from '../../../../Components/Remove';
 import Details from '../../../../Components/Details';
 import { Spaces } from '../../Helpers';
 import styled from 'styled-components';
-
-import AllComponent from '../index';
+import { useEditor, EditorContent } from '@tiptap/react'
+import StarterKit from '@tiptap/starter-kit'
 
 const Lines = styled.div`
     border: 1px solid #000;
@@ -30,9 +31,7 @@ const Typographie = ({ data, children, ...props }) => {
     return (
         <Fragment>
             <div style={(data[state.devices] ? data[state.devices] : {})} >
-                {data.tags && data.tags.map((item, index) => {
-                    return <Items key={index} data={item} />
-                })}
+                <Tiptap data={data} />
             </div>
         </Fragment>
     );
@@ -122,9 +121,7 @@ Typographie.content = ({ data, children }) => {
     `;
 
     return <Fragment>
-        {data.tags && data.tags.map((item, index) => {
-            return <Items.content key={index} data={item} />
-        })}
+        <Tiptap data={data} />
     </Fragment>
 
 }

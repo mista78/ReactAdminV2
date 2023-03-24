@@ -58,6 +58,8 @@ const BodyEditor = styled.div`
         grid-column-gap: 1rem;
         color: #fff;
 
+        
+
         .hiddenSlider {
             text-align: center;
             background-color: #1D1D1C;

@@ -24,6 +24,7 @@ const GlobalStyle = createGlobalStyle`
     svg {
       cursor: pointer;
     }
+    
 `;
 
 const Component = Data["Editor"];
