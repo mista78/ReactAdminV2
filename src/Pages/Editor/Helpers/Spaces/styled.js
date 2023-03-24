@@ -8,6 +8,7 @@ font-size: 12px;
 font-weight: 600;
 text-transform: capitalize;
 line-height: 1.5;
+font-family: "Roboto", sans-serif;
 input {
     width: 100%;
     height: 100%;
@@ -38,9 +39,8 @@ input {
       left: 0;
       right: 0;
       height: ${size};
-      background: #000;
       width: 100%;
-      background: #000;
+      background: #2F2F30;
       display: grid;
       align-items: center;
       color: #fff;
@@ -50,7 +50,7 @@ input {
       &:after {
         content: "";
         position: absolute;
-        border-top: ${size} solid black;
+        border-top: ${size} solid #2F2F30;
         border-right: ${size} solid transparent;
         top: 0;
       }
@@ -89,7 +89,7 @@ input {
       right: 0;
       height: ${size};
       width: 100%;
-      background: #000;
+      background: #2F2F30;
       z-index: 1;
       display: grid;
       align-items: center;
@@ -107,7 +107,7 @@ input {
       &:after {
         content: "";
         position: absolute;
-        border-top: ${size} solid black;
+        border-top: ${size} solid #2F2F30;
         border-left: ${size} solid transparent;
         top: 0;
         z-index: 3;

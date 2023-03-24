@@ -6,6 +6,8 @@ import { Margin } from './styled';
 
 const Spaces = ({ data }) => {
     const { state, dispatch } = useContext(AppContext);
+    const range = 10;
+    const step = 0.5;
 
     const [name, setName] = useState("margin");
     const [style, setStyle] = useState("all");
@@ -82,7 +84,7 @@ const Spaces = ({ data }) => {
                         <option value="margin">margin</option>
                         <option value="padding">padding</option>
                     </select></div>
-                    <input type="range" min={0} max={7} value={common} onChange={handleChangeAll} />
+                    <input type="range" min={0} max={range} step={step} value={common} onChange={handleChangeAll} />
                 </Fragment>}
             </div>
             {<Fragment>
@@ -95,7 +97,7 @@ const Spaces = ({ data }) => {
                                     <div><label htmlFor={names}>{name} {dir}</label></div>
                                     <input
                                         id={names}
-                                        type="range" min={0} max={7}
+                                        type="range" min={0} max={range} step={step}
                                         value={data[state.devices] ? data[state.devices][`${names}`]?.replace('rem', "") || 0 : 0}
                                         onChange={e => {
                                             const style = {

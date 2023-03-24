@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, Fragment, useContext, memo } from 'react';
+import React, { useRef, Fragment, useContext, memo } from 'react';
 import styled from 'styled-components';
 import { AppContext } from '../../store';
 
@@ -33,12 +33,11 @@ const Detail = styled.details`
 
 
 const Details = ({ children, title, id, row = "row", visible = false, onClick, open = false }) => {
-    const { state, dispatch } = useContext(AppContext);
+    const { state } = useContext(AppContext);
     const ref = useRef(null);
     return <Fragment>
-        {(state.currentSetting == id || visible) && <Detail  ref={ref} className='details' open={ref?.current?.open || true}>
+        {(state.currentSetting == id || visible) && <Detail  ref={ref} className='details' open={open}>
             <summary className='details__summary' onClick={() => {
-                ref.current.open = false;
                 onClick && onClick();
             }}>{title}</summary>
             <div className={`details__body ${row}`}>
@@ -49,4 +48,4 @@ const Details = ({ children, title, id, row = "row", visible = false, onClick, o
 
 };
 
-export default Details;
+export default memo(Details);

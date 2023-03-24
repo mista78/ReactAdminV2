@@ -10,6 +10,7 @@ const GlobalStyle = createGlobalStyle`
     html, body, #root {
         height: 100%;
         background-color: #2F2F30;
+        font-family: "Roboto", sans-serif;
     }
     * {
         margin: 0;
