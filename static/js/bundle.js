@@ -252,7 +252,7 @@ input {
   
 `;var O=Object(g.memo)(({data:r})=>{const{state:a,dispatch:l}=Object(g.useContext)(y),[n,t]=Object(g.useState)("margin"),[o,i]=Object(g.useState)("all"),[u,c]=Object(g.useState)(r[a.devices]&&r[a.devices][n+"Top"]||"0"),[s,d]=Object(g.useState)(r[a.devices]&&r[a.devices][n+"Right"]||"0"),[f,p]=Object(g.useState)(r[a.devices]&&r[a.devices][n+"Bottom"]||"0"),[m,h]=Object(g.useState)(r[a.devices]&&r[a.devices][n+"Left"]||"0"),e=(null==f?void 0:f.replace("rem",""))==(null==m?void 0:m.replace("rem",""))&&(null==m?void 0:m.replace("rem",""))==(null==s?void 0:s.replace("rem",""))&&(null==s?void 0:s.replace("rem",""))==(null==u?void 0:u.replace("rem",""))&&(null==f?void 0:f.replace("rem",""))||"0";return Object(g.useEffect)(()=>{{const t={...r[a.devices],[n+"Top"]:(null==u?void 0:u.replaceAll("rem",""))+"rem",[n+"Right"]:(null==s?void 0:s.replaceAll("rem",""))+"rem",[n+"Bottom"]:(null==f?void 0:f.replaceAll("rem",""))+"rem",[n+"Left"]:(null==m?void 0:m.replaceAll("rem",""))+"rem"};Object.keys(t).forEach(e=>{0!==t[e]&&"0"!==t[e]&&"0rem"!==t[e]||delete t[e]});var e=a.components.map(e=>k(r.id,e,a.devices,t));l({type:"ADD_COMPONENT",components:e})}},[u,s,f,m]),Object(g.useEffect)(()=>{c(r[a.devices]&&r[a.devices][n+"Top"]||"0"),d(r[a.devices]&&r[a.devices][n+"Right"]||"0"),p(r[a.devices]&&r[a.devices][n+"Bottom"]||"0"),h(r[a.devices]&&r[a.devices][n+"Left"]||"0")},[n,a.devices]),Object(g.useEffect)(()=>{},[a.components]),v.a.createElement(g.Fragment,null,v.a.createElement(F,null,v.a.createElement("div",{className:"margin"},v.a.createElement("div",{className:"margin-top",onClick:e=>i("marginTop")}," ",r[a.devices]&&(r[a.devices].marginTop||0)),v.a.createElement("div",{className:"margin-right",onClick:e=>i("marginRight")},r[a.devices]&&(r[a.devices].marginRight||0)),v.a.createElement("div",{className:"margin-bottom",onClick:e=>i("marginBottom")},r[a.devices]&&(r[a.devices].marginBottom||0)),v.a.createElement("div",{className:"margin-left",onClick:e=>i("marginLeft")},r[a.devices]&&(r[a.devices].marginLeft||0)),v.a.createElement("div",{className:"padding"},v.a.createElement("div",{className:"padding-top",onClick:e=>i("paddingTop")}," ",r[a.devices]&&(r[a.devices].paddingTop||0)),v.a.createElement("div",{className:"padding-right",onClick:e=>i("paddingRight")},r[a.devices]&&(r[a.devices].paddingRight||0)),v.a.createElement("div",{className:"padding-bottom",onClick:e=>i("paddingBottom")},r[a.devices]&&(r[a.devices].paddingBottom||0)),v.a.createElement("div",{className:"padding-left",onClick:e=>i("paddingLeft")},r[a.devices]&&(r[a.devices].paddingLeft||0)),v.a.createElement("div",{className:"element",onClick:e=>i("all")}))),v.a.createElement("div",null,"all"==o&&v.a.createElement(g.Fragment,null,v.a.createElement("div",{className:"input"},v.a.createElement("select",{value:n,onChange:e=>t(e.target.value),onClicke:e=>t(e.target.value)},v.a.createElement("option",{value:"margin"},"margin"),v.a.createElement("option",{value:"padding"},"padding"))),v.a.createElement("input",{type:"range",min:0,max:10,step:.5,value:e,onChange:e=>{p(e.target.value),h(e.target.value),d(e.target.value),c(e.target.value)}}))),v.a.createElement(g.Fragment,null,["margin","padding"].map(t=>v.a.createElement(g.Fragment,null,["Top","Right","Bottom","Left"].map(e=>{const n=t+e;return v.a.createElement(g.Fragment,null,o===""+n&&v.a.createElement("div",null,v.a.createElement("div",null,v.a.createElement("label",{htmlFor:n},t," ",e)),v.a.createElement("input",{id:n,type:"range",min:0,max:10,step:.5,value:r[a.devices]&&(null==(e=r[a.devices][""+n])?void 0:e.replace("rem",""))||0,onChange:e=>{const t={...r[a.devices],[""+n]:(null==(e=e.target.value)?void 0:e.replaceAll("rem",""))+"rem"};Object.keys(t).forEach(e=>{0!==t[e]&&"0"!==t[e]&&"0rem"!==t[e]||delete t[e]});e=a.components.map(e=>k(r.id,e,a.devices,t));l({type:"ADD_COMPONENT",components:e})}})))}))))))});const I=u.c.div`
 label {
-    background-color: indigo;
+    background-color: #3453F5;
     color: white;
     padding: 0.5rem;
     font-family: sans-serif;
@@ -264,8 +264,14 @@ label {
   #file-chosen{
     margin-left: 0.3rem;
     font-family: sans-serif;
+    text-overflow: ellipsis;
+    max-width: 160px;
+    display: inline-block;
+    vertical-align: middle;
+    overflow: hidden;
+    white-space: nowrap;
   }
-  `;var H=Object(g.memo)(({data:n})=>{var e;const{state:r,dispatch:a}=Object(g.useContext)(y),[l,t]=Object(g.useState)(n[r.devices]&&(null==(e=n[r.devices])?void 0:e.backgroundColor)||"#1E1E1E"),[o,i]=Object(g.useState)(n[r.devices]&&(null==(e=n[r.devices])?void 0:e.backgroundImage)||""),u=Object(g.useRef)(null);return Object(g.useEffect)(()=>{{const t={...n[r.devices],backgroundColor:l,backgroundImage:o,backgroundSize:"cover",backgroundPosition:"center"};Object.keys(t).forEach(e=>{""===t[e]&&delete t[e]});var e=r.components.map(e=>k(n.id,e,r.devices,t));a({type:"ADD_COMPONENT",components:e})}},[l,o]),Object(g.useEffect)(()=>{var e;t(n[r.devices]&&(null==(e=n[r.devices])?void 0:e.backgroundColor)||"#1E1E1E"),i(n[r.devices]&&(null==(e=n[r.devices])?void 0:e.backgroundImage)||"")},[r.devices]),v.a.createElement(g.Fragment,null,v.a.createElement("div",null,v.a.createElement("label",{htmlFor:"background"},"Upload file"),o&&v.a.createElement("button",{onClick:()=>{i(""),u.current.innerHTML="Aucun fichier"}}," Reset Image ")),v.a.createElement(I,null,v.a.createElement("input",{type:"file",id:"actual-btn",hidden:!0,onChange:e=>{const t=e.target["files"],[n]=t,r=new FileReader;r.onload=e=>{e=e.target.result;i(e?`url('${e}')`:"none"),u.current.innerHTML=n.name},r.readAsDataURL(n),e.target.value=null}}),v.a.createElement("label",{for:"actual-btn"},"Choisir"),v.a.createElement("span",{id:"file-chosen",ref:u},"Aucun fichier")),v.a.createElement("div",{className:"form-group"},v.a.createElement("label",{htmlFor:"background"},"Background"),v.a.createElement("input",{type:"color",className:"form-control",id:"background",value:l,onChange:e=>{t(e.target.value)}})))});const V=u.c.div`
+  `;var H=Object(g.memo)(({data:n})=>{var e;const{state:r,dispatch:a}=Object(g.useContext)(y),[l,t]=Object(g.useState)(n[r.devices]&&(null==(e=n[r.devices])?void 0:e.backgroundColor)||"#1E1E1E"),[o,i]=Object(g.useState)(n[r.devices]&&(null==(e=n[r.devices])?void 0:e.backgroundImage)||""),u=Object(g.useRef)(null);return Object(g.useEffect)(()=>{{const t={...n[r.devices],backgroundColor:l,backgroundImage:o,backgroundSize:"cover",backgroundPosition:"center"};Object.keys(t).forEach(e=>{""===t[e]&&delete t[e]});var e=r.components.map(e=>k(n.id,e,r.devices,t));a({type:"ADD_COMPONENT",components:e})}},[l,o]),Object(g.useEffect)(()=>{var e;t(n[r.devices]&&(null==(e=n[r.devices])?void 0:e.backgroundColor)||"#1E1E1E"),i(n[r.devices]&&(null==(e=n[r.devices])?void 0:e.backgroundImage)||"")},[r.devices]),v.a.createElement(g.Fragment,null,v.a.createElement("div",null,v.a.createElement("label",{htmlFor:"background"},"Upload file"),o&&v.a.createElement("button",{onClick:()=>{i(""),u.current.innerHTML="Aucun fichier"}}," Reset Image ")),v.a.createElement(I,null,v.a.createElement("input",{type:"file",id:"actual-btn",hidden:!0,onChange:e=>{const t=e.target["files"],[n]=t,r=new FileReader;r.onload=e=>{e=e.target.result;i(e?`url('${e}')`:"none"),u.current.innerHTML=n.name},r.readAsDataURL(n),e.target.value=null}}),v.a.createElement("label",{for:"actual-btn"},"Choisir"),v.a.createElement("p",{id:"file-chosen",ref:u},"Aucun fichier")),v.a.createElement("div",{className:"form-group"},v.a.createElement("label",{htmlFor:"background"},"Background"),v.a.createElement("input",{type:"color",className:"form-control",id:"background",value:l,onChange:e=>{t(e.target.value)}})))});const V=u.c.div`
     border: 1px dashed pink;
     min-height: 260px;
 `,P=({data:e,children:t})=>{var n=Object(g.useContext)(y)["state"];return v.a.createElement(g.Fragment,null,v.a.createElement(V,{style:e[n.devices]||{}},t))};P.setting=({data:a,children:e})=>{const{state:l,dispatch:o}=Object(g.useContext)(y);return v.a.createElement(g.Fragment,null,v.a.createElement(x,{title:"Line "+a.id,visible:!0,onClick:e=>{o({type:"CURRENT_SETTING",currentSetting:a.id})}},"lorem  ipsum"),v.a.createElement(m,{id:"setting"},v.a.createElement(x,{title:"Setting",id:a.id,open:!0},v.a.createElement("div",null,"Setting : ",a.id),v.a.createElement("select",{onChange:e=>{const t=e?e.target.value:"Line",n={id:h(),name:t,parent:a.id,children:[]},r=l.components.map(e=>k(a.id,e,"children",[...a.children,n]));o({type:"ADD_COMPONENT",components:r}),e&&(e.target.value="")}},v.a.createElement("option",{value:""},"Select Component"),Object.keys(A).map((e,t)=>v.a.createElement("option",{key:t,value:e},e))),v.a.createElement(C,{data:a}),v.a.createElement(S,{data:a})),v.a.createElement(x,{title:"Spaces",id:a.id,open:!0},v.a.createElement(O,{data:a})),v.a.createElement(x,{title:"Background",id:a.id,open:!0},v.a.createElement(H,{data:a}))),e)},P.content=({data:e,children:t})=>{const n=e.mobile||{},r=e.desktop||{},a=u.c.div`
@@ -303,7 +309,6 @@ label {
         justify-content: space-between;
         padding: 1rem;
         background-color: #1D1D1C;
-        margin-bottom: 1rem;
         .infos {
             display: flex;
             color: #fff;
@@ -329,7 +334,7 @@ label {
         }
 `,W=u.c.div`
         width: 100%;
-        height: calc(100% - 96.8px);
+        height: calc(100% - 80.8px);
         background-color: #2F2F30;
         display: grid;
         grid-template-columns: 70px 2fr 6fr 2fr;
@@ -347,21 +352,35 @@ label {
         .left {
             background-color: #1D1D1C;
             color: #fff;
-            height: 100%;
+            height: calc(100% - 1rem);
+            border-radius: 1rem;
             width: 100%;
             position: relative;
+            margin-top: 1rem;
+            & > * > * {
+                padding:1rem;
+            }
+            overflow-y: auto;
         }
 
         .center {
-            height: 100%;
+            height: calc(100% - 1rem);
+            border-radius: 1rem;
             width: 100%;
             display: grid;
+            margin-top: 1rem;
         }
 
         .right {
             background-color: #1D1D1C;;
-            height: 100%;
+            height: calc(100% - 1rem);
+            border-radius: 1rem;
             width: 100%;
+            margin-top: 1rem;
+            & > * > * {
+                padding:1rem;
+            }
+            overflow-y: auto;
         }
 
         

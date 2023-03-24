@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 const Backgrounds = styled.div`
 label {
-    background-color: indigo;
+    background-color: #3453F5;
     color: white;
     padding: 0.5rem;
     font-family: sans-serif;
@@ -18,6 +18,12 @@ label {
   #file-chosen{
     margin-left: 0.3rem;
     font-family: sans-serif;
+    text-overflow: ellipsis;
+    max-width: 160px;
+    display: inline-block;
+    vertical-align: middle;
+    overflow: hidden;
+    white-space: nowrap;
   }
   `;
 
@@ -66,19 +72,6 @@ const Background = ({ data }) => {
                     setBackgroundImage("");
                     refName.current.innerHTML = "Aucun fichier";
                 }}> Reset Image </button>}
-                {/* <input type="file" onChange={(e) => {
-                    const { files } = e.target;
-                    const [file] = files;
-                    const reader = new FileReader();
-                    reader.onload = (e) => {
-                        const { result } = e.target;
-                        const value = result ? `url('${result}')` : 'none';
-                        setBackgroundImage(value);
-                        refName.current.innerHTML = file.name;
-                    };
-                    reader.readAsDataURL(file);
-                    e.target.value = null;
-                }} /> */}
             </div>
             <Backgrounds>
                 <input type="file" id="actual-btn" hidden onChange={(e) => {
@@ -97,7 +90,7 @@ const Background = ({ data }) => {
 
                 <label for="actual-btn">Choisir</label>
 
-                <span id="file-chosen" ref={refName}>Aucun fichier</span>
+                <p id="file-chosen" ref={refName}>Aucun fichier</p>
             </Backgrounds>
             <div className="form-group">
                 <label htmlFor="background">Background</label>

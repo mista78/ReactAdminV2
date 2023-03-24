@@ -24,7 +24,6 @@ const Header = styled.div`
         justify-content: space-between;
         padding: 1rem;
         background-color: #1D1D1C;
-        margin-bottom: 1rem;
         .infos {
             display: flex;
             color: #fff;
@@ -52,7 +51,7 @@ const Header = styled.div`
 
 const BodyEditor = styled.div`
         width: 100%;
-        height: calc(100% - 96.8px);
+        height: calc(100% - 80.8px);
         background-color: #2F2F30;
         display: grid;
         grid-template-columns: 70px 2fr 6fr 2fr;
@@ -70,21 +69,35 @@ const BodyEditor = styled.div`
         .left {
             background-color: #1D1D1C;
             color: #fff;
-            height: 100%;
+            height: calc(100% - 1rem);
+            border-radius: 1rem;
             width: 100%;
             position: relative;
+            margin-top: 1rem;
+            & > * > * {
+                padding:1rem;
+            }
+            overflow-y: auto;
         }
 
         .center {
-            height: 100%;
+            height: calc(100% - 1rem);
+            border-radius: 1rem;
             width: 100%;
             display: grid;
+            margin-top: 1rem;
         }
 
         .right {
             background-color: #1D1D1C;;
-            height: 100%;
+            height: calc(100% - 1rem);
+            border-radius: 1rem;
             width: 100%;
+            margin-top: 1rem;
+            & > * > * {
+                padding:1rem;
+            }
+            overflow-y: auto;
         }
 
         
