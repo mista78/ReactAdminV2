@@ -42,6 +42,12 @@ select {
         outline: none;
     }
 }
+.colo {
+    &:hover {
+        border: 1px solid #fff;
+        transform: scale(1.1);
+    }
+}
 `;
 
 const color = ["#0d6efd",
@@ -70,10 +76,11 @@ const MenuBar = ({ editor }) => {
         return null
     }
     const colorRef = useRef("#ccc");
+    const details = useRef(null);
     const [colorPicker, setColor] = useState("#0d6efd");
     return (
         <>
-            <BubbleMenu editor={editor} tippyOptions={{ duration: 100 }}>
+            <BubbleMenu editor={editor}>
                 <Editors>
                     <button
                         onClick={() => editor.chain().focus().toggleOrderedList().run()}
@@ -100,21 +107,26 @@ const MenuBar = ({ editor }) => {
                     >
                         <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8 11h4.5a2.5 2.5 0 1 0 0-5H8v5zm10 4.5a4.5 4.5 0 0 1-4.5 4.5H6V4h6.5a4.5 4.5 0 0 1 3.256 7.606A4.498 4.498 0 0 1 18 15.5zM8 13v5h5.5a2.5 2.5 0 1 0 0-5H8z" fill="currentColor"></path></svg>
                     </button>
-                    <details>
+                    <details ref={details}>
                         <summary style={{
                             display: "grid",
                             alignItems: "center",
                             height: "100%",
                             justifyContent: "center",
                         }} ref={colorRef}>A</summary>
-                        <div style={{ display: 'grid', gridTemplateColumns: "repeat(7,16px)", position: "absolute", top: "100%", background: "rgb(68, 68, 68)", gridGap: "5px", padding: '5px', transform: "translateX(-15%)" }}>
+                        <div  style={{ display: 'grid', gridTemplateColumns: "repeat(7,16px)", position: "absolute", top: "100%", background: "rgb(68, 68, 68)", gridGap: "5px", padding: '5px', transform: "translateX(-15%)" }}>
                             {color.map((item, index) => {
                                 return <div
+                                    
                                     key={index}
-                                    className={editor.isActive('textStyle', { color: item }) ? (() => {
+                                    className={`colo ${editor.isActive('textStyle', { color: item }) ? (() => {
                                         colorRef.current.style.color = item;
-                                    })() : ''}
-                                    onClick={() => editor.chain().focus().setColor(item).run()} style={{ backgroundColor: item, height: '16px', width: "100%" }}></div>
+                                    })() : ''}`}
+                                    onClick={() => {
+                                        editor.chain().focus().setColor(item).run();
+                                        colorRef.current.style.color = item;
+                                        details.current.removeAttribute('open')
+                                    }} style={{ backgroundColor: item, height: '16px', width: "100%" }}></div>
                             })}
                         </div>
                     </details>
