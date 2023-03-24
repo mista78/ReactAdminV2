@@ -6,6 +6,11 @@ import styled from 'styled-components';
 
 const Backgrounds = styled.div`
 color: #fff;
+border: 1px solid #2F2F30;
+display: grid;
+    grid-template-columns: 1fr 3fr;
+    align-items: center;
+    padding: .5rem;
 label {
     background-color: #3453F5;
     color: white;
@@ -13,7 +18,6 @@ label {
     font-family: sans-serif;
     border-radius: 0.3rem;
     cursor: pointer;
-    margin-top: 1rem;
   }
   
   #file-chosen{
@@ -88,9 +92,7 @@ const Background = ({ data }) => {
                     reader.readAsDataURL(file);
                     e.target.value = null;
                 }} />
-
                 <label for="actual-btn">Choisir</label>
-
                 <p id="file-chosen" ref={refName}>Aucun fichier</p>
             </Backgrounds>
             <div className="form-group">
