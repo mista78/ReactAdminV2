@@ -2,11 +2,31 @@ import React, { useState, useEffect, useRef, Fragment, useContext, memo } from '
 import { AppContext } from '../../../../store';
 import updatePropertyById from '../../../../Utils/updatePropertyById';
 
+import styled from 'styled-components';
+
+const Backgrounds = styled.div`
+label {
+    background-color: indigo;
+    color: white;
+    padding: 0.5rem;
+    font-family: sans-serif;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    margin-top: 1rem;
+  }
+  
+  #file-chosen{
+    margin-left: 0.3rem;
+    font-family: sans-serif;
+  }
+  `;
+
 const Background = ({ data }) => {
 
     const { state, dispatch } = useContext(AppContext);
     const [backgroundColor, setBackgroundColor] = useState(data[state.devices] ? data[state.devices]?.backgroundColor || "#1E1E1E" : "#1E1E1E");
     const [backgroundImage, setBackgroundImage] = useState(data[state.devices] ? data[state.devices]?.backgroundImage || "" : "");
+    const refName = useRef(null);
 
     const handleChange = (e) => {
         setBackgroundColor(e.target.value);
@@ -44,8 +64,9 @@ const Background = ({ data }) => {
                 <label htmlFor="background">Upload file</label>
                 {backgroundImage && <button onClick={() => {
                     setBackgroundImage("");
-                } }> Reset Image </button>}
-                <input type="file" onChange={(e) => {
+                    refName.current.innerHTML = "Aucun fichier";
+                }}> Reset Image </button>}
+                {/* <input type="file" onChange={(e) => {
                     const { files } = e.target;
                     const [file] = files;
                     const reader = new FileReader();
@@ -53,11 +74,31 @@ const Background = ({ data }) => {
                         const { result } = e.target;
                         const value = result ? `url('${result}')` : 'none';
                         setBackgroundImage(value);
+                        refName.current.innerHTML = file.name;
+                    };
+                    reader.readAsDataURL(file);
+                    e.target.value = null;
+                }} /> */}
+            </div>
+            <Backgrounds>
+                <input type="file" id="actual-btn" hidden onChange={(e) => {
+                    const { files } = e.target;
+                    const [file] = files;
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        const { result } = e.target;
+                        const value = result ? `url('${result}')` : 'none';
+                        setBackgroundImage(value);
+                        refName.current.innerHTML = file.name;
                     };
                     reader.readAsDataURL(file);
                     e.target.value = null;
                 }} />
-            </div>
+
+                <label for="actual-btn">Choisir</label>
+
+                <span id="file-chosen" ref={refName}>Aucun fichier</span>
+            </Backgrounds>
             <div className="form-group">
                 <label htmlFor="background">Background</label>
                 <input type="color" className="form-control" id="background" value={backgroundColor} onChange={handleChange} />
