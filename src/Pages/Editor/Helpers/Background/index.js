@@ -98,6 +98,10 @@ const Background = ({ data }) => {
             <div className="form-group">
                 <label htmlFor="background">Background</label>
                 <input type="color" className="form-control" id="background" value={backgroundColor} onChange={handleChange} />
+                {backgroundColor && <button onClick={() => {
+                    setBackgroundColor("");
+                    refName.current.innerHTML = "Aucun fichier";
+                }}> Reset Color </button>}
             </div>
         </Fragment>
     );
