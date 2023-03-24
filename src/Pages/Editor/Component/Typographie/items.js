@@ -16,7 +16,7 @@ const Lines = styled.div`
     border: 1px solid #000;
 `;
 
-const updateData = ({data, state, value, dispatch}) => {
+const updateData = ({ data, state, value, dispatch }) => {
     const parent = search([state.components], data.parent);
     const newParent = parent.tags.map(item => updatePropertyById(data.id, item, 'content', value));
     const components = state.components.map(item => updatePropertyById(data.parent, item, 'tags', newParent));
@@ -31,7 +31,7 @@ const Items = ({ data, children, ...props }) => {
         <Fragment>
             <Tag style={(data[state.devices] ? data[state.devices] : {})} contenteditable="true" onBlur={e => {
                 const value = e.target.innerText;
-                updateData({data, state, value , dispatch})
+                updateData({ data, state, value, dispatch })
             }}>{data.content}</Tag>
         </Fragment>
     );
@@ -51,9 +51,11 @@ Items.setting = ({ data, children, ...props }) => {
 
     return <Fragment>
 
-        <button onClick={e => {
+        <Details title={`${data?.tagName} ${data.id}`} visible={true} onClick={e => {
             dispatch({ type: 'CURRENT_SETTING', currentSetting: data.id });
-        }}>Setting {data.id}</button>
+        }}>
+            lorem  ipsum
+        </Details>
         <Portal id="setting">
             <Details title="Setting" id={data.id} open={true}>
                 <div>Setting : {data.id}</div>
@@ -61,16 +63,13 @@ Items.setting = ({ data, children, ...props }) => {
                 <Remove data={data} />
                 <input type="text" value={data.content} onChange={e => {
                     const value = e.target.value;
-                    updateData({data, state, value , dispatch})
+                    updateData({ data, state, value, dispatch })
                 }} />
 
                 <input type="color" value={data[state.devices]?.color} onChange={e => {
                     const value = e.target.value;
                     handleUpdateStyle({ color: value })
                 }} />
-            </Details>
-            <Details title="Spaces" id={data.id} open={true}>
-                <Spaces data={data} />
             </Details>
         </Portal>
     </Fragment>

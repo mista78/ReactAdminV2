@@ -62,9 +62,13 @@ Typographie.setting = ({ data, children, ...props }) => {
 
     return <Fragment>
 
-        <button onClick={e => {
+        <Details title={`Typographie ${data.id}`} visible={true} onClick={e => {
             dispatch({ type: 'CURRENT_SETTING', currentSetting: data.id });
-        }}>Setting {data.id}</button>
+        }}>
+            {data.tags && data.tags.map((item, index) => {
+                return <Items.setting key={index} data={item} />
+            })}
+        </Details>
         <Portal id="setting">
             <Details title="Setting" id={data.id} open={true}>
                 <div>Setting : {data.id}</div>
@@ -97,9 +101,7 @@ Typographie.setting = ({ data, children, ...props }) => {
                 </select>
             </Details>
         </Portal>
-        {data.tags && data.tags.map((item, index) => {
-            return <Items.setting key={index} data={item} />
-        })}
+
     </Fragment>
 }
 

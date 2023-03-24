@@ -18,6 +18,8 @@ const Detail = styled.details`
             &::-webkit-details-marker  {
                 display: none;
             }
+            font-weight: 600;
+            color: #fff;
         }
         .details__body {
             padding: 10px;
