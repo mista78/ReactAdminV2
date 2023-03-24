@@ -23,7 +23,7 @@ const Detail = styled.details`
             padding: 10px;
             &.row {
                 display: grid;
-                grid-template-columns: 1fr 1fr;
+                grid-template-columns: 1fr;
                 grid-gap: 10px;
             }
         }
