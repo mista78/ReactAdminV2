@@ -6,7 +6,7 @@ import Portal from '../../../../Components/Portal';
 import Reorder from '../../../../Components/Reorder';
 import Remove from '../../../../Components/Remove';
 import Details from '../../../../Components/Details';
-import { Spaces } from '../../Helpers';
+import { Spaces, Background } from '../../Helpers';
 import styled from 'styled-components';
 
 import AllComponent from '../index';
@@ -69,6 +69,10 @@ Line.setting = ({ data, children, ...props }) => {
             </Details>
             <Details title="Spaces" id={data.id} open={true}>
                 <Spaces data={data} />
+            </Details>
+
+            <Details title="Background" id={data.id} open={true}>
+                <Background data={data} />
             </Details>
         </Portal>
         {children && children}
