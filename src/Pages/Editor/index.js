@@ -56,6 +56,7 @@ const BodyEditor = styled.div`
         display: grid;
         grid-template-columns: 70px 2fr 6fr 2fr;
         grid-column-gap: 1rem;
+        color: #fff;
 
         .hiddenSlider {
             text-align: center;

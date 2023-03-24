@@ -5,6 +5,7 @@ import updatePropertyById from '../../../../Utils/updatePropertyById';
 import styled from 'styled-components';
 
 const Backgrounds = styled.div`
+color: #fff;
 label {
     background-color: #3453F5;
     color: white;
