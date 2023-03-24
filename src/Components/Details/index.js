@@ -10,6 +10,10 @@ const Detail = styled.details`
     border-radius: 4px;
     margin: 0;
     padding: 0;
+
+    &:last-child {
+        border-bottom: 0;
+    }
     margin-bottom: 10px;
         summary {
             cursor: pointer;
