@@ -2,3 +2,6 @@ node_modules
 srcol/
 livraison/
 php/
+
+# git.sh
+git.sh

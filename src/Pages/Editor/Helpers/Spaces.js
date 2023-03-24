@@ -5,7 +5,7 @@ import updatePropertyById from '../../../Utils/updatePropertyById';
 
 import styled from 'styled-components';
 
-const size = "30px";
+const size = "35px";
 
 const Margin = styled.div`
 cursor: pointer;
@@ -16,7 +16,7 @@ cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 150px;
+    height: 170px;
     padding: ${size};
     .margin-top {
       &:after {
@@ -268,10 +268,10 @@ const Spaces = ({ data }) => {
         </Margin>
         <div>
             {style == "all" && <Fragment>
-                <select value={name} onChange={e => setName(e.target.value)} onClicke={e => setName(e.target.value)} >
+                <div><select value={name} onChange={e => setName(e.target.value)} onClicke={e => setName(e.target.value)} >
                     <option value="margin">margin</option>
                     <option value="padding">padding</option>
-                </select>
+                </select></div>
                 <input type="range" min={0} max={7} value={common} onChange={handleChangeAll} />
             </Fragment>}
         </div>
@@ -279,7 +279,7 @@ const Spaces = ({ data }) => {
             {["margin", "padding"].map(name => {
                 return <Fragment>
                     {style == `${name}Top` && <div>
-                        <label>{name} top</label>
+                        <div><label>{name} top</label></div>
                         <input type="range" min={0} max={7} value={data[state.devices] ? data[state.devices][`${name}Top`]?.replace('rem', "") : 0} onChange={e => {
                             const style = {
                                 ...data[state.devices],
@@ -297,7 +297,7 @@ const Spaces = ({ data }) => {
                         }} />
                     </div>}
                     {style == `${name}Right` && <div>
-                        <label>{name} right</label>
+                        <div><label>{name} right</label></div>
                         <input type="range" min={0} max={7} value={data[state.devices] ? data[state.devices][`${name}Right`]?.replace('rem', "") : 0} onChange={e => {
                             const style = {
                                 ...data[state.devices],
@@ -313,7 +313,7 @@ const Spaces = ({ data }) => {
                         }} />
                     </div>}
                     {style == `${name}Bottom` && <div>
-                        <label>{name} bottom</label>
+                        <div><label>{name} bottom</label></div>
                         <input type="range" min={0} max={7} value={data[state.devices] ? data[state.devices][`${name}Bottom`]?.replace('rem', "") : 0} onChange={e => {
                             const style = {
                                 ...data[state.devices],
@@ -329,7 +329,7 @@ const Spaces = ({ data }) => {
                         }} />
                     </div>}
                     {style == `${name}Left` && <div>
-                        <label>{name} left</label>
+                        <div><label>{name} left</label></div>
                         <input type="range" min={0} max={7} value={data[state.devices] ? data[state.devices][`${name}Left`]?.replace('rem', "") : 0} onChange={e => {
                             const style = {
                                 ...data[state.devices],
