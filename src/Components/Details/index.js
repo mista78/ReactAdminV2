@@ -34,9 +34,11 @@ const Detail = styled.details`
 
 const Details = ({ children, title, id, row = "row", visible = false, onClick, open = false }) => {
     const { state, dispatch } = useContext(AppContext);
+    const ref = useRef(null);
     return <Fragment>
-        {(state.currentSetting == id || visible) && <Detail className='details' open={open}>
+        {(state.currentSetting == id || visible) && <Detail  ref={ref} className='details' open={ref?.current?.open || true}>
             <summary className='details__summary' onClick={() => {
+                ref.current.open = false;
                 onClick && onClick();
             }}>{title}</summary>
             <div className={`details__body ${row}`}>

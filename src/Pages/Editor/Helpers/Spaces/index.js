@@ -17,7 +17,7 @@ const Spaces = ({ data }) => {
     const common = (spacesBottom?.replace("rem", "") == spacesLeft?.replace("rem", "") &&
         spacesLeft?.replace("rem", "") == spacesRight?.replace("rem", "") &&
         spacesRight?.replace("rem", "") == spacesTop?.replace("rem", "")) &&
-        spacesBottom?.replace("rem", "");
+        spacesBottom?.replace("rem", "") || "0";
 
     const handleChangeAll = (e) => {
         setSpacesBottom(e.target.value);
@@ -92,20 +92,24 @@ const Spaces = ({ data }) => {
                             const names = name + dir;
                             return <Fragment>
                                 {style === `${names}` && <div>
-                                    <div><label>{name} {dir}</label></div>
-                                    <input type="range" min={0} max={7} value={data[state.devices] ? data[state.devices][`${names}`]?.replace('rem', "") || 0 : 0} onChange={e => {
-                                        const style = {
-                                            ...data[state.devices],
-                                            [`${names}`]: e.target.value?.replaceAll("rem", "") + 'rem',
-                                        }
-                                        Object.keys(style).forEach(key => {
-                                            if (style[key] === 0 || style[key] === "0" || style[key] === "0rem") {
-                                                delete style[key];
+                                    <div><label htmlFor={names}>{name} {dir}</label></div>
+                                    <input
+                                        id={names}
+                                        type="range" min={0} max={7}
+                                        value={data[state.devices] ? data[state.devices][`${names}`]?.replace('rem', "") || 0 : 0}
+                                        onChange={e => {
+                                            const style = {
+                                                ...data[state.devices],
+                                                [`${names}`]: e.target.value?.replaceAll("rem", "") + 'rem',
                                             }
-                                        });
-                                        const components = state.components.map(item => updatePropertyById(data.id, item, state.devices, style));
-                                        dispatch({ type: "ADD_COMPONENT", components });
-                                    }} />
+                                            Object.keys(style).forEach(key => {
+                                                if (style[key] === 0 || style[key] === "0" || style[key] === "0rem") {
+                                                    delete style[key];
+                                                }
+                                            });
+                                            const components = state.components.map(item => updatePropertyById(data.id, item, state.devices, style));
+                                            dispatch({ type: "ADD_COMPONENT", components });
+                                        }} />
                                 </div>}
                             </Fragment>
                         })}
