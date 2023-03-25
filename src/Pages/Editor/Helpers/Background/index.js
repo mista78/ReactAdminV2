@@ -35,7 +35,7 @@ label {
 const Background = ({ data }) => {
 
     const { state, dispatch } = useContext(AppContext);
-    const [backgroundColor, setBackgroundColor] = useState(data[state.devices] ? data[state.devices]?.backgroundColor || "#fff" : "#fff");
+    const [backgroundColor, setBackgroundColor] = useState(data[state.devices] ? data[state.devices]?.backgroundColor || "#000" : "#000");
     const [backgroundImage, setBackgroundImage] = useState(data[state.devices] ? data[state.devices]?.backgroundImage || "" : "");
     const refName = useRef(null);
 
@@ -65,7 +65,7 @@ const Background = ({ data }) => {
     }, [backgroundColor, backgroundImage]);
 
     useEffect(() => {
-        setBackgroundColor(data[state.devices] ? data[state.devices]?.backgroundColor || "#fff" : "#fff");
+        setBackgroundColor(data[state.devices] ? data[state.devices]?.backgroundColor || "#000" : "#000");
         setBackgroundImage(data[state.devices] ? data[state.devices]?.backgroundImage || "" : "");
     }, [state.devices]);
 
