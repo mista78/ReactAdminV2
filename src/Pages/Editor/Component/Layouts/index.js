@@ -14,16 +14,10 @@ import styled from 'styled-components';
 import AllComponent from '../index';
 
 const Lines = styled.div`
-    display: grid;
-    grid-template-columns: 1fr;
-    border: 1px dashed pink;
-    min-height: 260px;
-    @media (min-width: 768px) {
-        grid-template-columns: ${props => props.child};
-    }
+    border: 1px dashed blue;
 `;
 
-const Line = ({ data, children, ...props }) => {
+const Layouts = ({ data, children, ...props }) => {
     const { state, dispatch } = useContext(AppContext);
 
     const handleUpdateStyle = (value = {}) => {
@@ -40,14 +34,14 @@ const Line = ({ data, children, ...props }) => {
     );
 }
 
-Line.setting = ({ data, children, ...props }) => {
+Layouts.setting = ({ data, children, ...props }) => {
     const { state, dispatch } = useContext(AppContext);
 
     const handleAddComponent = (e) => {
         const value = e ? e.target.value : 'Line';
         const newBlock = {
             id: uuid(),
-            name: "Layouts",
+            name: value,
             parent: data.id,
             cols: '1fr',
             children: []
@@ -84,7 +78,7 @@ Line.setting = ({ data, children, ...props }) => {
     };
 
     return <Fragment>
-        <Details title={`Line ${data.id}`} visible={true} onClick={e => {
+        <Details title={`Layouts ${data.id}`} visible={true} onClick={e => {
             dispatch({ type: 'CURRENT_SETTING', currentSetting: data.id });
         }}>
             lorem  ipsum
@@ -92,7 +86,12 @@ Line.setting = ({ data, children, ...props }) => {
         <Portal id="setting">
             <Details title="Setting" id={data.id} open={true}>
                 <div>Setting : {data.id}</div>
-                <button onClick={handleAddComponent}>Add Layouts</button>
+                <select onChange={handleAddComponent}>
+                    <option value="">Select Component</option>
+                    {Object.keys(AllComponent).map((item, index) => {
+                        return <option key={index} value={item}>{item}</option>
+                    })}
+                </select>
                 <Duplicate data={data} />
                 <Reorder data={data} />
                 <Remove data={data} />
@@ -109,7 +108,7 @@ Line.setting = ({ data, children, ...props }) => {
     </Fragment>
 }
 
-Line.content = ({ data, children }) => {
+Layouts.content = ({ data, children }) => {
     const mobile = (data['mobile'] ? data['mobile'] : {});
     const desktop = (data['desktop'] ? data['desktop'] : {});
 
@@ -134,4 +133,4 @@ Line.content = ({ data, children }) => {
 
 }
 
-export default Line;
+export default Layouts;
