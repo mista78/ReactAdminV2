@@ -15,7 +15,19 @@ import styled from 'styled-components';
 import AllComponent from '../index';
 
 const Lines = styled.div`
+    position: relative;
     border: 1px dashed blue;
+    .pop {
+        display: flex;
+        border: 1px solid red;
+    }
+    .reorder {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+    }
 `;
 
 const Layouts = ({ data, children, ...props }) => {
@@ -26,9 +38,16 @@ const Layouts = ({ data, children, ...props }) => {
         const components = state.components.map(item => updatePropertyById(data.id, item, state.devices, value));
         dispatch({ type: "UPDATE_COMPONENT", components });
     }
+    console.log("data", data);
     return (
         <Fragment>
             <Lines style={(data[state.devices] ? data[state.devices] : {})} child={data?.children.map(item => (item.cols))?.join(' ')} >
+                <div className="pop">
+                    <Cols data={data} />
+                    <Duplicate data={data} />
+                    <Reorder data={data} />
+                    <Remove data={data} />
+                </div>
                 {children && children}
             </Lines>
         </Fragment>
@@ -93,11 +112,7 @@ Layouts.setting = ({ data, children, ...props }) => {
                         return <option key={index} value={item}>{item}</option>
                     })}
                 </select>
-                {/* update cols */}
-                <Cols data={data} />
-                <Duplicate data={data} />
-                <Reorder data={data} />
-                <Remove data={data} />
+               
             </Details>
             <Details title="Spaces" id={data.id} open={true}>
                 <Spaces data={data} />
