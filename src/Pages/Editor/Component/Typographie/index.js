@@ -10,8 +10,7 @@ import Details from '../../../../Components/Details';
 import Duplicate from '../../../../Components/Duplicate';
 import { Spaces } from '../../Helpers';
 import styled from 'styled-components';
-import { useEditor, EditorContent } from '@tiptap/react'
-import StarterKit from '@tiptap/starter-kit'
+
 
 const Lines = styled.div`
     border: 1px solid #000;
@@ -78,27 +77,6 @@ Typographie.setting = ({ data, children, ...props }) => {
             </Details>
             <Details title="Spaces" id={data.id} open={true}>
                 <Spaces data={data} />
-            </Details>
-            <Details title="text" id={data.id} open={true}>
-                <select onChange={e => {
-                    const value = e.target.value;
-                    const newItems = {
-                        id: uuid(),
-                        tagName: value,
-                        content: "Default content",
-                        parent: data.id,
-                    }
-                    const components = state.components.map(item => updatePropertyById(data.id, item, 'tags', [...(data.tags ? data.tags : []), newItems]));
-                    dispatch({ type: "ADD_COMPONENT", components });
-                    e.target.value = '';
-                }}>
-                    <option value="">Select Tag</option>
-                    <option value="p">p</option>
-                    {[...new Array(6)].map((item, index) => {
-                        const value = 'h' + (index + 1);
-                        return <option value={value}>{value}</option>
-                    })}
-                </select>
             </Details>
         </Portal>
 
