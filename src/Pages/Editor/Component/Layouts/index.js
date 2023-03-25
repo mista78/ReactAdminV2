@@ -8,6 +8,7 @@ import Reorder from '../../../../Components/Reorder';
 import Duplicate from '../../../../Components/Duplicate';
 import Remove from '../../../../Components/Remove';
 import Details from '../../../../Components/Details';
+import Cols from '../../../../Components/Cols';
 import { Spaces, Background } from '../../Helpers';
 import styled from 'styled-components';
 
@@ -92,6 +93,8 @@ Layouts.setting = ({ data, children, ...props }) => {
                         return <option key={index} value={item}>{item}</option>
                     })}
                 </select>
+                {/* update cols */}
+                <Cols data={data} />
                 <Duplicate data={data} />
                 <Reorder data={data} />
                 <Remove data={data} />
