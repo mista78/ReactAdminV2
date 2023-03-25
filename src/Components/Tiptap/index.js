@@ -82,7 +82,7 @@ const MenuBar = ({ editor }) => {
     const [colorPicker, setColor] = useState("#0d6efd");
     return (
         <>
-            <BubbleMenu editor={editor}>
+            <BubbleMenu editor={editor} tippyOptions={{ duration: 100 }}>
                 <Editors>
                     <button
                         onClick={() => editor.chain().focus().toggleOrderedList().run()}

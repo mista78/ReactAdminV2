@@ -24,6 +24,10 @@ const GlobalStyle = createGlobalStyle`
         padding: 0;
         box-sizing: border-box;
     }
+    .editor {
+      border: 1rem solid rgb(47, 47, 48);
+      
+    }
     .ProseMirror {
         outline: none;
         &:focus {
