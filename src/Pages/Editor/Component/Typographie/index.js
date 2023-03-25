@@ -79,6 +79,7 @@ Typographie.setting = ({ data, children, ...props }) => {
                 <Spaces data={data} />
             </Details>
         </Portal>
+        
 
     </Fragment>
 }
