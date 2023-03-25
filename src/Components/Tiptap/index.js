@@ -3,9 +3,11 @@ import ListItem from '@tiptap/extension-list-item'
 import TextStyle from '@tiptap/extension-text-style'
 import { BubbleMenu, EditorContent, useEditor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
-import React, { useRef, useState } from 'react'
-
+import React, { useState, useEffect, useRef, Fragment, useContext, memo } from 'react';
+import { AppContext } from '../../store';
 import styled from 'styled-components';
+import updatePropertyById from '../../Utils/updatePropertyById';
+import search from '../../Utils/search';
 
 const Editors = styled.div`
 border-radius: 25px;
@@ -188,6 +190,7 @@ const MenuBar = ({ editor }) => {
 }
 
 const Tiptap = ({ data }) => {
+    const {state, dispatch} = useContext(AppContext);
     const editor = useEditor({
         extensions: [
             Color.configure({ types: [TextStyle.name, ListItem.name] }),
@@ -203,7 +206,7 @@ const Tiptap = ({ data }) => {
                 },
             }),
         ],
-        content: `
+        content: data?.content || `
         <h2>
           Hi there,
         </h2>
@@ -233,12 +236,19 @@ const Tiptap = ({ data }) => {
           — Mom
         </blockquote>
       `,
-    })
+    });
+    
 
     return (
         <div>
             <MenuBar editor={editor} />
-            <EditorContent editor={editor} />
+            <EditorContent editor={editor} onBlur={e => {
+                // add content to state
+                const components = state.components.map(item => updatePropertyById(data.id, item, 'content', editor.getHTML()));
+                dispatch({ type: 'ADD_COMPONENT', components: [...components] });
+
+                console.log('onBlur editor', editor.getHTML(), editor.getJSON());
+            }} />
         </div>
     )
 }

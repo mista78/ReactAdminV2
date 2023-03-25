@@ -7,6 +7,7 @@ import Reorder from '../../../../Components/Reorder';
 import Tiptap from '../../../../Components/Tiptap';
 import Remove from '../../../../Components/Remove';
 import Details from '../../../../Components/Details';
+import Duplicate from '../../../../Components/Duplicate';
 import { Spaces } from '../../Helpers';
 import styled from 'styled-components';
 import { useEditor, EditorContent } from '@tiptap/react'
@@ -71,7 +72,7 @@ Typographie.setting = ({ data, children, ...props }) => {
         <Portal id="setting">
             <Details title="Setting" id={data.id} open={true}>
                 <div>Setting : {data.id}</div>
-
+                <Duplicate data={data} />
                 <Reorder data={data} />
                 <Remove data={data} />
             </Details>
