@@ -8,7 +8,7 @@ import Reorder from '../../../../Components/Reorder';
 import Duplicate from '../../../../Components/Duplicate';
 import Remove from '../../../../Components/Remove';
 import Details from '../../../../Components/Details';
-import { Spaces, Background } from '../../Helpers';
+import { BorderRadius ,Spaces, Background } from '../../Helpers';
 import styled from 'styled-components';
 
 import AllComponent from '../index';
@@ -96,6 +96,9 @@ Line.setting = ({ data, children, ...props }) => {
                 <Duplicate data={data} />
                 <Reorder data={data} />
                 <Remove data={data} />
+            </Details>
+            <Details title="BorderRadius" id={data.id} open={true}>
+                <BorderRadius data={data} />
             </Details>
             <Details title="Spaces" id={data.id} open={true}>
                 <Spaces data={data} />
