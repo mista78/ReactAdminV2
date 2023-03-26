@@ -19,7 +19,6 @@ const Lines = styled.div`
     border: 1px dashed blue;
     .pop {
         display: flex;
-        border: 1px solid red;
     }
     .common {
         position: absolute;
@@ -50,6 +49,7 @@ const Lines = styled.div`
             background: transparent;
             cursor: pointer;
         }
+        left: 0;
     }
 `;
 
