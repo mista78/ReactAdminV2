@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, Fragment, useContext, memo } from 'react';
 import { AppContext } from '../../../../store';
 import updatePropertyById from '../../../../Utils/updatePropertyById';
+import axios from 'axios';
 
 import styled from 'styled-components';
 
@@ -84,9 +85,37 @@ const Background = ({ data }) => {
                     const [file] = files;
                     const reader = new FileReader();
                     reader.onload = (e) => {
+                        function slugify(str) {
+                            str = str.replace(/^\s+|\s+$/g, '');
+
+                            // Make the string lowercase
+                            str = str.toLowerCase();
+
+                            // Remove accents, swap ñ for n, etc
+                            var from = "ÁÄÂÀÃÅČÇĆĎÉĚËÈÊẼĔȆÍÌÎÏŇÑÓÖÒÔÕØŘŔŠŤÚŮÜÙÛÝŸŽáäâàãåčçćďéěëèêẽĕȇíìîïňñóöòôõøðřŕšťúůüùûýÿžþÞĐđßÆa·/_,:;";
+                            var to = "AAAAAACCCDEEEEEEEEIIIINNOOOOOORRSTUUUUUYYZaaaaaacccdeeeeeeeeiiiinnooooooorrstuuuuuyyzbBDdBAa------";
+                            for (var i = 0, l = from.length; i < l; i++) {
+                                str = str.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
+                            }
+
+                            // Remove invalid chars
+                            str = str.replace(/[^a-z0-9 -]/g, '')
+                                // Collapse whitespace and replace by -
+                                .replace(/\s+/g, '-')
+                                // Collapse dashes
+                                .replace(/-+/g, '-');
+
+                            return str;
+                        }
                         const { result } = e.target;
-                        const value = result ? `url('${result}')` : 'none';
-                        setBackgroundImage(value);
+                        (async () => {
+                            console.log('before url', state.urls.post.upload_image);
+                            const { data } = await axios.post(state.urls.post.upload_image, { image: result, name: slugify(file.name) });
+
+                            const value = data ? `url('${data?.guid.replaceAll('https://preadminmd.malimda.com/', "https://malimda.com/")}')` : 'none';
+                            setBackgroundImage(value);
+                            console.log(data);
+                        })();
                         refName.current.innerHTML = file.name;
                     };
                     reader.readAsDataURL(file);

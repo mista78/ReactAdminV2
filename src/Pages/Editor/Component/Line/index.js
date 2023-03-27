@@ -117,6 +117,7 @@ Line.content = ({ data, children }) => {
     const desktop = (data['desktop'] ? data['desktop'] : {});
 
     const Line = styled(Lines)`
+        border: none;
         ${Object.keys(mobile).map((item, index) => {
         return kebabize(item) + ':' + mobile[item] + ';'
     }).join('')}
@@ -130,9 +131,8 @@ Line.content = ({ data, children }) => {
 
     return <Fragment>
         <Line child={data?.children.map(item => (item.cols))?.join(' ')}>
-            {data.content ? data.content : 'Default content'}
+            {children && children}
         </Line>
-        {children && children}
     </Fragment>
 
 }

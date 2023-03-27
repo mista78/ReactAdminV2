@@ -16,7 +16,7 @@ const replaceString = (str, reg, replaceValue) => {
 
 module.exports = async function build() {
   const now = Date.now();
-  const path = './php';
+  const path = './wordpress/web/app/plugins/wp-cegos-ecommerce-dashboard/admin/partials';
   let indexFile = await readFile('./static/build.html');
   let pagesFile = await readFile('./src/index.js');
   let js = await readFile('./static/js/bundle.js');

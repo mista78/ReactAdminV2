@@ -3,7 +3,8 @@ import { AppContext } from '../../store';
 import updatePropertyById from '../../Utils/updatePropertyById';
 import search from '../../Utils/search';
 
-const MediaUploader = ({ data }) => {
+
+const MediaUploader = ({ data, url }) => {
     const { state, dispatch } = useContext(AppContext);
 
     const handleChangeOrder = (value) => {

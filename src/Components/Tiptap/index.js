@@ -254,5 +254,11 @@ const Tiptap = ({ data }) => {
 }
 
 
+Tiptap.content = ({ data }) => {
+    return (
+        <div className="content" dangerouslySetInnerHTML={{ __html: data.content }} />
+    )
+}
+
 
 export default Tiptap

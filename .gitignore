@@ -5,5 +5,11 @@ php/
 static/js/
 static/css/
 
+memo/
+wordpress/
+prod/
+
+docker-compose.yml
+
 # git.sh
 git.sh

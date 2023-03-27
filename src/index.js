@@ -11,6 +11,11 @@ const GlobalStyle = createGlobalStyle`
         height: 100%;
         background-color: #2F2F30;
         font-family: "Roboto", sans-serif;
+
+        p {
+          margin: 0 !important;
+          padding: 0;
+        }
     }
     * {
         margin: 0;
@@ -24,8 +29,12 @@ const GlobalStyle = createGlobalStyle`
     svg {
       cursor: pointer;
     }
-    
+
+    #wpbody-content {
+      height: 95vh;
+    }
 `;
+import { BrowserRouter } from "react-router-dom";
 
 const Component = Data["Editor"];
 const rootElement = document.getElementById("root");
@@ -33,14 +42,18 @@ if (rootElement.hasChildNodes()) {
   hydrate(<Fragment>
     <GlobalStyle />
     <StateProvider>
-      <Component />
+      <BrowserRouter>
+        <Component />
+      </BrowserRouter>
     </StateProvider>
   </Fragment>, rootElement);
 } else {
   render(<Fragment>
     <GlobalStyle />
     <StateProvider>
-      <Component />
+      <BrowserRouter>
+        <Component />
+      </BrowserRouter>
     </StateProvider>
   </Fragment>, rootElement);
 }

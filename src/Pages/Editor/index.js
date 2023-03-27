@@ -1,12 +1,14 @@
 import IFrames from '../../Components/Iframe';
 import React, { useState, useEffect, useRef, Fragment, useContext, memo } from 'react';
-
+import { Routes, Route, Outlet, Link } from "react-router-dom";
 import styled, { ServerStyleSheet, StyleSheetManager } from 'styled-components';
-import { AppContext,storage } from '../../store';
+import { AppContext, storage } from '../../store';
 import Portal from '../../Components/Portal';
-import { uuid,GenerateUrl } from '../../Utils/tools';
+import { uuid, GenerateUrl } from '../../Utils/tools';
 import { renderToString, renderToStaticMarkup } from 'react-dom/server';
 import axios from 'axios';
+
+
 
 import DataUrl from './Urls';
 
@@ -15,7 +17,7 @@ import AllComponent from './Component/index';
 const View = ({ data, setting }) => {
     return <Fragment>
         {data && data?.map((item, index) => {
-            const Component = setting ? AllComponent[item.name].setting : AllComponent[item.name];
+            const Component = (AllComponent[item.name] && setting) ? AllComponent[item.name].setting : AllComponent[item.name];
             if (!Component) return null;
             return <Component key={item.id} data={item} position={index}>
                 {item.children && <View data={item.children} parent={data} setting={setting} position={index} />}
@@ -41,6 +43,12 @@ const Header = styled.div`
         justify-content: space-between;
         padding: 1rem;
         background-color: #1D1D1C;
+        select {
+            border: none;
+            background: transparent;
+            line-height: 1.5;
+            color: #fff;
+        }
         .infos {
             display: flex;
             color: #fff;
@@ -137,12 +145,15 @@ const Button = styled.button`
 const Editor = () => {
     const { state, dispatch } = useContext(AppContext);
     const RequestUrl = GenerateUrl(DataUrl.Editor, ["GET", "POST"]);
+    const [pages, setPages] = useState([]);
+
 
     const handleBreaksite = (value, devices) => {
         dispatch({ type: "MODE_BREAKSIZE", breaksize: value });
         dispatch({ type: "DEVICES", devices });
-    };
 
+    };
+    console.log('state dispatch', state);
     useEffect(() => {
         const data = storage.get('components');
         const currentSetting = storage.get('currentSetting');
@@ -155,8 +166,23 @@ const Editor = () => {
     }, [])
 
     useEffect(() => {
+        dispatch({ type: "DEVICES", urls: { ...RequestUrl } });
+        (async () => {
+            const response = await axios.get(RequestUrl.get.get_pages);
+            const { data } = response;
+            console.log(data, response);
+            if (data && response.status === 200 && Array.isArray(data)) {
+                setPages(data);
+            }
+        })();
+        console.log(RequestUrl);
+        console.log(state.urls);
+    }, [])
+
+    useEffect(() => {
         storage.set('components', state.components);
         storage.set('currentSetting', state.currentSetting);
+        console.log("Urls", state);
     }, [state]);
 
     return (
@@ -187,7 +213,26 @@ const Editor = () => {
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M27.1543 11.3755C27.9353 10.5944 27.9353 9.32807 27.1543 8.54703C26.3732 7.76598 25.1069 7.76598 24.3258 8.54703L12.2529 20.62C12.2471 20.6258 12.2413 20.6316 12.2356 20.6375C12.2299 20.6431 12.2241 20.6487 12.2185 20.6544C11.4374 21.4355 11.4374 22.7018 12.2185 23.4828L24.2914 35.5558C25.0725 36.3369 26.3388 36.3369 27.1199 35.5558C27.9009 34.7748 27.9009 33.5084 27.1199 32.7274L16.4611 22.0686L27.1543 11.3755Z" fill="white" />
                         </svg>
                         <div>
-                            <p>Page: Nom de la page</p>
+
+                            <p>Page: <select style={{ display: "inline-block" }} onChange={e => {
+                                const value = e.target.value;
+                                if (!value) return;
+                                let data = [];
+                                try {
+                                    console.log(pages.find(item => item.ID == value).post_content);
+                                    data = JSON.parse(pages.find(item => item.ID == value).post_content);
+                                } catch (error) {
+                                    console.log(error);
+                                }
+                                console.log("comp", data.components);
+                                dispatch({ type: "ADD_COMPONENT", components: (data.components && Array.isArray(data.components)) ? data.components : [] });
+                                dispatch({ type: "CURRENT_PAGE", currentPage: value });
+                            }}>
+                                <option value="">Page</option>
+                                {pages?.map((item, index) => {
+                                    return <option key={index} value={item.ID}>{item.post_name}</option>
+                                })}
+                            </select></p>
                             <p>www.malimnda.com</p>
                         </div>
                     </div>
@@ -250,7 +295,7 @@ const Editor = () => {
                             const styleTags = sheet.getStyleTags(); // or sheet.getStyleElement();
                             const test = sheet.getStyleElement();
                             const regex = /\/\*.*\*\/n/gm;
-                            console.log(test,styleTags);
+                            console.log(test, styleTags);
                             html = styleTags.replaceAll(regex, '') + render;
                             function remplaçant(clé, valeur) {
                                 if (typeof valeur === 'string') {

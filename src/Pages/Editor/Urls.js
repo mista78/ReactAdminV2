@@ -26,6 +26,12 @@ const DataUrl = {
                     value: 'get_page'
                 }
             ],
+            upload_image: [
+                {
+                    param: 'action',
+                    value: 'upload_image'
+                }
+            ],
             save_page: [
                 {
                     param: 'action',

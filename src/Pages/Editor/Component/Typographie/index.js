@@ -101,7 +101,7 @@ Typographie.content = ({ data, children }) => {
     `;
 
     return <Fragment>
-        {/* <Tiptap data={data} /> */}
+        <Tiptap.content data={data} />
     </Fragment>
 
 }
