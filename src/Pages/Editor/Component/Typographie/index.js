@@ -101,7 +101,7 @@ Typographie.content = ({ data, children }) => {
     `;
 
     return <Fragment>
-        <Tiptap.content data={data} />
+        <Line className="content" dangerouslySetInnerHTML={{ __html: data.content }} />
     </Fragment>
 
 }
