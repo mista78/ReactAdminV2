@@ -153,7 +153,6 @@ const Editor = () => {
         dispatch({ type: "DEVICES", devices });
 
     };
-    console.log('state dispatch', state);
     useEffect(() => {
         const data = storage.get('components');
         const currentSetting = storage.get('currentSetting');
@@ -175,14 +174,11 @@ const Editor = () => {
                 setPages(data);
             }
         })();
-        console.log(RequestUrl);
-        console.log(state.urls);
     }, [])
 
     useEffect(() => {
         storage.set('components', state.components);
         storage.set('currentSetting', state.currentSetting);
-        console.log("Urls", state);
     }, [state]);
 
     return (

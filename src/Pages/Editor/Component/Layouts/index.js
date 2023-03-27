@@ -61,7 +61,6 @@ const Layouts = ({ data, children, ...props }) => {
         const components = state.components.map(item => updatePropertyById(data.id, item, state.devices, value));
         dispatch({ type: "UPDATE_COMPONENT", components });
     }
-    console.log("data", data);
     return (
         <Fragment>
             <Lines
