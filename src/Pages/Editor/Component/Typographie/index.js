@@ -79,7 +79,7 @@ Typographie.setting = ({ data, children, ...props }) => {
                 <Spaces data={data} />
             </Details>
         </Portal>
-        
+
 
     </Fragment>
 }
@@ -101,7 +101,7 @@ Typographie.content = ({ data, children }) => {
     `;
 
     return <Fragment>
-        <Tiptap data={data} />
+        {/* <Tiptap data={data} /> */}
     </Fragment>
 
 }

@@ -40,7 +40,7 @@ const BorderRadius = ({ data }) => {
 
     return <Fragment>
 
-        <BorderRadius>
+        <Fragment>
             <div className="borderRadius">
                 <div className="border-top-left-radius" onClick={e => setStyle("borderTopLeftRadius")}> {data[state.devices] && (data[state.devices]["borderTopLeftRadius"] ? data[state.devices]["borderTopLeftRadius"] : 0)}</div>
                 <div className="border-top-right-radius" onClick={e => setStyle("borderTopRightRadius")}>{data[state.devices] && (data[state.devices]["borderTopRightRadius"] ? data[state.devices]["borderTopRightRadius"] : 0)}</div>
@@ -56,7 +56,7 @@ const BorderRadius = ({ data }) => {
                 </Fragment>}
             </div>
                 <Fragment>
-                    {[`TopLeftRadius`, `TopRightRadius`, `BottomRightRadius`, `BottomLeftRadiusLeft`].map(dir => {
+                    {[`TopLeftRadius`, `TopRightRadius`, `BottomRightRadius`, `BottomLeftRadius`].map(dir => {
                         const names = "border" + dir;
                         return <Fragment>
                             {style === `${names}` && <div>
@@ -84,7 +84,7 @@ const BorderRadius = ({ data }) => {
                         </Fragment>
                     })}
                 </Fragment>
-        </BorderRadius>
+        </Fragment>
     </Fragment>
 
 }

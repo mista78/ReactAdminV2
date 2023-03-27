@@ -12,3 +12,16 @@ export const kebabize = str => {
             : letter;
     }).join('');
 };
+
+
+export const GenerateUrl = (object, methods = ["GET"]) => {
+    const base = window?.ajaxurl || "";
+    return Object.fromEntries(methods?.map(method => {
+        return [method.toLowerCase(), Object.fromEntries(Object.keys(object[method.toLowerCase()])?.map(keys => {
+            const host = new URL(`${window.location.origin}${base}`);
+            const c = object[method.toLowerCase()][keys];
+            c.map(({ param, value }) => host.searchParams.append(param, value));
+            return [keys, host]
+        }))]
+    }))
+}

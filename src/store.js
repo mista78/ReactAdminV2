@@ -1,16 +1,43 @@
 // create store context
 import React from 'react';
 
+const storage = {
+    get: (key, init) => {
+        const value = localStorage.getItem(key);
+        if (value) {
+            const bool = ["true", "false"];
+            if (bool[value] === "true") {
+                return true;
+            }
+            if (bool[value] === "false") {
+                return false;
+            }
+
+            if(!isNaN(parseInt(value))) {
+                return parseInt(value);
+            }
+            return JSON.parse(value);
+        }
+        return init;
+    },
+    set: (key, value) => {
+        localStorage.setItem(key, JSON.stringify(value));  
+    },
+    remove: (key) => {
+        localStorage.removeItem(key);
+    }
+}
+
 
 const initialState = {
-    components: [],
-    modeEdition: true,
-    breaksize: null,
-    currentPage: 1,
-    currentSetting: null,
-    html: null,
-    publish: null,
-    devices: "desktop"
+    components: storage.get("components", []),
+    modeEdition: storage.get("modeEdition", false),
+    breaksize: storage.get("breaksize", false),
+    currentPage: storage.get("currentPage", 0),
+    currentSetting: storage.get("currentSetting", null),
+    html: storage.get("html", null),
+    publish: storage.get("publish", false),
+    devices: storage.get("devices", "desktop")
 };
 
 const AppContext = React.createContext(initialState);
@@ -48,4 +75,4 @@ const StateProvider = ({ children }) => {
     return <Provider value={{ state, dispatch }}>{children}</Provider>;
 };
 
-export { AppContext, StateProvider };
+export { AppContext, StateProvider, storage };

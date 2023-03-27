@@ -1,9 +1,14 @@
 import IFrames from '../../Components/Iframe';
 import React, { useState, useEffect, useRef, Fragment, useContext, memo } from 'react';
+
 import styled, { ServerStyleSheet, StyleSheetManager } from 'styled-components';
-import { AppContext } from '../../store';
+import { AppContext,storage } from '../../store';
 import Portal from '../../Components/Portal';
-import { uuid } from '../../Utils/tools';
+import { uuid,GenerateUrl } from '../../Utils/tools';
+import { renderToString, renderToStaticMarkup } from 'react-dom/server';
+import axios from 'axios';
+
+import DataUrl from './Urls';
 
 import AllComponent from './Component/index';
 
@@ -14,6 +19,18 @@ const View = ({ data, setting }) => {
             if (!Component) return null;
             return <Component key={item.id} data={item} position={index}>
                 {item.children && <View data={item.children} parent={data} setting={setting} position={index} />}
+            </Component>
+        })}
+    </Fragment>
+};
+
+const Moodboard = ({ data }) => {
+    return <Fragment>
+        {data && data?.map((item, index) => {
+            const Component = AllComponent[item.name].content;
+            if (!Component) return null;
+            return <Component key={item.id} data={item} position={index}>
+                {item.children && <Moodboard data={item.children} parent={data} position={index} />}
             </Component>
         })}
     </Fragment>
@@ -119,11 +136,28 @@ const Button = styled.button`
     `;
 const Editor = () => {
     const { state, dispatch } = useContext(AppContext);
+    const RequestUrl = GenerateUrl(DataUrl.Editor, ["GET", "POST"]);
 
     const handleBreaksite = (value, devices) => {
         dispatch({ type: "MODE_BREAKSIZE", breaksize: value });
         dispatch({ type: "DEVICES", devices });
     };
+
+    useEffect(() => {
+        const data = storage.get('components');
+        const currentSetting = storage.get('currentSetting');
+        if (currentSetting) {
+            dispatch({ type: "CURRENT_SETTING", currentSetting });
+        }
+        if (data) {
+            dispatch({ type: "ADD_COMPONENTS", components: [...data] });
+        }
+    }, [])
+
+    useEffect(() => {
+        storage.set('components', state.components);
+        storage.set('currentSetting', state.currentSetting);
+    }, [state]);
 
     return (
         <Fragment>
@@ -209,7 +243,45 @@ const Editor = () => {
                         <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M13 29.0627V18.362C13 18.0664 13.1182 17.7818 13.329 17.5729C13.5391 17.3632 13.8252 17.2457 14.1223 17.2457H27.1655L25.6561 15.783C25.4412 15.4964 25.3783 15.1252 25.4847 14.7843C25.5919 14.4434 25.8559 14.1739 26.1959 14.0591C26.5359 13.9443 26.9105 13.9986 27.2035 14.2049L30.6867 17.5536C30.7855 17.6533 30.8643 17.7708 30.9189 17.9001V17.9771C30.9631 18.0877 30.9894 18.2046 30.9963 18.3235C31.0225 18.6369 30.9092 18.9469 30.6867 19.1703L27.2035 22.6346C26.9181 22.9054 26.5103 23.0064 26.1302 22.9019C25.7501 22.7975 25.4529 22.5019 25.3479 22.1239C25.2429 21.7458 25.3451 21.341 25.6167 21.0564L27.2809 19.4013H15.2447V27.9849H29.9513C30.2969 28.0495 30.592 28.2716 30.7489 28.585C30.9057 28.8977 30.9057 29.2662 30.7489 29.5789C30.592 29.8916 30.2969 30.1144 29.9513 30.179H14.1223C13.8245 30.179 13.5391 30.0614 13.329 29.8518C13.1182 29.6428 13 29.3583 13 29.0627Z" fill="white" />
                         </svg>
-                        <div className='publication_btn'>Publication</div>
+                        <div className='publication_btn' onClick={e => {
+                            let html = '';
+                            const sheet = new ServerStyleSheet();
+                            const render = renderToStaticMarkup(sheet.collectStyles(<Moodboard data={state.components} />));
+                            const styleTags = sheet.getStyleTags(); // or sheet.getStyleElement();
+                            const test = sheet.getStyleElement();
+                            const regex = /\/\*.*\*\/n/gm;
+                            console.log(test,styleTags);
+                            html = styleTags.replaceAll(regex, '') + render;
+                            function remplaçant(clé, valeur) {
+                                if (typeof valeur === 'string') {
+                                    return valeur.replaceAll(/"/g, "'").replaceAll('/*!sc*/\n', "");
+                                }
+                                return valeur;
+                            }
+
+
+                            console.log(JSON.stringify(html, remplaçant));
+                            (async () => {
+                                const { components, currentPage } = state;
+                                const response = await axios.post(RequestUrl.post.save_page, {
+                                    ID: state.currentPage,
+                                    post_content: JSON.stringify({ components, html: html }, remplaçant),
+                                });
+                                const { data } = response;
+                                console.log(response);
+                                if (data && response.status == 200) {
+                                    (async () => {
+                                        const response = await axios.get(RequestUrl.get.get_pages);
+                                        const { data } = response;
+                                        if (data) {
+                                            setPages(data);
+                                        }
+                                    })();
+                                    dispatch({ type: 'SET_HTML', html });
+                                    dispatch({ type: "publish", publish: data.ID });
+                                }
+                            })();
+                        }}>Publication</div>
                     </div>
                 </Header>
 

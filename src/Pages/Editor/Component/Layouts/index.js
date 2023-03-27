@@ -9,7 +9,7 @@ import Duplicate from '../../../../Components/Duplicate';
 import Remove from '../../../../Components/Remove';
 import Details from '../../../../Components/Details';
 import Cols from '../../../../Components/Cols';
-import { BorderRadius ,Spaces, Background } from '../../Helpers';
+import { BorderRadius, Spaces, Background } from '../../Helpers';
 import styled from 'styled-components';
 
 import AllComponent from '../index';
@@ -64,8 +64,13 @@ const Layouts = ({ data, children, ...props }) => {
     console.log("data", data);
     return (
         <Fragment>
-            <Lines style={(data[state.devices] ? data[state.devices] : {})} child={data?.children.map(item => (item.cols))?.join(' ')} >
-                <div className="pop">
+            <Lines
+                onClick={e => {
+                    dispatch({ type: 'CURRENT_SETTING', currentSetting: data.id });
+                }}
+                
+                style={(data[state.devices] ? data[state.devices] : {})} child={data?.children.map(item => (item.cols))?.join(' ')} >
+                {state.currentSetting == data.id && <div className="pop">
                     <div className="common">
                         <Cols data={data} />
                         <Duplicate data={data} />
@@ -80,7 +85,7 @@ const Layouts = ({ data, children, ...props }) => {
                         <Remove data={data} />
                     </div>
                     <Reorder data={data} />
-                </div>
+                </div>}
                 {children && children}
             </Lines>
         </Fragment>
@@ -166,7 +171,7 @@ Layouts.content = ({ data, children }) => {
     const mobile = (data['mobile'] ? data['mobile'] : {});
     const desktop = (data['desktop'] ? data['desktop'] : {});
 
-    const Line = styled.div`
+    const Line = styled(Lines)`
         ${Object.keys(mobile).map((item, index) => {
         return kebabize(item) + ':' + mobile[item] + ';'
     }).join('')}
