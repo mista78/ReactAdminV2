@@ -4,6 +4,9 @@ import updatePropertyById from '../../../../Utils/updatePropertyById';
 import styled from 'styled-components';
 
 const Border = styled.div`
+    .element {
+        text-align: center;
+    }
     .borderRadius {
         display: flex;
         justify-content: center;
@@ -89,6 +92,24 @@ const BorderRadius = ({ data }) => {
     return <Fragment>
 
         <Border>
+            <div className='element' onClick={e => setStyle("all")}>
+                <div>
+                    <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M0 5.5C0 2.46243 2.46243 0 5.5 0H10.3889C10.7264 0 11 0.273604 11 0.611111C11 0.948618 10.7264 1.22222 10.3889 1.22222H5.5C3.13745 1.22222 1.22222 3.13745 1.22222 5.5V10.3889C1.22222 10.7264 0.948618 11 0.611111 11C0.273604 11 0 10.7264 0 10.3889V5.5Z" fill="white"/>
+                    </svg>
+                    <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M11 5.5C11 2.46243 8.53757 0 5.5 0H0.611112C0.273604 0 0 0.273604 0 0.611111C0 0.948618 0.273604 1.22222 0.611112 1.22222H5.5C7.86255 1.22222 9.77778 3.13745 9.77778 5.5V10.3889C9.77778 10.7264 10.0514 11 10.3889 11C10.7264 11 11 10.7264 11 10.3889V5.5Z" fill="white"/>
+                    </svg>
+                </div>
+                <div>
+                    <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M0 5.5C0 8.53757 2.46243 11 5.5 11H10.3889C10.7264 11 11 10.7264 11 10.3889C11 10.0514 10.7264 9.77778 10.3889 9.77778H5.5C3.13745 9.77778 1.22222 7.86255 1.22222 5.5V0.611112C1.22222 0.273604 0.948618 0 0.611111 0C0.273604 0 0 0.273604 0 0.611112V5.5Z" fill="white"/>
+                    </svg>
+                    <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M11 5.5C11 8.53757 8.53757 11 5.5 11H0.611112C0.273604 11 0 10.7264 0 10.3889C0 10.0514 0.273604 9.77778 0.611112 9.77778H5.5C7.86255 9.77778 9.77778 7.86255 9.77778 5.5V0.611112C9.77778 0.273604 10.0514 0 10.3889 0C10.7264 0 11 0.273604 11 0.611112V5.5Z" fill="white"/>
+                    </svg>
+                </div>
+            </div>
             <div className="borderRadius">
                 <div className="borderRadius_top_left" onClick={e => setStyle("borderTopLeftRadius")}> 
                     <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
