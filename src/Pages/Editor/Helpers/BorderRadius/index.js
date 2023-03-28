@@ -5,6 +5,7 @@ import styled from 'styled-components';
 
 const Border = styled.div`
     .element {
+        padding-block-end: 1rem;
         text-align: center;
         &_svgFirst {
             margin-inline-end: 0.5rem;
@@ -30,6 +31,15 @@ const Border = styled.div`
                         -moz-appearance: textfield;
                     }
                 }
+            }
+        }
+        &_select {
+            padding-block: 1rem;
+            & select {
+                border: none;
+                background-color: #1D1D1C;
+                color: #fff;
+                font-weight: bold;
             }
         }
     }
@@ -205,7 +215,7 @@ const BorderRadius = ({ data }) => {
             </div>
             <div>
                 {style == "all" && <Fragment>
-                    <div className='input'>
+                    <div className='borderRadius_select'>
                         <select value={name} onChange={e => setName(e.target.value)} onClicke={e => setName(e.target.value)} >
                             <option value="borderRadius">borderRadius</option>
                         </select>
