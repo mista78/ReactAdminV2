@@ -47,11 +47,33 @@ const BorderRadius = ({ data }) => {
         borderBottomLeftRadius?.replace("rem", "") || "0";
 
     const handleChangeAll = (e) => {
-        borderBottomLeftRadius(e.target.value);
-        borderBottomRightRadius(e.target.value);
-        borderTopLeftRadius(e.target.value);
-        borderTopRightRadius(e.target.value);
+        setBorderTopLeftRadius(e.target.value);
+        setBorderTopRightRadius(e.target.value);
+        setBorderBottomRightRadius(e.target.value);
+        setBorderBottomLeftRadius(e.target.value);
     }
+
+    const handleSetBorderRadius = () => {
+        setName("border");
+        const border = {
+            ...data[state.devices],
+            [`${name}TopLeftRadius`]: borderTopLeftRadius?.replaceAll("rem", "") + 'rem',
+            [`${name}TopRightRadius`]: borderTopRightRadius?.replaceAll("rem", "") + 'rem',
+            [`${name}BottomRightRadius`]: borderBottomRightRadius?.replaceAll("rem", "") + 'rem',
+            [`${name}BottomLeftRadius`]: borderBottomLeftRadius?.replaceAll("rem", "") + 'rem'
+        };
+        Object.keys(border).forEach(key => {
+            if (border[key] === 0 || border[key] === "0" || border[key] === "0rem") {
+                delete border[key];
+            }
+        });
+        const components = state.components.map(item => updatePropertyById(data.id, item, state.devices, border));
+        dispatch({ type: "ADD_COMPONENT", components });
+    }
+
+    useEffect(() => {
+        handleSetBorderRadius();
+    }, [borderTopLeftRadius, borderTopRightRadius, borderBottomRightRadius, borderBottomLeftRadius]);
 
     useEffect(() => {
         setBorderTopLeftRadius(data[state.devices] ? data[state.devices][`${name}TopLeftRadius`] || "0" : "0");
@@ -59,7 +81,6 @@ const BorderRadius = ({ data }) => {
         setBorderBottomRightRadius(data[state.devices] ? data[state.devices][`${name}BottomRightRadius`] || "0" : "0");
         setBorderBottomLeftRadius(data[state.devices] ? data[state.devices][`${name}BottomLeftRadius`] || "0" : "0");
     }, [name, state.devices]);
-    console.log("data", data[state.devices]);
 
     useEffect(() => {
         // console.log(state.components);
@@ -160,9 +181,11 @@ const BorderRadius = ({ data }) => {
             </div>
             <div>
                 {style == "all" && <Fragment>
-                    <div className='input'><select value={name} onChange={e => setName(e.target.value)} onClicke={e => setName(e.target.value)} >
-                        <option value="borderRadius">borderRadius</option>
-                    </select></div>
+                    <div className='input'>
+                        <select value={name} onChange={e => setName(e.target.value)} onClicke={e => setName(e.target.value)} >
+                            <option value="borderRadius">borderRadius</option>
+                        </select>
+                    </div>
                     <input type="range" min={0} max={range} step={step} value={common} onChange={handleChangeAll} />
                 </Fragment>}
             </div>
