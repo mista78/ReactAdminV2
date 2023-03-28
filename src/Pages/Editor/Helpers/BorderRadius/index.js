@@ -6,6 +6,7 @@ import styled from 'styled-components';
 const Border = styled.div`
     .borderRadius {
         display: flex;
+        justify-content: center;
         &_top, &_bottom {
             &_left, &_right {
                 display: flex;
@@ -14,10 +15,17 @@ const Border = styled.div`
                 border: 1px #2F2F30 solid;
                 & input {
                     width: 40px;
+                    padding-inline-start: 0.5rem;
+                    border: none;
+                    background-color: #1D1D1C;
+                    color: #fff;
+                    &::-webkit-outer-spin-button, &::-webkit-inner-spin-button {
+                        -webkit-appearance: none;
+                        -moz-appearance: textfield;
+                    }
                 }
             }
         }
-
     }
 `;
 
