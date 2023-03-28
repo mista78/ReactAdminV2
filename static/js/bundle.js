@@ -106,8 +106,11 @@
         }
 `;var c=Object(y.memo)(({children:e,title:t,id:n,row:r="row",visible:o=!1,onClick:i,open:a=!1})=>{var s=Object(y.useContext)(v)["state"],l=Object(y.useRef)(null);return g.a.createElement(y.Fragment,null,(s.currentSetting==n||o)&&g.a.createElement(X,{ref:l,className:"details",open:a},g.a.createElement("summary",{className:"details__summary",onClick:()=>{i&&i()}},t),g.a.createElement("div",{className:"details__body "+r},e)))});const ee=u.d.div`
     .element {
+        width: fit-content;
+        margin-inline: auto;
         padding-block-end: 1rem;
         text-align: center;
+        cursor: pointer;
         &_svgFirst {
             margin-inline-end: 0.5rem;
         }

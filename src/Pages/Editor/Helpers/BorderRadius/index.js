@@ -5,8 +5,11 @@ import styled from 'styled-components';
 
 const Border = styled.div`
     .element {
+        width: fit-content;
+        margin-inline: auto;
         padding-block-end: 1rem;
         text-align: center;
+        cursor: pointer;
         &_svgFirst {
             margin-inline-end: 0.5rem;
         }
