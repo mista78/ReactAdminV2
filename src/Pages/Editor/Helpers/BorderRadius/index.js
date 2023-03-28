@@ -224,6 +224,7 @@ const BorderRadius = ({ data }) => {
                         </select>
                     </div>
                     <input type="range" min={0} max={range} step={step} value={common} onChange={handleChangeAll} />
+                    <p>{common} rem</p>
                 </Fragment>}
             </div>
             <Fragment>
