@@ -52,7 +52,6 @@ const BorderRadius = ({ data }) => {
     const { state, dispatch } = useContext(AppContext);
     const range = 10;
     const step = 0.5;
-    const activatedInput = false;
 
     const [name, setName] = useState("borderRadius");
     const [style, setStyle] = useState("all");
@@ -201,7 +200,6 @@ const BorderRadius = ({ data }) => {
                     <input
                         id="borderBottomLeftRadius"
                         type="number"
-                        onClick={e => activatedInput = true}
                         onChange={e => {
                             const style = {
                                 ...data[state.devices],
@@ -232,6 +230,7 @@ const BorderRadius = ({ data }) => {
             <Fragment>
                 {[`TopLeftRadius`, `TopRightRadius`, `BottomRightRadius`, `BottomLeftRadius`].map(dir => {
                     const names = "border" + dir;
+                    let styles;
                     return <Fragment>
                         {style === `${names}` && <div>
                             <div>
@@ -241,33 +240,21 @@ const BorderRadius = ({ data }) => {
                                 id={names}
                                 type="range" min={0} max={range} step={step}
                                 value={data[state.devices] ? data[state.devices][`${names}`]?.replace('rem', "") || 0 : 0}
-                                onClick={e => activatedInput = false}
                                 onChange={e => {
-                                    if (!activatedInput) {
-                                        const style = {
-                                            ...data[state.devices],
-                                            [`${names}`]: e.target.value?.replaceAll("rem", "") + 'rem',
-                                        };
-                                        Object.keys(style).forEach(key => {
-                                            if (style[key] === 0 || style[key] === "0" || style[key] === "0rem") {
-                                                delete style[key];
-                                            }
-                                        });
-                                    } else {
-                                        const style = {
-                                            ...data[state.devices],
-                                            [`${names}`]: e.target.value? + 'px',
-                                        };
-                                        Object.keys(style).forEach(key => {
-                                            if (style[key] === 0 || style[key] === "0" || style[key] === "0px") {
-                                                delete style[key];
-                                            }
-                                        });
+                                    styles = {
+                                        ...data[state.devices],
+                                        [`${names}`]: e.target.value?.replaceAll("rem", "") + 'rem',
                                     }
-                                    const components = state.components.map(item => updatePropertyById(data.id, item, state.devices, style));
+                                    Object.keys(styles).forEach(key => {
+                                        if (styles[key] === 0 || styles[key] === "0" || styles[key] === "0rem") {
+                                            delete styles[key];
+                                        }
+                                    });
+                                    const components = state.components.map(item => updatePropertyById(data.id, item, state.devices, styles));
                                     dispatch({ type: "ADD_COMPONENT", components });
                                 }} 
-                            />
+                                />
+                            <p>{styles[names]} {console.log("style", styles)}</p>
                         </div>}
                     </Fragment>
                 })}
