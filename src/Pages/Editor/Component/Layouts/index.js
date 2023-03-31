@@ -71,7 +71,7 @@ const Layouts = ({ data, children, ...props }) => {
                     }}
 
                     style={(data[state.devices] ? data[state.devices] : {})} child={data?.children.map(item => (item.cols))?.join(' ')} >
-                    {state.currentSetting == data.id && <div className="pop">
+                    {state.currentSetting == data.id && <Fragment>
                         <div className="common">
                             <Cols data={data} />
                             <Duplicate data={data} />
@@ -86,7 +86,7 @@ const Layouts = ({ data, children, ...props }) => {
                             <Remove data={data} />
                         </div>
                         <Reorder data={data} />
-                    </div>}
+                    </Fragment>}
                     {children && children}
                 </Lines>
             </References>

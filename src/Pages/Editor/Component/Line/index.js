@@ -20,13 +20,6 @@ const Lines = styled.div`
     border: 1px dashed pink;
     position: relative;
     min-height: 260px;
-    .pop {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-    }
     @media (min-width: 768px) {
         grid-template-columns: ${props => props.child};
     }
@@ -78,7 +71,7 @@ const Line = ({ data, children, ...props }) => {
         <Fragment>
             <References data={data}>
                 <Lines  id={data.id} style={(data[state.devices] ? {...data[state.devices], ...test} : {...test})} child={data?.children.map(item => (item.cols))?.join(' ')} >
-                    {state.currentSetting == data.id && <div className="pop">
+                    {state.currentSetting == data.id && <Fragment>
                         <div className="common">
                             <Cols data={data} />
                             <Duplicate data={data} />
@@ -92,7 +85,7 @@ const Line = ({ data, children, ...props }) => {
                             <Remove data={data} />
                         </div>
                         <Reorder data={data} />
-                    </div>}
+                    </Fragment>}
                     {children && children}
                 </Lines>
             </References>
