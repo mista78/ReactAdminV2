@@ -241,9 +241,26 @@ const BorderRadius = ({ data }) => {
                                 type="range" min={0} max={range} step={step}
                                 value={data[state.devices] ? data[state.devices][`${names}`]?.replace('rem', "") || 0 : 0}
                                 onChange={e => {
-                                    styles = {
-                                        ...data[state.devices],
-                                        [`${names}`]: e.target.value?.replaceAll("rem", "") + 'rem',
+                                    if (!activatedInput) {
+                                        const style = {
+                                            ...data[state.devices],
+                                            [`${names}`]: e.target.value?.replaceAll("rem", "") + 'rem',
+                                        };
+                                        Object.keys(style).forEach(key => {
+                                            if (style[key] === 0 || style[key] === "0" || style[key] === "0rem") {
+                                                delete style[key];
+                                            }
+                                        });
+                                    } else {
+                                        const style = {
+                                            ...data[state.devices],
+                                            [`${names}`]: e.target.value + 'px',
+                                        };
+                                        Object.keys(style).forEach(key => {
+                                            if (style[key] === 0 || style[key] === "0" || style[key] === "0px") {
+                                                delete style[key];
+                                            }
+                                        });
                                     }
                                     Object.keys(styles).forEach(key => {
                                         if (styles[key] === 0 || styles[key] === "0" || styles[key] === "0rem") {

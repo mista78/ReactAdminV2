@@ -28,7 +28,7 @@ const Spaces = ({ data }) => {
         setSpacesTop(e.target.value);
     }
 
-    const handleSetPadding = () => {
+    const handleSetSpaces = () => {
         const padding = {
             ...data[state.devices],
             [`${name}Top`]: spacesTop?.replaceAll("rem", "") + 'rem',
@@ -46,7 +46,7 @@ const Spaces = ({ data }) => {
     }
 
     useEffect(() => {
-        handleSetPadding();
+        handleSetSpaces();
     }, [spacesTop, spacesRight, spacesBottom, spacesLeft]);
 
     useEffect(() => {
