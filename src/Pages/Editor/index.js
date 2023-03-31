@@ -299,9 +299,6 @@ const Editor = () => {
                                 }
                                 return valeur;
                             }
-
-
-                            console.log(JSON.stringify(html, remplaçant));
                             (async () => {
                                 const { components, currentPage } = state;
                                 const response = await axios.post(RequestUrl.post.save_page, {

@@ -6,7 +6,7 @@ import search from '../../Utils/search';
 const Cols = ({ data, keys = "children" }) => {
 
     const { state, dispatch } = useContext(AppContext);
-    const cols = parseInt(data.cols.replace(/fr/g, ''));
+    const cols = parseInt(data?.cols?.replace(/fr/g, ''));
 
     const handleChange = (value) => {
         value = value < 1 ? 1 : value;

@@ -91,7 +91,7 @@ const BorderRadius = ({ data }) => {
     }
 
     useEffect(() => {
-        handleSetBorderRadius();
+        // handleSetBorderRadius();
     }, [borderTopLeftRadius, borderTopRightRadius, borderBottomRightRadius, borderBottomLeftRadius]);
 
     useEffect(() => {
