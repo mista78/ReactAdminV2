@@ -154,14 +154,16 @@ const Editor = () => {
 
     };
     useEffect(() => {
-        const data = storage.get('components');
-        const currentSetting = storage.get('currentSetting');
-        if (currentSetting) {
-            dispatch({ type: "CURRENT_SETTING", currentSetting });
-        }
-        if (data) {
-            dispatch({ type: "ADD_COMPONENTS", components: [...data] });
-        }
+        setTimeout(() => {
+            const data = storage.get('components');
+            const currentSetting = storage.get('currentSetting');
+            if (currentSetting) {
+                dispatch({ type: "CURRENT_SETTING", currentSetting });
+            }
+            if (data) {
+                dispatch({ type: "ADD_COMPONENTS", components: [...data] });
+            }
+        }, 100)
     }, [])
 
     useEffect(() => {

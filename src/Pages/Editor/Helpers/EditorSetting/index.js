@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef, Fragment, useContext, memo } from 'react';
 import { AppContext } from '../../../../store';
 import updatePropertyById from '../../../../Utils/updatePropertyById';
-import Cols from '../../Component/Cols';
-import Duplicate from '../../Component/Duplicate';
+import Cols from '../../../../Components/Cols';
+import Duplicate from '../../../../Components/Duplicate';
 import Reorder from '../../../../Components/Reorder';
 import Remove from '../../../../Components/Remove';
 
