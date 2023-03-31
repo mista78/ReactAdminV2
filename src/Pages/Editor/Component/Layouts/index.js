@@ -66,6 +66,9 @@ const Layouts = ({ data, children, ...props }) => {
             <References data={data}>
                 <Lines
                     id={data.id}
+                    onClick={e => {
+                        dispatch({ type: 'CURRENT_SETTING', currentSetting: data.id });
+                    }}
                     style={(data[state.devices] ? data[state.devices] : {})} child={data?.children.map(item => (item.cols))?.join(' ')} >
                     {state.currentSetting == data.id && <EditorSeting data={data} />}
                     {children && children}

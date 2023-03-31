@@ -9,7 +9,7 @@ import Duplicate from '../../../../Components/Duplicate';
 import Remove from '../../../../Components/Remove';
 import Details from '../../../../Components/Details';
 import Cols from '../../../../Components/Cols';
-import { BorderRadius, Spaces, Background, References,EditorSeting } from '../../Helpers';
+import { BorderRadius, Spaces, Background, References, EditorSeting } from '../../Helpers';
 import styled from 'styled-components';
 
 import AllComponent from '../index';
@@ -70,7 +70,7 @@ const Line = ({ data, children, ...props }) => {
     return (
         <Fragment>
             <References data={data}>
-                <Lines  id={data.id} style={(data[state.devices] ? {...data[state.devices], ...test} : {...test})} child={data?.children.map(item => (item.cols))?.join(' ')} >
+                <Lines id={data.id} style={(data[state.devices] ? { ...data[state.devices], ...test } : { ...test })} child={data?.children.map(item => (item.cols))?.join(' ')} >
                     {state.currentSetting == data.id && <EditorSeting data={data} />}
                     {children && children}
                 </Lines>
@@ -147,7 +147,9 @@ Line.setting = ({ data, children, ...props }) => {
                 <Background data={data} />
             </Details>
         </Portal>
-        {children && children}
+        <div style={{}}>
+            {children && children}
+        </div>
     </Fragment>
 }
 
