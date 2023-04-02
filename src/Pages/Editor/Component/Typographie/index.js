@@ -8,79 +8,45 @@ import Tiptap from '../../../../Components/Tiptap';
 import Remove from '../../../../Components/Remove';
 import Details from '../../../../Components/Details';
 import Duplicate from '../../../../Components/Duplicate';
-import { Spaces } from '../../Helpers';
 import styled from 'styled-components';
+import Test, { BorderRadius, Spaces, Background, References, EditorSetting } from '../../Helpers';
 
 
 const Lines = styled.div`
-    border: 1px solid #000;
+    position: relative;
 `;
 
-import Items from './items';
 
 const Typographie = ({ data, children, ...props }) => {
     const { state, dispatch } = useContext(AppContext);
-
-    const handleUpdateStyle = (value = {}) => {
-        value = { ...(data[state.devices] ? data[state.devices] : {}), ...value }
-        const components = state.components.map(item => updatePropertyById(data.id, item, state.devices, value));
-        dispatch({ type: "UPDATE_COMPONENT", components });
-    }
-    console.log(data?.text);
-    const Tag = data[state.devices]?.text && data[state.devices].text !== '' ? data[state.devices].text : 'p';
     return (
         <Fragment>
-            <div style={(data[state.devices] ? data[state.devices] : {})} >
-                <Tiptap data={data} />
-            </div>
+            <References data={data}>
+                <Lines
+                    onClick={e => {
+                        dispatch({ type: 'CURRENT_SETTING', currentSetting: data.id });
+                    }} style={(data[state.devices] ? data[state.devices] : {})} >
+                    {state.currentSetting == data.id && <EditorSetting data={data} />}
+                    <Tiptap data={data} />
+                </Lines>
+            </References>
         </Fragment>
     );
 }
 
 Typographie.setting = ({ data, children, ...props }) => {
     const { state, dispatch } = useContext(AppContext);
-
-    const handleAddComponent = (e) => {
-        const value = e ? e.target.value : 'Line';
-        const newBlock = {
-            id: uuid(),
-            name: value,
-            parent: data.id,
-            children: []
-        }
-        const components = state.components.map(item => updatePropertyById(data.id, item, 'children', [...data.children, newBlock]));
-        dispatch({ type: "ADD_COMPONENT", components });
-        e && (e.target.value = '');
-    };
-
-    const handleUpdateStyle = (value = {}) => {
-        value = { ...(data[state.devices] ? data[state.devices] : {}), ...value }
-        const components = state.components.map(item => updatePropertyById(data.id, item, state.devices, value));
-        dispatch({ type: "ADD_COMPONENT", components });
-    }
-
     return <Fragment>
 
         <Details title={`Typographie ${data.id}`} visible={true} onClick={e => {
             dispatch({ type: 'CURRENT_SETTING', currentSetting: data.id });
         }}>
-            {data.tags && data.tags.map((item, index) => {
-                return <Items.setting key={index} data={item} />
-            })}
         </Details>
         <Portal id="setting">
-            <Details title="Setting" id={data.id} open={true}>
-                <div>Setting : {data.id}</div>
-                <Duplicate data={data} />
-                <Reorder data={data} />
-                <Remove data={data} />
-            </Details>
             <Details title="Spaces" id={data.id} open={true}>
                 <Spaces data={data} />
             </Details>
         </Portal>
-
-
     </Fragment>
 }
 

@@ -4,16 +4,11 @@ import updatePropertyById from '../../../../Utils/updatePropertyById';
 import { kebabize, uuid } from '../../../../Utils/tools';
 import search from '../../../../Utils/search';
 import Portal from '../../../../Components/Portal';
-import Reorder from '../../../../Components/Reorder';
-import Duplicate from '../../../../Components/Duplicate';
-import Remove from '../../../../Components/Remove';
 import Details from '../../../../Components/Details';
-import Cols from '../../../../Components/Cols';
-import { BorderRadius, Spaces, Background, References, EditorSeting } from '../../Helpers';
+import Test ,{ BorderRadius, Spaces, Background, References, EditorSetting } from '../../Helpers';
 import styled from 'styled-components';
 
 import AllComponent from '../index';
-
 const Lines = styled.div`
     display: grid;
     grid-template-columns: 1fr;
@@ -59,6 +54,8 @@ const Lines = styled.div`
 const Line = ({ data, children, ...props }) => {
     const { state, dispatch } = useContext(AppContext);
 
+    console.log("test",Test);
+
     const handleUpdateStyle = (value = {}) => {
         value = { ...(data[state.devices] ? data[state.devices] : {}), ...value }
         const components = state.components.map(item => updatePropertyById(data.id, item, state.devices, value));
@@ -71,7 +68,7 @@ const Line = ({ data, children, ...props }) => {
         <Fragment>
             <References data={data}>
                 <Lines id={data.id} style={(data[state.devices] ? { ...data[state.devices], ...test } : { ...test })} child={data?.children.map(item => (item.cols))?.join(' ')} >
-                    {state.currentSetting == data.id && <EditorSeting data={data} />}
+                    {state.currentSetting == data.id && <EditorSetting data={data} />}
                     {children && children}
                 </Lines>
             </References>
@@ -82,19 +79,7 @@ const Line = ({ data, children, ...props }) => {
 Line.setting = ({ data, children, ...props }) => {
     const { state, dispatch } = useContext(AppContext);
 
-    const handleAddComponent = (e) => {
-        const value = e ? e.target.value : 'Line';
-        const newBlock = {
-            id: uuid(),
-            name: "Layouts",
-            parent: data.id,
-            cols: '1fr',
-            children: []
-        }
-        const components = state.components.map(item => updatePropertyById(data.id, item, 'children', [...data.children, newBlock]));
-        dispatch({ type: "ADD_COMPONENT", components });
-        e && (e.target.value = '');
-    };
+    
 
     const upDateUuidRecursively = (data, parent) => {
         const id = uuid();
@@ -129,23 +114,12 @@ Line.setting = ({ data, children, ...props }) => {
             lorem  ipsum
         </Details>
         <Portal id="setting">
-            <Details title="Setting" id={data.id} open={true}>
-                <button onClick={handleAddComponent}>Add Layouts</button>
-                {/* <div>Setting : {data.id}</div>
-                <Duplicate data={data} />
-                <Reorder data={data} />
-                <Remove data={data} /> */}
-            </Details>
-            <Details title="BorderRadius" id={data.id} open={true}>
-                <BorderRadius data={data} />
-            </Details>
-            <Details title="Spaces" id={data.id} open={true}>
-                <Spaces data={data} />
-            </Details>
-
-            <Details title="Background" id={data.id} open={true}>
-                <Background data={data} />
-            </Details>
+            {Object.keys(Test).filter(item => !(["EditorSetting","References"].includes(item))).map((item, index) => {
+                const Component = Test[item];
+                return <Details key={index} title={item} id={data.id} open={true}>
+                    <Component data={data} AllComponent={AllComponent}  />
+                </Details>
+            })}
         </Portal>
         <div style={{}}>
             {children && children}

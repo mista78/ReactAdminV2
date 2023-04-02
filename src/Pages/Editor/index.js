@@ -8,140 +8,27 @@ import { uuid, GenerateUrl } from '../../Utils/tools';
 import { renderToString, renderToStaticMarkup } from 'react-dom/server';
 import axios from 'axios';
 
+import {BodyEditor, Header, Button} from "./style";
 
 
 import DataUrl from './Urls';
 
 import AllComponent from './Component/index';
 
-const View = ({ data, setting }) => {
+const View = ({ data, setting, type }) => {
     return <Fragment>
         {data && data?.map((item, index) => {
-            const Component = (AllComponent[item.name] && setting) ? AllComponent[item.name].setting : AllComponent[item.name];
+            const Component = (AllComponent[item.name] && type) ? AllComponent[item.name][type] : AllComponent[item.name];
             if (!Component) return null;
             return <Component key={item.id} data={item} position={index}>
-                {item.children && <View data={item.children} parent={data} setting={setting} position={index} />}
+                {item.children && <View data={item.children} parent={data} setting={setting} type={type} position={index} />}
             </Component>
         })}
     </Fragment>
 };
 
-const Moodboard = ({ data }) => {
-    return <Fragment>
-        {data && data?.map((item, index) => {
-            const Component = AllComponent[item.name].content;
-            if (!Component) return null;
-            return <Component key={item.id} data={item} position={index}>
-                {item.children && <Moodboard data={item.children} parent={data} position={index} />}
-            </Component>
-        })}
-    </Fragment>
-};
 
-const Header = styled.div`
-        display: flex;
-        justify-content: space-between;
-        padding: 1rem;
-        background-color: #1D1D1C;
-        select {
-            border: none;
-            background: transparent;
-            line-height: 1.5;
-            color: #fff;
-        }
-        .infos {
-            display: flex;
-            color: #fff;
-        }
 
-        .devices {
-            display: flex;
-            border-radius: 10px;
-            background-color: #2F2F30;
-        }
-
-        .publication {
-            display: flex;
-            color: #fff;
-            &_btn {
-                display: flex;
-                align-items: center;
-                font-size: 0.9rem;
-                padding: 0.5rem 1.5rem;
-                border-radius: 10px;
-                background-color: #3453F5;
-            }
-        }
-`;
-
-const BodyEditor = styled.div`
-        width: 100%;
-        height: calc(100% - 80.8px);
-        background-color: #2F2F30;
-        display: grid;
-        grid-template-columns: 70px 2fr 6fr 2fr;
-        grid-column-gap: 1rem;
-        color: #fff;
-
-        
-
-        .hiddenSlider {
-            text-align: center;
-            background-color: #1D1D1C;
-            padding-block-start: 1rem;
-            & > svg {
-                cursor: pointer;
-            }
-        }
-
-        .left {
-            background-color: #1D1D1C;
-            color: #fff;
-            height: calc(100% - 1rem);
-            border-radius: 1rem;
-            width: 100%;
-            position: relative;
-            margin-top: 1rem;
-            & > * > * {
-                padding:1rem;
-            }
-            overflow-y: auto;
-        }
-
-        .center {
-            height: calc(100% - 1rem);
-            border-radius: 1rem;
-            width: 100%;
-            display: grid;
-            margin-top: 1rem;
-        }
-
-        .right {
-            background-color: #1D1D1C;;
-            height: calc(100% - 1rem);
-            border-radius: 1rem;
-            width: 100%;
-            margin-top: 1rem;
-            & > * > * {
-                padding:1rem;
-            }
-            overflow-y: auto;
-        }
-
-        
-    `;
-
-const Button = styled.button`
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 50px;
-        background-color: #000;
-        color: #fff;
-        border: none;
-        cursor: pointer;
-    `;
 const Editor = () => {
     const { state, dispatch } = useContext(AppContext);
     const RequestUrl = GenerateUrl(DataUrl.Editor, ["GET", "POST"]);
@@ -211,7 +98,6 @@ const Editor = () => {
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M27.1543 11.3755C27.9353 10.5944 27.9353 9.32807 27.1543 8.54703C26.3732 7.76598 25.1069 7.76598 24.3258 8.54703L12.2529 20.62C12.2471 20.6258 12.2413 20.6316 12.2356 20.6375C12.2299 20.6431 12.2241 20.6487 12.2185 20.6544C11.4374 21.4355 11.4374 22.7018 12.2185 23.4828L24.2914 35.5558C25.0725 36.3369 26.3388 36.3369 27.1199 35.5558C27.9009 34.7748 27.9009 33.5084 27.1199 32.7274L16.4611 22.0686L27.1543 11.3755Z" fill="white" />
                         </svg>
                         <div>
-
                             <p>Page: <select style={{ display: "inline-block" }} onChange={e => {
                                 const value = e.target.value;
                                 if (!value) return;
@@ -289,7 +175,7 @@ const Editor = () => {
                         <div className='publication_btn' onClick={e => {
                             let html = '';
                             const sheet = new ServerStyleSheet();
-                            const render = renderToStaticMarkup(sheet.collectStyles(<Moodboard data={state.components} />));
+                            const render = renderToStaticMarkup(sheet.collectStyles(<View data={state.components} type="content" />));
                             const styleTags = sheet.getStyleTags(); // or sheet.getStyleElement();
                             const test = sheet.getStyleElement();
                             const regex = /\/\*.*\*\/n/gm;
@@ -357,7 +243,7 @@ const Editor = () => {
 
                     <div className="left">
                         <div id="sidebar">
-                            <View data={state.components} setting={true} />
+                            <View data={state.components} type="setting" setting={true} />
                         </div>
                     </div>
                     <div className="center">

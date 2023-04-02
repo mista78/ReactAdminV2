@@ -9,7 +9,7 @@ import Duplicate from '../../../../Components/Duplicate';
 import Remove from '../../../../Components/Remove';
 import Details from '../../../../Components/Details';
 import Cols from '../../../../Components/Cols';
-import { BorderRadius, Spaces, Background, References, EditorSeting } from '../../Helpers';
+import Test,{ BorderRadius, Spaces, Background, References, EditorSetting } from '../../Helpers';
 import styled from 'styled-components';
 
 import AllComponent from '../index';
@@ -70,7 +70,7 @@ const Layouts = ({ data, children, ...props }) => {
                         dispatch({ type: 'CURRENT_SETTING', currentSetting: data.id });
                     }}
                     style={(data[state.devices] ? data[state.devices] : {})} child={data?.children.map(item => (item.cols))?.join(' ')} >
-                    {state.currentSetting == data.id && <EditorSeting data={data} />}
+                    {state.currentSetting == data.id && <EditorSetting data={data} />}
                     {children && children}
                 </Lines>
             </References>
@@ -105,21 +105,6 @@ Layouts.setting = ({ data, children, ...props }) => {
         }
         return newBlock;
     };
-    const handleDuplicate = () => {
-        const newBlock = {
-            ...upDateUuidRecursively(data, data.parent),
-        }
-        const parent = data.parent ? search([state.components], data.parent) : state.components;
-        const parentComp = data.parent ? parent["children"] : parent
-        const currentIndex = parentComp.findIndex(item => item.id === data.id);
-        parentComp.splice(currentIndex + 1, 0, newBlock);
-        if (data.parent) {
-            state.components.map((item, index) => updatePropertyById(data.parent, item, 'children', parentComp));
-        } else {
-            state.components = parentComp;
-        }
-        dispatch({ type: "ADD_COMPONENT", components: [...state.components] });
-    };
 
     return <Fragment>
         <Details title={`Layouts ${data.id}`} visible={true} onClick={e => {
@@ -128,26 +113,12 @@ Layouts.setting = ({ data, children, ...props }) => {
             lorem  ipsum
         </Details>
         <Portal id="setting">
-            <Details title="Setting" id={data.id} open={true}>
-                <div>Setting : {data.id}</div>
-                <select onChange={handleAddComponent}>
-                    <option value="">Select Component</option>
-                    {Object.keys(AllComponent).map((item, index) => {
-                        return <option key={index} value={item}>{item}</option>
-                    })}
-                </select>
-
-            </Details>
-            <Details title="BorderRadius" id={data.id} open={true}>
-                <BorderRadius data={data} />
-            </Details>
-            <Details title="Spaces" id={data.id} open={true}>
-                <Spaces data={data} />
-            </Details>
-
-            <Details title="Background" id={data.id} open={true}>
-                <Background data={data} />
-            </Details>
+            {Object.keys(Test).filter(item => !(["EditorSetting", "References"].includes(item))).map((item, index) => {
+                const Component = Test[item];
+                return <Details key={index} title={item} id={data.id} open={true}>
+                    <Component data={data} AllComponent={AllComponent} />
+                </Details>
+            })}
         </Portal>
         {children && children}
     </Fragment>

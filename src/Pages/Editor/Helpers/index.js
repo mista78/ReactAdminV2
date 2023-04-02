@@ -2,11 +2,23 @@ import BorderRadius from './BorderRadius';
 import Spaces from './Spaces';
 import Background from './Background';
 import References from './References';
-import EditorSeting from './EditorSetting';
+import EditorSetting from './EditorSetting';
+import AddComponent from './AddComponent';
+
 export {
+    AddComponent,
     BorderRadius,
     Spaces,
     References,
-    EditorSeting,
+    EditorSetting,
+    Background,
+}
+
+export default {
+    AddComponent,
+    BorderRadius,
+    Spaces,
+    References,
+    EditorSetting,
     Background,
 }
