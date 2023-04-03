@@ -263,7 +263,15 @@ const Editor = () => {
 
                     <div className="left">
                         <div id="sidebar">
+<<<<<<< HEAD
                             <View data={state.components} type="setting" setting={true} />
+=======
+                            <View data={state.components} setting={true} />
+
+                            <button onClick={e => {
+                                localStorage.clear()
+                            }}> Remove Storage </button>
+>>>>>>> 68696ca (addComponent HeroBanner)
                         </div>
                     </div>
                     <div className="center">
