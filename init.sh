@@ -4,7 +4,6 @@ if [ ! -d "livraison" ]; then
   mkdir livraison
 fi
 
-
 if [ ! -d "php" ]; then
   mkdir php
 fi
