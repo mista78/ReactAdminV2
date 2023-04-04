@@ -263,7 +263,7 @@ const Editor = () => {
 
                     <div className="left">
                         <div id="sidebar">
-                            <View data={state.components} setting={true} />
+                            <View data={state.components} setting={true} type="setting" />
 
                             <button onClick={e => {
                                 localStorage.clear()
