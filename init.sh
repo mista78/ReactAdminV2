@@ -13,7 +13,7 @@ git reset HEAD --hard
 
 # check if node is version 14.15.0
 node_version=$(node -v)
-if [ "$node_version" != "v14.15.0" ]; then
+if [ "$node_version" != "14.15.0" ]; then
   nvm install 14.15.0
   nvm use 14.15.0 && nvm alias default 14.15.0 && nvm use default && nvm cache clear
 fi
