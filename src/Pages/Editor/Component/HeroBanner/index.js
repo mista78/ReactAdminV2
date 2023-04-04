@@ -13,14 +13,33 @@ import styled from 'styled-components';
 const Lines = styled.div`
     border: 1px solid #000;
 `;
+    
+const Hero = styled.div`
+    position: relative;
+    height: 100vh;
+    .heading {
+        position: absolute;
+        bottom: 5rem;
+        left: 5rem;
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #fff;
+        text-transform: uppercase;
+    }
+`;
+
 
 const HeroBanner = ({ data, children, ...props }) => {
     const { state, dispatch } = useContext(AppContext);
-
+    
     
     return (
         <Fragment>
-            <Lines style={(data[state.devices] ? data[state.devices] : {})}>HeroBanner {data.id}</Lines>
+            <Lines style={(data[state.devices] ? data[state.devices] : {})}>
+                <Hero>
+                    <h2 className='heading'>intersport</h2>
+                </Hero>
+            </Lines>
         </Fragment>
     );
 }
