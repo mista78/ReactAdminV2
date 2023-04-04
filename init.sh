@@ -11,7 +11,10 @@ fi
 
 git reset HEAD --hard
 
-git pull origin main
+#get current branch
+branch=$(git rev-parse --abbrev-ref HEAD)
+
+git pull origin $branch
 
 yarn
-yarn dev
+./start.sh
