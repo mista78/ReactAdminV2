@@ -5,7 +5,12 @@ port="35729,3000"
 
 # find command node process and get the pid
 
-passwordSudo="your_password"
+# exec env file
+source .env
+
+
+
+passwordSudo=$SUDO_PASSWORD
 
 # set the password for sudo
 echo $passwordSudo | sudo -S echo "sudo password set"
