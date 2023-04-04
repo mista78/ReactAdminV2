@@ -8,7 +8,7 @@ import { uuid, GenerateUrl } from '../../Utils/tools';
 import { renderToString, renderToStaticMarkup } from 'react-dom/server';
 import axios from 'axios';
 
-import {BodyEditor, Header, Button} from "./style";
+import { BodyEditor, Header, Button } from "./style";
 
 
 import DataUrl from './Urls';
@@ -33,6 +33,7 @@ const Editor = () => {
     const { state, dispatch } = useContext(AppContext);
     const RequestUrl = GenerateUrl(DataUrl.Editor, ["GET", "POST"]);
     const [pages, setPages] = useState([]);
+    const [newPage, setNewPage] = useState(false);
 
 
     const handleBreaksite = (value, devices) => {
@@ -53,16 +54,18 @@ const Editor = () => {
         }, 100)
     }, [])
 
+    const LoadPage = async () => {
+        const response = await axios.get(RequestUrl.get.get_pages);
+        const { data } = response;
+        console.log(data, response);
+        if (data && response.status === 200 && Array.isArray(data)) {
+            setPages(data);
+        }
+    };
+
     useEffect(() => {
         dispatch({ type: "DEVICES", urls: { ...RequestUrl } });
-        (async () => {
-            const response = await axios.get(RequestUrl.get.get_pages);
-            const { data } = response;
-            console.log(data, response);
-            if (data && response.status === 200 && Array.isArray(data)) {
-                setPages(data);
-            }
-        })();
+        LoadPage();
     }, [])
 
     useEffect(() => {
@@ -98,26 +101,49 @@ const Editor = () => {
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M27.1543 11.3755C27.9353 10.5944 27.9353 9.32807 27.1543 8.54703C26.3732 7.76598 25.1069 7.76598 24.3258 8.54703L12.2529 20.62C12.2471 20.6258 12.2413 20.6316 12.2356 20.6375C12.2299 20.6431 12.2241 20.6487 12.2185 20.6544C11.4374 21.4355 11.4374 22.7018 12.2185 23.4828L24.2914 35.5558C25.0725 36.3369 26.3388 36.3369 27.1199 35.5558C27.9009 34.7748 27.9009 33.5084 27.1199 32.7274L16.4611 22.0686L27.1543 11.3755Z" fill="white" />
                         </svg>
                         <div>
-                            <p>Page: <select style={{ display: "inline-block" }} onChange={e => {
-                                const value = e.target.value;
-                                if (!value) return;
-                                let data = [];
-                                try {
-                                    console.log(pages.find(item => item.ID == value).post_content);
-                                    data = JSON.parse(pages.find(item => item.ID == value).post_content);
-                                } catch (error) {
-                                    console.log(error);
-                                }
-                                console.log("comp", data.components);
-                                dispatch({ type: "ADD_COMPONENT", components: (data.components && Array.isArray(data.components)) ? data.components : [] });
-                                dispatch({ type: "CURRENT_PAGE", currentPage: value });
-                            }}>
+                            <p>Page: <select value={state.currentPage} style={{ display: "inline-block" }}
+                                onClick={e => {
+                                    console.log(e.target.value);
+                                    setNewPage("");
+                                }}
+                                onChange={e => {
+                                    const value = e.target.value;
+                                    console.log(value);
+                                    if (!value) return;
+                                    let data = [];
+                                    try {
+                                        console.log(pages.find(item => item.ID == value).post_content);
+                                        const page = pages.find(item => item.ID == value);
+                                        setNewPage(page.post_name);
+                                        data = JSON.parse(pages.find(item => item.ID == value).post_content);
+                                    } catch (error) {
+                                        console.log(error);
+                                    }
+                                    console.log("comp", data.components);
+                                    dispatch({ type: "ADD_COMPONENT", components: (data.components && Array.isArray(data.components)) ? data.components : [] });
+                                    dispatch({ type: "CURRENT_PAGE", currentPage: value });
+                                }}>
                                 <option value="">Page</option>
                                 {pages?.map((item, index) => {
                                     return <option key={index} value={item.ID}>{item.post_name}</option>
                                 })}
                             </select></p>
-                            <p>www.malimnda.com</p>
+                            {newPage == "" ? <input type='text' onBlur={e => {
+                                (async () => {
+                                    const value = e.target.value;
+                                    if (!value) return;
+                                    const request = await axios.post(RequestUrl.post.add_page, {
+                                        name: value,
+                                    });
+                                    console.log(request.data);
+                                    if (request.data) {
+                                        dispatch({ type: "ADD_COMPONENT", components: [] });
+                                        dispatch({ type: "CURRENT_PAGE", currentPage: request.data });
+                                        LoadPage();
+                                    }
+                                    setNewPage(value);
+                                })();
+                            }} /> : <a target='_blanc' href={`https://www.malimda.com/${newPage}`}>www.malimda.com/{newPage}</a>}
                         </div>
                     </div>
 
@@ -196,13 +222,7 @@ const Editor = () => {
                                 const { data } = response;
                                 console.log(response);
                                 if (data && response.status == 200) {
-                                    (async () => {
-                                        const response = await axios.get(RequestUrl.get.get_pages);
-                                        const { data } = response;
-                                        if (data) {
-                                            setPages(data);
-                                        }
-                                    })();
+                                    LoadPage();
                                     dispatch({ type: 'SET_HTML', html });
                                     dispatch({ type: "publish", publish: data.ID });
                                 }
