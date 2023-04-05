@@ -8,7 +8,8 @@ import styled from 'styled-components';
 const Lines = styled.div`
     position: relative;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+    gap: 12px;
     div {
         display: grid;
     }
@@ -33,7 +34,10 @@ const AddComponent = ({ data, AllComponent, children }) => {
         <div>Setting : {data.id}</div>
         <Lines>
             {Object.keys(AllComponent).map((item, index) => {
-                return <div key={index} onClick={e => handleAddComponent(item)}>{item}</div>
+                const Icons = AllComponent[item].icons;
+                return <Fragment>
+                    {Icons ? <Icons handleAddComponent={handleAddComponent} name={item} /> : <div key={index} onClick={e => handleAddComponent(item)}>{item}</div>}
+                </Fragment>
             })}
         </Lines>
     </Fragment>

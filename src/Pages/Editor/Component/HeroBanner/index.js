@@ -13,7 +13,7 @@ import styled from 'styled-components';
 const Lines = styled.div`
     border: 1px solid #000;
 `;
-    
+
 const Hero = styled.div`
     position: relative;
     height: 100vh;
@@ -31,8 +31,8 @@ const Hero = styled.div`
 
 const HeroBanner = ({ data, children, ...props }) => {
     const { state, dispatch } = useContext(AppContext);
-    
-    
+
+
     return (
         <Fragment>
             <Lines style={(data[state.devices] ? data[state.devices] : {})}>
@@ -60,7 +60,7 @@ HeroBanner.setting = ({ data, children, ...props }) => {
                 <div>Setting : {data.id}</div>
                 <select onChange={e => {
                     const value = e.target.value;
-                    if(value === "") {
+                    if (value === "") {
                         delete data[state.devices]['height'];
                         handleUpdateStyle();
                     } else {
@@ -108,6 +108,20 @@ HeroBanner.content = ({ data, children }) => {
         {children && children}
     </Fragment>
 
+}
+
+HeroBanner.icons = ({ handleAddComponent, name }) => {
+    return <Fragment>
+        <svg  viewBox="0 0 82 74" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="100%" height="100%" onClick={(e) => handleAddComponent(name)} rx="8" fill="#504F50" />
+            <rect x="21" y="17" width="40" height="40" rx="3" stroke="white" stroke-width="2" />
+            <rect x="25" y="48" width="27" height="4" rx="2" fill="#606060" />
+            {/* text svg bottom */}
+            <text x="50%" y="80%" dominant-baseline="hanging" text-anchor="middle" fill="white" font-size="12" font-weight="bold">
+                {name}
+            </text>
+        </svg>
+    </Fragment>
 }
 
 export default HeroBanner;

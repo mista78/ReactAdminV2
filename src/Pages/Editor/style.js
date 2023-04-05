@@ -39,7 +39,7 @@ const Header = styled.div`
 
 const BodyEditor = styled.div`
         width: 100%;
-        height: calc(100% - 80.8px);
+        height: calc(100% - 30.8px);
         background-color: #2F2F30;
         display: grid;
         grid-template-columns: 70px 2fr 6fr 2fr;

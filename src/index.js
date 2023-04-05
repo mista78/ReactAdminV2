@@ -30,6 +30,10 @@ const GlobalStyle = createGlobalStyle`
       cursor: pointer;
     }
 
+    .update-nag, #wpfooter {
+      display: none;
+    }
+
     #wpbody-content {
       height: 95vh;
     }
