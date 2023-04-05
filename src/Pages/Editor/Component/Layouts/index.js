@@ -55,6 +55,10 @@ const Lines = styled.div`
     }
 `;
 
+HeroBanner = styled.div`
+    background: blue;
+`;
+
 const Layouts = ({ data, children, ...props }) => {
     const { state, dispatch } = useContext(AppContext);
 

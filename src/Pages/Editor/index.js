@@ -268,7 +268,6 @@ const Editor = () => {
                             <button onClick={e => {
                                 localStorage.clear()
                             }}> Remove Storage </button>
-
                         </div>
                     </div>
                     <div className="center">
