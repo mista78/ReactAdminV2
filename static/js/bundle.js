@@ -109,11 +109,7 @@
         }
 `,Q=d.d.div`
         width: 100%;
-<<<<<<< HEAD
         height: calc(100% - 30.8px);
-=======
-        height: calc(100% - 80.8px);
->>>>>>> 564f5c1 (Clean some code)
         background-color: #2F2F30;
         display: grid;
         grid-template-columns: 70px 2fr 6fr 2fr;

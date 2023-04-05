@@ -79,10 +79,6 @@ const Line = ({ data, children, ...props }) => {
 Line.setting = ({ data, children, ...props }) => {
     const { state, dispatch } = useContext(AppContext);
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 10720bb (Rebase)
 
     const upDateUuidRecursively = (data, parent) => {
         const id = uuid();
