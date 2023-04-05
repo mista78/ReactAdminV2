@@ -452,14 +452,20 @@ label {
     height: 100vh;
     .heading {
         position: absolute;
-        bottom: 5rem;
-        left: 5rem;
+        left: 1rem;
+        bottom: 1rem;
         font-size: 2.5rem;
         font-weight: 700;
         color: #fff;
         text-transform: uppercase;
     }
-`,he=({data:e})=>{var t=Object(y.useContext)(v)["state"];return g.a.createElement(y.Fragment,null,g.a.createElement(pe,{style:e[t.devices]||{}},g.a.createElement(fe,null,g.a.createElement("h2",{className:"heading"},"intersport"))))};he.setting=({data:n})=>{const{state:r,dispatch:o}=Object(y.useContext)(v),t=(t={})=>{t={...n[r.devices]||{},...t};var e=r.components.map(e=>b(n.id,e,r.devices,t));o({type:"ADD_COMPONENT",components:e})};return g.a.createElement(y.Fragment,null,g.a.createElement("button",{onClick:e=>{o({type:"CURRENT_SETTING",currentSetting:n.id})}},"Setting ",n.id),g.a.createElement(d,{id:"setting"},g.a.createElement(c,{title:"Setting",id:n.id,open:!0},g.a.createElement("div",null,"Setting : ",n.id),g.a.createElement("select",{onChange:e=>{""===e.target.value?(delete n[r.devices].height,t()):t({height:e.target.value})}},g.a.createElement("option",{value:""},"Ratio Page"),[...new Array(4)].map((e,t)=>{t=.25*(t+1)*100+"vh";return g.a.createElement("option",{value:t},t)})),g.a.createElement(de,{data:n}),g.a.createElement(s,{data:n}),g.a.createElement(l,{data:n})),g.a.createElement(c,{title:"Spaces",id:n.id,open:!0},g.a.createElement(oe,{data:n}))))},he.content=({data:e,children:t})=>{const n=e.mobile||{},r=e.desktop||{},o=u.d.div`
+    @media (min-width: 1440px) {
+        .heading {
+            left: 4rem;
+            bottom: 4rem;
+        }
+    }
+`,he=({data:e})=>{var t=Object(y.useContext)(v)["state"];console.log("data",e);const[n,r]=Object(y.useState)("Joe Abraham"),[o,i]=Object(y.useState)(!1);return g.a.createElement(y.Fragment,null,g.a.createElement(pe,{style:e[t.devices]||{}},g.a.createElement(fe,null,g.a.createElement(function(e){return g.a.createElement("span",null,e.showInputEle?g.a.createElement("input",{type:"text",value:e.value,onChange:e.handleChange,onBlur:e.handleBlur,autoFocus:!0}):g.a.createElement("span",{onDoubleClick:e.handleDoubleClick,style:{display:"inline-block",height:"25px",minWidth:"300px"}},e.value))},{value:n,handleChange:e=>r(e.target.value),handleDoubleClick:()=>console.log("doubleClik",i(!0)),handleBlur:()=>i(!1),showInputEle:o}))))};he.setting=({data:n})=>{const{state:r,dispatch:o}=Object(y.useContext)(v),t=(t={})=>{t={...n[r.devices]||{},...t};var e=r.components.map(e=>b(n.id,e,r.devices,t));o({type:"ADD_COMPONENT",components:e})};return g.a.createElement(y.Fragment,null,g.a.createElement("button",{onClick:e=>{o({type:"CURRENT_SETTING",currentSetting:n.id})}},"Setting ",n.id),g.a.createElement(d,{id:"setting"},g.a.createElement(c,{title:"Setting",id:n.id,open:!0},g.a.createElement("div",null,"Setting : ",n.id),g.a.createElement("select",{onChange:e=>{""===e.target.value?(delete n[r.devices].height,t()):t({height:e.target.value})}},g.a.createElement("option",{value:""},"Ratio Page"),[...new Array(4)].map((e,t)=>{t=.25*(t+1)*100+"vh";return g.a.createElement("option",{value:t},t)})),g.a.createElement(de,{data:n}),g.a.createElement(s,{data:n}),g.a.createElement(l,{data:n})),g.a.createElement(c,{title:"Spaces",id:n.id,open:!0},g.a.createElement(oe,{data:n}))))},he.content=({data:e,children:t})=>{const n=e.mobile||{},r=e.desktop||{},o=u.d.div`
         ${Object.keys(n).map((e,t)=>a(e)+":"+n[e]+";").join("")}
 
         @media (min-width: 768px) {

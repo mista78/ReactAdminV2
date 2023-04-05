@@ -19,12 +19,18 @@ const Hero = styled.div`
     height: 100vh;
     .heading {
         position: absolute;
-        bottom: 5rem;
-        left: 5rem;
+        left: 1rem;
+        bottom: 1rem;
         font-size: 2.5rem;
         font-weight: 700;
         color: #fff;
         text-transform: uppercase;
+    }
+    @media (min-width: 1440px) {
+        .heading {
+            left: 4rem;
+            bottom: 4rem;
+        }
     }
 `;
 
@@ -34,13 +40,49 @@ const Hero = styled.div`
 
 const HeroBanner = ({ data, children, ...props }) => {
     const { state, dispatch } = useContext(AppContext);
-
-
+    console.log("data", data);
+    const [fullName, setFullName] = useState("Joe Abraham");
+    const [showInputEle, setShowInputEle] = useState(false);
+    
+    function ElementMaker(props) {
+        return (
+            <span>
+            {
+                props.showInputEle ? (
+                <input 
+                    type="text"
+                    value={props.value}
+                    onChange={props.handleChange}
+                    onBlur={props.handleBlur}
+                    autoFocus
+                />
+                    ) : (
+                <span 
+                    onDoubleClick={props.handleDoubleClick}
+                    style={{ 
+                        display: "inline-block", 
+                        height: "25px", 
+                        minWidth: "300px", 
+                    }}
+                >
+                    {props.value}
+                </span>
+                )
+            }
+            </span>
+        );
+    }
     return (
         <Fragment>
             <Lines style={(data[state.devices] ? data[state.devices] : {})}>
                 <Hero>
-                    <h2 className='heading'>intersport</h2>
+                    <ElementMaker
+                        value={fullName}
+                        handleChange={(e) => setFullName(e.target.value)}  
+                        handleDoubleClick={() => console.log("doubleClik", setShowInputEle(true))} 
+                        handleBlur={() => setShowInputEle(false)}         
+                        showInputEle={showInputEle}
+                    />
                 </Hero>
             </Lines>
         </Fragment>
