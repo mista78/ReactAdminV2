@@ -133,7 +133,6 @@ Layouts.setting = ({ data, children, ...props }) => {
                 </Details>
             })}
         </Portal>
-
         {children && children}
     </Fragment>
 }
