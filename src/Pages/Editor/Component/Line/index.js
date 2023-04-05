@@ -80,7 +80,6 @@ Line.setting = ({ data, children, ...props }) => {
     const { state, dispatch } = useContext(AppContext);
 
 
-
     const upDateUuidRecursively = (data, parent) => {
         const id = uuid();
         const newBlock = {
@@ -114,10 +113,10 @@ Line.setting = ({ data, children, ...props }) => {
             lorem  ipsum
         </Details>
         <Portal id="setting">
-            {Object.keys(Test).filter(item => !(["EditorSetting", "References"].includes(item))).map((item, index) => {
+            {Object.keys(Test).filter(item => !(["EditorSetting","References"].includes(item))).map((item, index) => {
                 const Component = Test[item];
                 return <Details key={index} title={item} id={data.id} open={true}>
-                    <Component data={data} AllComponent={AllComponent} />
+                    <Component data={data} AllComponent={AllComponent}  />
                 </Details>
             })}
         </Portal>
