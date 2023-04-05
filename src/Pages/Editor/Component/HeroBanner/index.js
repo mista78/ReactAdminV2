@@ -34,7 +34,8 @@ const Hero = styled.div`
 
 const HeroBanner = ({ data, children, ...props }) => {
     const { state, dispatch } = useContext(AppContext);
-    
+    const [fullName, setFullName] = useState("Joe Abraham");
+    const [showInputEle, setShowInputEle] = useState(false);
     
     function ElementMaker(props) {
         return (
