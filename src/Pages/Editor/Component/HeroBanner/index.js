@@ -13,7 +13,7 @@ import styled from 'styled-components';
 const Lines = styled.div`
     border: 1px solid #000;
 `;
-    
+
 const Hero = styled.div`
     position: relative;
     height: 100vh;
