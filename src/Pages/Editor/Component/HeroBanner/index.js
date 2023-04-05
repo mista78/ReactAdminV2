@@ -19,18 +19,12 @@ const Hero = styled.div`
     height: 100vh;
     .heading {
         position: absolute;
-        left: 1rem;
-        bottom: 1rem;
+        bottom: 5rem;
+        left: 5rem;
         font-size: 2.5rem;
         font-weight: 700;
         color: #fff;
         text-transform: uppercase;
-    }
-    @media (min-width: 1440px) {
-        .heading {
-            left: 4rem;
-            bottom: 4rem;
-        }
     }
 `;
 
@@ -40,9 +34,7 @@ const Hero = styled.div`
 
 const HeroBanner = ({ data, children, ...props }) => {
     const { state, dispatch } = useContext(AppContext);
-    console.log("data", data);
-    const [fullName, setFullName] = useState("Joe Abraham");
-    const [showInputEle, setShowInputEle] = useState(false);
+    
     
     function ElementMaker(props) {
         return (
