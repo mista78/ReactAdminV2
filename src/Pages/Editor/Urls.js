@@ -44,6 +44,12 @@ const DataUrl = {
                     value: 'add_page'
                 }
             ],
+            delete_page: [
+                {
+                    param: 'action',
+                    value: 'delete_page'
+                }
+            ],
         }
     },
 };

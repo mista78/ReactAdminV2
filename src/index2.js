@@ -40,7 +40,7 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const scripts = {
-  Slider: `[mista-script-Slider]`,
+  Slider: `const i=(()=>{var i={init:()=>{console.log("Slider")}};return i})();i.init();`,
 }
 
 import { BrowserRouter } from "react-router-dom";

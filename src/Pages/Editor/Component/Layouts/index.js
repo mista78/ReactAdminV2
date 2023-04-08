@@ -9,10 +9,13 @@ import Duplicate from '../../../../Components/Duplicate';
 import Remove from '../../../../Components/Remove';
 import Details from '../../../../Components/Details';
 import Cols from '../../../../Components/Cols';
-import { BorderRadius, Spaces, Background, References, EditorSeting } from '../../Helpers';
+import Test, { BorderRadius, Spaces, Background, References, EditorSetting } from '../../Helpers';
+import Svg from '../../Helpers/Svg';
 import styled from 'styled-components';
 
 import AllComponent from '../index';
+
+import HeroBanner from '../HeroBanner';
 
 const Lines = styled.div`
     position: relative;
@@ -70,7 +73,7 @@ const Layouts = ({ data, children, ...props }) => {
                         dispatch({ type: 'CURRENT_SETTING', currentSetting: data.id });
                     }}
                     style={(data[state.devices] ? data[state.devices] : {})} child={data?.children.map(item => (item.cols))?.join(' ')} >
-                    {state.currentSetting == data.id && <EditorSeting data={data} />}
+                    {state.currentSetting == data.id && <EditorSetting data={data} />}
                     {children && children}
                 </Lines>
             </References>
@@ -81,8 +84,7 @@ const Layouts = ({ data, children, ...props }) => {
 Layouts.setting = ({ data, children, ...props }) => {
     const { state, dispatch } = useContext(AppContext);
 
-    const handleAddComponent = (e) => {
-        const value = e ? e.target.value : 'Line';
+    const handleAddComponent = (value) => {
         const newBlock = {
             id: uuid(),
             name: value,
@@ -90,9 +92,10 @@ Layouts.setting = ({ data, children, ...props }) => {
             cols: '1fr',
             children: []
         }
+        console.log("data", data);
+        console.log("value", value);
         const components = state.components.map(item => updatePropertyById(data.id, item, 'children', [...data.children, newBlock]));
         dispatch({ type: "ADD_COMPONENT", components });
-        e && (e.target.value = '');
     };
 
     const upDateUuidRecursively = (data, parent) => {
@@ -105,49 +108,31 @@ Layouts.setting = ({ data, children, ...props }) => {
         }
         return newBlock;
     };
-    const handleDuplicate = () => {
-        const newBlock = {
-            ...upDateUuidRecursively(data, data.parent),
-        }
-        const parent = data.parent ? search([state.components], data.parent) : state.components;
-        const parentComp = data.parent ? parent["children"] : parent
-        const currentIndex = parentComp.findIndex(item => item.id === data.id);
-        parentComp.splice(currentIndex + 1, 0, newBlock);
-        if (data.parent) {
-            state.components.map((item, index) => updatePropertyById(data.parent, item, 'children', parentComp));
-        } else {
-            state.components = parentComp;
-        }
-        dispatch({ type: "ADD_COMPONENT", components: [...state.components] });
-    };
 
     return <Fragment>
         <Details title={`Layouts ${data.id}`} visible={true} onClick={e => {
             dispatch({ type: 'CURRENT_SETTING', currentSetting: data.id });
         }}>
             lorem  ipsum
+            <div>
+                <svg viewBox="0 0 82 74" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="100%" height="100%" onClick={(e) => handleAddComponent("HeroBanner")} rx="8" fill="#504F50" />
+                    <rect x="21" y="17" width="40" height="40" rx="3" stroke="white" stroke-width="2" />
+                    <rect x="25" y="48" width="27" height="4" rx="2" fill="#606060" />
+                    {/* text svg bottom */}
+                    <text x="50%" y="80%" dominant-baseline="hanging" text-anchor="middle" fill="white" font-size="12" font-weight="bold">
+                        HeroBanner
+                    </text>
+                </svg>
+            </div>
         </Details>
         <Portal id="setting">
-            <Details title="Setting" id={data.id} open={true}>
-                <div>Setting : {data.id}</div>
-                <select onChange={handleAddComponent}>
-                    <option value="">Select Component</option>
-                    {Object.keys(AllComponent).map((item, index) => {
-                        return <option key={index} value={item}>{item}</option>
-                    })}
-                </select>
-
-            </Details>
-            <Details title="BorderRadius" id={data.id} open={true}>
-                <BorderRadius data={data} />
-            </Details>
-            <Details title="Spaces" id={data.id} open={true}>
-                <Spaces data={data} />
-            </Details>
-
-            <Details title="Background" id={data.id} open={true}>
-                <Background data={data} />
-            </Details>
+            {Object.keys(Test).filter(item => !(["EditorSetting", "References", "ScriptInject"].includes(item))).map((item, index) => {
+                const Component = Test[item];
+                return <Details key={index} title={item} id={data.id} open={true}>
+                    <Component data={data} AllComponent={AllComponent} />
+                </Details>
+            })}
         </Portal>
         {children && children}
     </Fragment>
@@ -174,6 +159,16 @@ Layouts.content = ({ data, children }) => {
         <Line >
             {children && children}
         </Line>
+    </Fragment>
+
+}
+
+Layouts.icons = ({ handleAddComponent, name }) => {
+    return <Fragment>
+        <Svg handleAddComponent={handleAddComponent} name={name}>
+            <rect x="6.5" y="18.5" width="29" height="31" rx="7.5" fill="#939393" stroke="#CECECE" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 6" />
+            <rect x="44.5" y="18.5" width="29" height="31" rx="7.5" fill="#939393" stroke="#CECECE" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 6" />
+        </Svg>
     </Fragment>
 
 }
