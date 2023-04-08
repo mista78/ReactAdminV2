@@ -32,59 +32,22 @@ const Hero = styled.div`
 `;
 
 
-const HeroBanner = ({ data, children,Libs, ...props }) => {
+const HomePage = ({ data, children, Libs, ...props }) => {
     const { state, dispatch } = useContext(AppContext);
 
-    const [fullName, setFullName] = useState(() => {
-        const saved = localStorage.getItem("fullName") || JSON.stringify("Default Content");
-        const initialValue = JSON.parse(saved);
-        return initialValue || ""
-    });
-    const [showInputEle, setShowInputEle] = useState(false);
-
-    function ElementMaker(props) {
-        useEffect(() => {
-            props.value && localStorage.setItem('fullName', JSON.stringify(props.value));
-        }, [fullName]);
-        return (
-            <Fragment>
-                {
-                    props.showInputEle ? (
-                        <input
-                            className='heading'
-                            type="text"
-                            value={props.value}
-                            onChange={props.handleChange}
-                            onBlur={props.handleBlur}
-                            placeholder='headingd'
-                            autoFocus
-                        />
-                    ) : (
-                        <h2 className='heading' onClick={props.handleClick}>{props.value}</h2>
-                    )
-                }
-            </Fragment>
-        );
-    }
     return (
         <Fragment>
-            <ScriptInject Libs={Libs} name="Slider" />
             <Lines style={(data[state.devices] ? data[state.devices] : {})}>
                 <Hero>
-                    <ElementMaker
-                        value={fullName}
-                        handleChange={(e) => setFullName(e.target.value)}
-                        handleClick={() => setShowInputEle(true)}
-                        handleBlur={() => fullName && setShowInputEle(false)}
-                        showInputEle={showInputEle}
-                    />
+                lorem ipsum
                 </Hero>
             </Lines>
+            <ScriptInject Libs={Libs} name="test" />
         </Fragment>
     );
 }
 
-HeroBanner.setting = ({ data, children, ...props }) => {
+HomePage.setting = ({ data, children, ...props }) => {
     const { state, dispatch } = useContext(AppContext);
     const handleUpdateStyle = (value = {}) => {
         value = { ...(data[state.devices] ? data[state.devices] : {}), ...value }
@@ -125,7 +88,7 @@ HeroBanner.setting = ({ data, children, ...props }) => {
     </Fragment>
 }
 
-HeroBanner.content = ({ data,Libs,children }) => {
+HomePage.content = ({ data, Libs, children }) => {
     const mobile = (data['mobile'] ? data['mobile'] : {});
     const desktop = (data['desktop'] ? data['desktop'] : {});
 
@@ -143,20 +106,27 @@ HeroBanner.content = ({ data,Libs,children }) => {
 
     return <Fragment>
         <Line >
-            <ScriptInject.content Libs={Libs} name="Slider" />
             {data.content ? data.content : 'Default content'}
         </Line>
         {children && children}
+        <ScriptInject.content Libs={Libs} name="Slider" />
     </Fragment>
 
 }
 
-HeroBanner.icons = ({ handleAddComponent, name }) => {
+HomePage.icons = ({ handleAddComponent, name }) => {
     return <Fragment>
-        <svg viewBox="0 0 82 74" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="100%" height="100%" onClick={(e) => handleAddComponent(name)} rx="8" fill="#504F50" />
-            <rect x="21" y="17" width="40" height="40" rx="3" stroke="white" stroke-width="2" />
-            <rect x="25" y="48" width="27" height="4" rx="2" fill="#606060" />
+        <svg viewBox="0 0 82 74" fill="none" onClick={(e) => handleAddComponent(name)} xmlns="http://www.w3.org/2000/svg">
+            <rect width="100%" height="100%"  rx="8" fill="#504F50" />
+            <svg width="82" height="54" viewBox="0 0 82 74" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="82" height="54" rx="8" fill="#504F50" />
+                <rect x="8" y="9" width="66" height="56" rx="4" fill="#B8B8B8" />
+                <rect x="29" y="34" width="5" height="18" rx="2" transform="rotate(90 29 34)" fill="#606060" />
+                <rect x="50" y="34" width="5" height="18" rx="2" transform="rotate(90 50 34)" fill="#606060" />
+                <rect x="72" y="34" width="5" height="18" rx="2" transform="rotate(90 72 34)" fill="#606060" />
+            </svg>
+
+
             {/* text svg bottom */}
             <text x="50%" y="80%" dominant-baseline="hanging" text-anchor="middle" fill="white" font-size="12" font-weight="bold">
                 {name}
@@ -165,4 +135,4 @@ HeroBanner.icons = ({ handleAddComponent, name }) => {
     </Fragment>
 }
 
-export default HeroBanner;
+export default HomePage;

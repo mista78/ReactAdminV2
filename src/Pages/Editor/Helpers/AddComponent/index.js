@@ -27,6 +27,7 @@ const AddComponent = ({ data, AllComponent, children }) => {
             cols: '1fr',
             children: []
         }
+        console.log("newBlock", value);
         const components = state.components.map(item => updatePropertyById(data.id, item, 'children', [...data.children, newBlock]));
         dispatch({ type: "ADD_COMPONENT", components });
     };

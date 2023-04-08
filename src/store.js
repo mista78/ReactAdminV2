@@ -38,7 +38,8 @@ const initialState = {
     html: storage.get("html", null),
     publish: storage.get("publish", false),
     devices: storage.get("devices", "desktop"),
-    urls: null
+    urls: null,
+    Libs: null,
 };
 
 const AppContext = React.createContext(initialState);

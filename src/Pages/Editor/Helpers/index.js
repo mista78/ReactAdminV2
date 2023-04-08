@@ -1,9 +1,13 @@
+
 import BorderRadius from './BorderRadius';
 import Spaces from './Spaces';
 import Background from './Background';
 import References from './References';
 import EditorSetting from './EditorSetting';
 import AddComponent from './AddComponent';
+import ScriptInject from './ScriptInject';
+
+
 
 export {
     AddComponent,
@@ -12,6 +16,7 @@ export {
     References,
     EditorSetting,
     Background,
+    ScriptInject
 }
 
 export default {
@@ -21,4 +26,6 @@ export default {
     References,
     EditorSetting,
     Background,
+    ScriptInject
 }
+

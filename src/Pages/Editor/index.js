@@ -15,13 +15,13 @@ import DataUrl from './Urls';
 
 import AllComponent from './Component/index';
 
-const View = ({ data, setting, type }) => {
+const View = ({ data, setting,Libs, type }) => {
     return <Fragment>
         {data && data?.map((item, index) => {
             const Component = (AllComponent[item.name] && type) ? AllComponent[item.name][type] : AllComponent[item.name];
             if (!Component) return null;
-            return <Component key={item.id} data={item} position={index}>
-                {item.children && <View data={item.children} parent={data} setting={setting} type={type} position={index} />}
+            return <Component Libs={Libs} key={item.id} data={item} position={index}>
+                {item.children && <View Libs={Libs} data={item.children} parent={data} setting={setting} type={type} position={index} />}
             </Component>
         })}
     </Fragment>
@@ -29,7 +29,7 @@ const View = ({ data, setting, type }) => {
 
 
 
-const Editor = () => {
+const Editor = ({Libs}) => {
     const { state, dispatch } = useContext(AppContext);
     const RequestUrl = GenerateUrl(DataUrl.Editor, ["GET", "POST"]);
     const [pages, setPages] = useState([]);
@@ -49,9 +49,10 @@ const Editor = () => {
                 dispatch({ type: "CURRENT_SETTING", currentSetting });
             }
             if (data) {
-                dispatch({ type: "ADD_COMPONENTS", components: [...data] });
+                dispatch({ type: "ADD_COMPONENT", components: [...data] });
             }
         }, 100)
+        
     }, [])
 
     const LoadPage = async () => {
@@ -65,12 +66,14 @@ const Editor = () => {
 
     useEffect(() => {
         dispatch({ type: "DEVICES", urls: { ...RequestUrl } });
+        dispatch({ type: "ADD_COMPONENT", Libs: Libs });
         LoadPage();
     }, [])
 
     useEffect(() => {
         storage.set('components', state.components);
         storage.set('currentSetting', state.currentSetting);
+        console.log("read",state);
     }, [state]);
 
     return (
@@ -201,7 +204,7 @@ const Editor = () => {
                         <div className='publication_btn' onClick={e => {
                             let html = '';
                             const sheet = new ServerStyleSheet();
-                            const render = renderToStaticMarkup(sheet.collectStyles(<View data={state.components} type="content" />));
+                            const render = renderToStaticMarkup(sheet.collectStyles(<View data={state.components} Libs={Libs} type="content" />));
                             const styleTags = sheet.getStyleTags(); // or sheet.getStyleElement();
                             const test = sheet.getStyleElement();
                             const regex = /\/\*.*\*\/n/gm;
@@ -263,7 +266,7 @@ const Editor = () => {
 
                     <div className="left">
                         <div id="sidebar">
-                            <View data={state.components} setting={true} type="setting" />
+                            <View Libs={Libs} data={state.components} setting={true} type="setting" />
 
                             <button onClick={e => {
                                 localStorage.clear()
@@ -272,7 +275,7 @@ const Editor = () => {
                     </div>
                     <div className="center">
                         <IFrames>
-                            <View data={state.components} />
+                            <View Libs={Libs} data={state.components} />
                         </IFrames>
                     </div>
                     <div className="right">

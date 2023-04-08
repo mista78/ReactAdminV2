@@ -10,6 +10,7 @@ import Remove from '../../../../Components/Remove';
 import Details from '../../../../Components/Details';
 import Cols from '../../../../Components/Cols';
 import Test, { BorderRadius, Spaces, Background, References, EditorSetting } from '../../Helpers';
+import Svg from '../../Helpers/Svg';
 import styled from 'styled-components';
 
 import AllComponent from '../index';
@@ -126,7 +127,7 @@ Layouts.setting = ({ data, children, ...props }) => {
             </div>
         </Details>
         <Portal id="setting">
-            {Object.keys(Test).filter(item => !(["EditorSetting", "References"].includes(item))).map((item, index) => {
+            {Object.keys(Test).filter(item => !(["EditorSetting", "References", "ScriptInject"].includes(item))).map((item, index) => {
                 const Component = Test[item];
                 return <Details key={index} title={item} id={data.id} open={true}>
                     <Component data={data} AllComponent={AllComponent} />
@@ -164,17 +165,10 @@ Layouts.content = ({ data, children }) => {
 
 Layouts.icons = ({ handleAddComponent, name }) => {
     return <Fragment>
-        <svg viewBox="0 0 82 74" onClick={e => handleAddComponent(name)} fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="100%" height="100%" rx="8" fill="#504F50" />
-
+        <Svg handleAddComponent={handleAddComponent} name={name}>
             <rect x="6.5" y="18.5" width="29" height="31" rx="7.5" fill="#939393" stroke="#CECECE" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 6" />
             <rect x="44.5" y="18.5" width="29" height="31" rx="7.5" fill="#939393" stroke="#CECECE" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 6" />
-
-            {/* center text svg */}
-            <text x="50%" y="80%" dominant-baseline="hanging" text-anchor="middle" fill="white" font-size="12" font-weight="bold">
-                {name}
-            </text>
-        </svg>
+        </Svg>
     </Fragment>
 
 }

@@ -3,7 +3,7 @@ const webpack = require('webpack');
 
 module.exports = {
     mode: 'production',
-    entry: ["./src/index.js"],
+    entry: ["./src/index2.js"],
     output: { 
         path: __dirname + "/static/js",
         filename: 'bundle.js'
