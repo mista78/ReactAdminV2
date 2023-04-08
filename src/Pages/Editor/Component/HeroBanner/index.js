@@ -155,7 +155,7 @@ HeroBanner.icons = ({ handleAddComponent, name }) => {
     return <Fragment>
         <svg viewBox="0 0 82 74" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect width="100%" height="100%" onClick={(e) => handleAddComponent(name)} rx="8" fill="#504F50" />
-            <rect x="21" y="17" width="40" height="40" rx="3" stroke="white" stroke-width="2" />
+            <rect x="21" y="13" width="40" height="40" rx="3" stroke="white" stroke-width="2" />
             <rect x="25" y="48" width="27" height="4" rx="2" fill="#606060" />
             {/* text svg bottom */}
             <text x="50%" y="80%" dominant-baseline="hanging" text-anchor="middle" fill="white" font-size="12" font-weight="bold">
