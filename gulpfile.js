@@ -56,6 +56,14 @@ gulp.task('js', async function () {
 
             }))
             .pipe(webpack(require('./webpack.config.js')))
+            .pipe(through.obj(function (file, enc, cb) {
+                // rm index2.js
+                // fs.unlink(path.resolve(__dirname, `src/index2.js`), function (err) {
+                //     if (err) throw err;
+                //     console.log('File deleted!');
+                // });
+                cb(null, file);
+            }))
             // .pipe(uglify())
             .pipe(gulp.dest('static/js/')).on("end", resolve)
             .pipe(through.obj(function (file, enc, cb) {

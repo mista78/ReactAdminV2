@@ -43,6 +43,8 @@ const scripts = {
   Slider: `[mista-script-Slider]`,
 }
 
+console.log(scripts.Slider);
+
 import { BrowserRouter } from "react-router-dom";
 
 const Component = Data["Editor"];
