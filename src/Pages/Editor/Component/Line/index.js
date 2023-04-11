@@ -54,8 +54,6 @@ const Lines = styled.div`
 const Line = ({ data, children, ...props }) => {
     const { state, dispatch } = useContext(AppContext);
 
-    console.log("test", Test);
-
     const handleUpdateStyle = (value = {}) => {
         value = { ...(data[state.devices] ? data[state.devices] : {}), ...value }
         const components = state.components.map(item => updatePropertyById(data.id, item, state.devices, value));

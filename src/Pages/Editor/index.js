@@ -73,7 +73,6 @@ const Editor = ({Libs}) => {
     useEffect(() => {
         storage.set('components', state.components);
         storage.set('currentSetting', state.currentSetting);
-        console.log("read",state);
     }, [state]);
 
     return (

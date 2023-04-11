@@ -43,9 +43,13 @@ const HeroBanner = ({ data, children,Libs, ...props }) => {
     const [showInputEle, setShowInputEle] = useState(false);
 
     function ElementMaker(props) {
-        useEffect(() => {
+      /*   useEffect(() => {
             props.value && localStorage.setItem('fullName', JSON.stringify(props.value));
-        }, [fullName]);
+        }, [fullName]); */
+        const handleUpdateValue = (value = {}) => {
+            const components = state.components.map(item => updatePropertyById(data.id, item, "value", value));
+            dispatch({ type: "ADD_COMPONENT", components });
+        }
         return (
             <Fragment>
                 {
@@ -55,7 +59,12 @@ const HeroBanner = ({ data, children,Libs, ...props }) => {
                             type="text"
                             value={props.value}
                             onChange={props.handleChange}
-                            onBlur={props.handleBlur}
+                            onBlur={
+                                {
+                                    handleBlur: props.handleBlur,
+                                    handleUpdateValue: handleUpdateValue(props.value)
+                                }
+                            }
                             placeholder='headingd'
                             autoFocus
                         />

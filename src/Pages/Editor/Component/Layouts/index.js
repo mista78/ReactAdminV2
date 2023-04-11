@@ -15,8 +15,6 @@ import styled from 'styled-components';
 
 import AllComponent from '../index';
 
-import HeroBanner from '../HeroBanner';
-
 const Lines = styled.div`
     position: relative;
     border: 1px dashed blue;
@@ -61,8 +59,6 @@ const Layouts = ({ data, children, ...props }) => {
 
     const handleUpdateStyle = (value = {}) => {
         value = { ...(data[state.devices] ? data[state.devices] : {}), ...value }
-        const components = state.components.map(item => updatePropertyById(data.id, item, state.devices, value));
-        dispatch({ type: "UPDATE_COMPONENT", components });
     }
     return (
         <Fragment>
@@ -92,10 +88,9 @@ Layouts.setting = ({ data, children, ...props }) => {
             cols: '1fr',
             children: []
         }
-        console.log("data", data);
-        console.log("value", value);
         const components = state.components.map(item => updatePropertyById(data.id, item, 'children', [...data.children, newBlock]));
         dispatch({ type: "ADD_COMPONENT", components });
+        console.log("components", components);
     };
 
     const upDateUuidRecursively = (data, parent) => {
