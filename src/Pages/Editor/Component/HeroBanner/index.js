@@ -35,7 +35,7 @@ const Hero = styled.div`
 const HeroBanner = ({ data, children,Libs, ...props }) => {
     const { state, dispatch } = useContext(AppContext);
 
-    const [fullName, setFullName] = useState(fullName ? state.components.map(item => item.value = updatePropertyById(data.id, item, "value", data.value)) : "heading");
+    const [fullName, setFullName] = useState(data.value ? data.value : "heading");
     const [showInputEle, setShowInputEle] = useState(false);
 
     const handleUpdateValue = (value) => {
