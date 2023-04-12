@@ -59,6 +59,8 @@ const Layouts = ({ data, children, ...props }) => {
 
     const handleUpdateStyle = (value = {}) => {
         value = { ...(data[state.devices] ? data[state.devices] : {}), ...value }
+        const components = state.components.map(item => updatePropertyById(data.id, item, state.devices, value));
+        dispatch({ type: "UPDATE_COMPONENT", components });
     }
     return (
         <Fragment>
@@ -90,7 +92,6 @@ Layouts.setting = ({ data, children, ...props }) => {
         }
         const components = state.components.map(item => updatePropertyById(data.id, item, 'children', [...data.children, newBlock]));
         dispatch({ type: "ADD_COMPONENT", components });
-        console.log("components", components);
     };
 
     const upDateUuidRecursively = (data, parent) => {

@@ -42,39 +42,43 @@ const HeroBanner = ({ data, children,Libs, ...props }) => {
     });
     const [showInputEle, setShowInputEle] = useState(false);
 
+    const handleUpdateValue = (value) => {
+        const components = state.components.map(item => updatePropertyById(data.id, item, "value", value));
+        dispatch({ type: "ADD_COMPONENT", components });
+        console.log("components ", components);
+    }
+    
+    const handleBlur = (e) => {
+        fullName && setShowInputEle(false);
+        handleUpdateValue(fullName);
+    }
+
     function ElementMaker(props) {
       /*   useEffect(() => {
             props.value && localStorage.setItem('fullName', JSON.stringify(props.value));
         }, [fullName]); */
-        const handleUpdateValue = (value = {}) => {
-            const components = state.components.map(item => updatePropertyById(data.id, item, "value", value));
-            dispatch({ type: "ADD_COMPONENT", components });
-        }
+        
         return (
             <Fragment>
                 {
                     props.showInputEle ? (
                         <input
-                            className='heading'
-                            type="text"
-                            value={props.value}
-                            onChange={props.handleChange}
-                            onBlur={
-                                {
-                                    handleBlur: props.handleBlur,
-                                    handleUpdateValue: handleUpdateValue(props.value)
-                                }
-                            }
-                            placeholder='headingd'
-                            autoFocus
+                        className='heading'
+                        type="text"
+                        value={props.value}
+                        onChange={props.handleChange}
+                        onBlur={props.handleBlur}
+                        placeholder='headingd'
+                        autoFocus
                         />
-                    ) : (
-                        <h2 className='heading' onClick={props.handleClick}>{props.value}</h2>
-                    )
-                }
+                        ) : (
+                            <h2 className='heading' onClick={props.handleClick}>{props.value}</h2>
+                            )
+                        }
             </Fragment>
         );
     }
+    
     return (
         <Fragment>
             <ScriptInject Libs={Libs} name="Slider" />
@@ -84,7 +88,7 @@ const HeroBanner = ({ data, children,Libs, ...props }) => {
                         value={fullName}
                         handleChange={(e) => setFullName(e.target.value)}
                         handleClick={() => setShowInputEle(true)}
-                        handleBlur={() => fullName && setShowInputEle(false)}
+                        handleBlur={handleBlur}
                         showInputEle={showInputEle}
                     />
                 </Hero>
