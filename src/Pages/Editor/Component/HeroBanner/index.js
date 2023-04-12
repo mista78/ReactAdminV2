@@ -35,17 +35,14 @@ const Hero = styled.div`
 const HeroBanner = ({ data, children,Libs, ...props }) => {
     const { state, dispatch } = useContext(AppContext);
 
-    const [fullName, setFullName] = useState(() => {
-        const saved = localStorage.getItem("fullName") || JSON.stringify("Default Content");
-        const initialValue = JSON.parse(saved);
-        return initialValue || ""
-    });
+    const [fullName, setFullName] = useState(fullName ? state.components.map(item => item.value = updatePropertyById(data.id, item, "value", data.value)) : "heading");
     const [showInputEle, setShowInputEle] = useState(false);
 
     const handleUpdateValue = (value) => {
         const components = state.components.map(item => updatePropertyById(data.id, item, "value", value));
         dispatch({ type: "ADD_COMPONENT", components });
         console.log("components ", components);
+        console.log("data", data);
     }
     
     const handleBlur = (e) => {
@@ -63,16 +60,16 @@ const HeroBanner = ({ data, children,Libs, ...props }) => {
                 {
                     props.showInputEle ? (
                         <input
-                        className='heading'
+                        className="heading"
                         type="text"
                         value={props.value}
                         onChange={props.handleChange}
                         onBlur={props.handleBlur}
-                        placeholder='headingd'
+                        placeholder="heading"
                         autoFocus
                         />
                         ) : (
-                            <h2 className='heading' onClick={props.handleClick}>{props.value}</h2>
+                            <h2 className="heading" onClick={props.handleClick}>{props.value}</h2>
                             )
                         }
             </Fragment>
