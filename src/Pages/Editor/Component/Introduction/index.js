@@ -15,7 +15,24 @@ const Lines = styled.div`
 `;
 
 const Intro = styled.div`
-
+    display: flex;
+    flex-direction: column;
+    padding-inline: 10rem;
+    color: #fff;
+    background-color: #000;
+    font-weight: 700;
+    .text {
+        padding-block: 1rem;
+        font-size: 2rem;
+    }
+    .lists {
+        display: flex;
+        justify-content: space-between;
+        padding-block: 1rem;
+        & ul {
+            list-style-type: none;
+        }
+    }
 `;
 
 const Introduction = ({ data, children,Libs, ...props }) => {
@@ -41,8 +58,8 @@ const Introduction = ({ data, children,Libs, ...props }) => {
             <ScriptInject Libs={Libs} name="Slider" />
             <Lines style={(data[state.devices] ? data[state.devices] : {})}>
                <Intro>
-                    <p>Péparer la migration d’INTERSPORT sur Figma grâce à la création d’un design system et de templates.</p>
-                    <div>
+                    <p className='text'>Péparer la migration d’INTERSPORT sur Figma grâce à la création d’un design system et de templates.</p>
+                    <div className='lists'>
                         <ul>
                             <li>services</li>
                             <li>ui design</li>
