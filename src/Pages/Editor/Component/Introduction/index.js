@@ -45,19 +45,41 @@ const Intro = styled.div`
 const Introduction = ({ data, children,Libs, ...props }) => {
     const { state, dispatch } = useContext(AppContext);
 
-    const [fullName, setFullName] = useState(data.value);
+    const [fullName, setFullName] = useState(data.value ? data.value : "text");
     const [showInputEle, setShowInputEle] = useState(false);
 
     const handleUpdateValue = (value) => {
         const components = state.components.map(item => updatePropertyById(data.id, item, "value", value));
         dispatch({ type: "ADD_COMPONENT", components });
-        console.log("components ", components);
-        console.log("data", data);
     }
     
     const handleBlur = (e) => {
         fullName && setShowInputEle(false);
         handleUpdateValue(fullName);
+    }
+
+    function ElementMaker(props) {
+        return (
+            <Fragment>
+                {
+                    props.showInputEle ? (
+                        <textarea
+                            className="text"
+                            name="textarea"
+                            rows="4"
+                            cols="20"
+                            value={props.value}
+                            onChange={props.handleChange}
+                            onBlur={props.handleBlur}
+                            placeholder="text"
+                            autoFocus
+                        />
+                        ) : (
+                            <p className="text" onClick={props.handleClick}>{props.value}</p>
+                            )
+                        }
+            </Fragment>
+        );
     }
     
     return (
@@ -65,7 +87,13 @@ const Introduction = ({ data, children,Libs, ...props }) => {
             <ScriptInject Libs={Libs} name="Slider" />
             <Lines style={(data[state.devices] ? data[state.devices] : {})}>
                <Intro>
-                    <p className='text'>Péparer la migration d’INTERSPORT sur Figma grâce à la création d’un design system et de templates.</p>
+                    <ElementMaker 
+                        value={fullName}
+                        handleChange={(e) => setFullName(e.target.value)}
+                        handleClick={() => setShowInputEle(true)}
+                        handleBlur={handleBlur}
+                        showInputEle={showInputEle}
+                    />
                     <div className='lists'>
                         <ul>
                             <li className='lists_heading'>services</li>

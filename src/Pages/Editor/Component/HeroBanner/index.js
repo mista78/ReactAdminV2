@@ -51,10 +51,6 @@ const HeroBanner = ({ data, children,Libs, ...props }) => {
     }
 
     function ElementMaker(props) {
-      /*   useEffect(() => {
-            props.value && localStorage.setItem('fullName', JSON.stringify(props.value));
-        }, [fullName]); */
-        
         return (
             <Fragment>
                 {
