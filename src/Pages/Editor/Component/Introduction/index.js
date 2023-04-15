@@ -31,6 +31,13 @@ const Intro = styled.div`
         padding-block: 1rem;
         & ul {
             list-style-type: none;
+            & li {
+                line-height: 1.6rem;
+            }
+        }
+        &_heading {
+            color: #A7A7A7;
+            padding-block-end: 0.5rem;
         }
     }
 `;
@@ -61,16 +68,16 @@ const Introduction = ({ data, children,Libs, ...props }) => {
                     <p className='text'>Péparer la migration d’INTERSPORT sur Figma grâce à la création d’un design system et de templates.</p>
                     <div className='lists'>
                         <ul>
-                            <li>services</li>
+                            <li className='lists_heading'>services</li>
                             <li>ui design</li>
                             <li>services</li>
                         </ul>
                         <ul>
-                            <li>Date</li>
+                            <li className='lists_heading'>Date</li>
                             <li>ui design</li>
                         </ul>
                         <ul>
-                            <li>ui design</li>
+                            <li className='lists_heading'>ui design</li>
                             <li>ui design</li>
                         </ul>
                     </div>
