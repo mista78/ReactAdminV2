@@ -54,6 +54,12 @@ const Lines = styled.div`
     }
 `;
 
+const SidebarLayout = styled.div`
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+`;
+
 const Layouts = ({ data, children, ...props }) => {
     const { state, dispatch } = useContext(AppContext);
 
@@ -110,17 +116,30 @@ Layouts.setting = ({ data, children, ...props }) => {
             dispatch({ type: 'CURRENT_SETTING', currentSetting: data.id });
         }}>
             lorem  ipsum
-            <div>
+            <SidebarLayout>
                 <svg viewBox="0 0 82 74" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect width="100%" height="100%" onClick={(e) => handleAddComponent("HeroBanner")} rx="8" fill="#504F50" />
-                    <rect x="21" y="17" width="40" height="40" rx="3" stroke="white" stroke-width="2" />
+                    <rect x="21" y="13" width="40" height="40" rx="3" stroke="white" stroke-width="2" />
                     <rect x="25" y="48" width="27" height="4" rx="2" fill="#606060" />
                     {/* text svg bottom */}
                     <text x="50%" y="80%" dominant-baseline="hanging" text-anchor="middle" fill="white" font-size="12" font-weight="bold">
                         HeroBanner
                     </text>
                 </svg>
-            </div>
+                <svg onClick={(e) => handleAddComponent("Introduction")} viewBox="0 0 82 74" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="82" height="74" rx="8" fill="#504F50"/>
+                    <rect x="16" y="21.5" width="50" height="3" rx="1.5" fill="#606060"/>
+                    <rect x="16" y="28.5" width="50" height="3" rx="1.5" fill="#606060"/>
+                    <rect x="16" y="35.5" width="50" height="3" rx="1.5" fill="#606060"/>
+                    <rect x="16" y="42.5" width="23" height="3" rx="1.5" fill="#606060"/>
+                    <rect x="16" y="49.5" width="23" height="3" rx="1.5" fill="#606060"/>
+                    <rect x="43" y="42.5" width="23" height="3" rx="1.5" fill="#606060"/>
+                    <rect x="43" y="49.5" width="23" height="3" rx="1.5" fill="#606060"/>
+                    <text x="50%" y="80%" dominant-baseline="hanging" text-anchor="middle" fill="white" font-size="12" font-weight="bold">
+                        Introduction
+                    </text>        
+                </svg>
+            </SidebarLayout>
         </Details>
         <Portal id="setting">
             {Object.keys(Test).filter(item => !(["EditorSetting", "References", "ScriptInject"].includes(item))).map((item, index) => {
