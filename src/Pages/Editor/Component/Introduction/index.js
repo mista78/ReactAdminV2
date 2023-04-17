@@ -9,6 +9,7 @@ import Details from '../../../../Components/Details';
 import MediaUploader from '../../../../Components/MediaUploader';
 import { Spaces, ScriptInject } from '../../Helpers';
 import styled from 'styled-components';
+import ListItem from '@tiptap/extension-list-item';
 
 const Lines = styled.div`
     border: 1px solid #000;
@@ -63,11 +64,8 @@ const Introduction = ({ data, children,Libs, ...props }) => {
             <Fragment>
                 {
                     props.showInputEle ? (
-                        <textarea
-                            className="text"
-                            name="textarea"
-                            rows="4"
-                            cols="20"
+                        <input
+                            className={props.class}
                             value={props.value}
                             onChange={props.handleChange}
                             onBlur={props.handleBlur}
@@ -75,7 +73,7 @@ const Introduction = ({ data, children,Libs, ...props }) => {
                             autoFocus
                         />
                         ) : (
-                            <p className="text" onClick={props.handleClick}>{props.value}</p>
+                            <props.tag className={props.class} onClick={props.handleClick}>{props.value}</props.tag>
                             )
                         }
             </Fragment>
@@ -89,6 +87,8 @@ const Introduction = ({ data, children,Libs, ...props }) => {
                <Intro>
                     <ElementMaker 
                         value={fullName}
+                        tag="p"
+                        class="text"
                         handleChange={(e) => setFullName(e.target.value)}
                         handleClick={() => setShowInputEle(true)}
                         handleBlur={handleBlur}
@@ -96,7 +96,15 @@ const Introduction = ({ data, children,Libs, ...props }) => {
                     />
                     <div className='lists'>
                         <ul>
-                            <li className='lists_heading'>services</li>
+                            <ElementMaker 
+                                value={fullName}
+                                tag="li"
+                                class="lists_heading"
+                                handleChange={(e) => setFullName(e.target.value)}
+                                handleClick={() => setShowInputEle(true)}
+                                handleBlur={handleBlur}
+                                showInputEle={showInputEle}
+                            />
                             <li>ui design</li>
                             <li>services</li>
                         </ul>
