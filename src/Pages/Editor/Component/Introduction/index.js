@@ -45,10 +45,7 @@ const Intro = styled.div`
 
 const Introduction = ({ data, children,Libs, ...props }) => {
     const { state, dispatch } = useContext(AppContext);
-
-    const [fullName, setFullName] = useState(data.value ? data.value : "text");
-    const [showInputEle, setShowInputEle] = useState(false);
-
+    
     const handleUpdateValue = (value) => {
         const components = state.components.map(item => updatePropertyById(data.id, item, "value", value));
         dispatch({ type: "ADD_COMPONENT", components });
@@ -60,22 +57,24 @@ const Introduction = ({ data, children,Libs, ...props }) => {
     }
 
     function ElementMaker(props) {
+        const [fullName, setFullName] = useState(props.data ? props.data : "text");
+        const [showInputEle, setShowInputEle] = useState(false);
         return (
             <Fragment>
                 {
-                    props.showInputEle ? (
+                    showInputEle ? (
                         <input
                             className={props.class}
-                            value={props.value}
-                            onChange={props.handleChange}
+                            value={fullName}
+                            onChange={(e) => setFullName(e.target.value)}
                             onBlur={props.handleBlur}
                             placeholder="text"
                             autoFocus
                         />
-                        ) : (
-                            <props.tag className={props.class} onClick={props.handleClick}>{props.value}</props.tag>
-                            )
-                        }
+                            ) : (
+                                <props.tag className={props.class} onClick={() => setShowInputEle(true)}>{fullName}</props.tag>
+                                )
+                            }
             </Fragment>
         );
     }
@@ -86,24 +85,18 @@ const Introduction = ({ data, children,Libs, ...props }) => {
             <Lines style={(data[state.devices] ? data[state.devices] : {})}>
                <Intro>
                     <ElementMaker 
-                        value={fullName}
+                        data={data.value}
                         tag="p"
                         class="text"
-                        handleChange={(e) => setFullName(e.target.value)}
-                        handleClick={() => setShowInputEle(true)}
                         handleBlur={handleBlur}
-                        showInputEle={showInputEle}
                     />
                     <div className='lists'>
                         <ul>
                             <ElementMaker 
-                                value={fullName}
+                                data={data.value}
                                 tag="li"
                                 class="lists_heading"
-                                handleChange={(e) => setFullName(e.target.value)}
-                                handleClick={() => setShowInputEle(true)}
                                 handleBlur={handleBlur}
-                                showInputEle={showInputEle}
                             />
                             <li>ui design</li>
                             <li>services</li>
