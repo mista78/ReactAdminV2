@@ -90,7 +90,7 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 
-const IFrames = ({
+export const IFrames = ({
     children,
     ...props
 }) => {
@@ -121,5 +121,3 @@ const IFrames = ({
         </Frame>
     </Fragment>;
 };
-
-export default IFrames;

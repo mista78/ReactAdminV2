@@ -3,7 +3,7 @@ import search from '../../Utils/search';
 import updatePropertyById from '../../Utils/updatePropertyById';
 import { AppContext } from '../../store';
 
-const Remove = ({ data }) => {
+export const Remove = ({ data }) => {
 
     const { state, dispatch } = useContext(AppContext);
 
@@ -26,5 +26,3 @@ const Remove = ({ data }) => {
         </button>
     </Fragment>
 }
-
-export default Remove;

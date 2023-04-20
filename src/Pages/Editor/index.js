@@ -1,9 +1,8 @@
-import IFrames from '../../Components/Iframe';
 import React, { useState, useEffect, useRef, Fragment, useContext, memo } from 'react';
 import { Routes, Route, Outlet, Link } from "react-router-dom";
 import styled, { ServerStyleSheet, StyleSheetManager } from 'styled-components';
 import { AppContext, storage } from '../../store';
-import Portal from '../../Components/Portal';
+import {Portal, IFrames} from '../../Components';
 import { uuid, GenerateUrl } from '../../Utils/tools';
 import { renderToString, renderToStaticMarkup } from 'react-dom/server';
 import axios from 'axios';
@@ -73,7 +72,6 @@ const Editor = ({Libs}) => {
     useEffect(() => {
         storage.set('components', state.components);
         storage.set('currentSetting', state.currentSetting);
-        console.log("read",state);
     }, [state]);
 
     return (
