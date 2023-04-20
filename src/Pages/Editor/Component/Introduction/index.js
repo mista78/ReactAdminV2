@@ -2,11 +2,7 @@ import React, { useState, useEffect, useRef, Fragment, useContext, memo } from '
 import { AppContext } from '../../../../store';
 import updatePropertyById from '../../../../Utils/updatePropertyById';
 import { kebabize } from '../../../../Utils/tools';
-import Portal from '../../../../Components/Portal';
-import Reorder from '../../../../Components/Reorder';
-import Remove from '../../../../Components/Remove';
-import Details from '../../../../Components/Details';
-import MediaUploader from '../../../../Components/MediaUploader';
+import {Portal, Details, Remove, Reorder, MediaUploader} from '../../../../Components';
 import { Spaces, ScriptInject } from '../../Helpers';
 import styled from 'styled-components';
 import ListItem from '@tiptap/extension-list-item';
@@ -43,6 +39,32 @@ const Intro = styled.div`
     }
 `;
 
+function ElementMaker(props) {
+    const [fullName, setFullName] = useState(props.data ? props.data : "text");
+    const [showInputEle, setShowInputEle] = useState(false);
+
+    useEffect(() => {
+        console.log(showInputEle);
+    }, [showInputEle])
+    return (
+        <Fragment>
+            {
+                showInputEle ? (
+                    <input
+                        className={props.class}
+                        value={fullName}
+                        onChange={(e) => setFullName(e.target.value)}
+                        onBlur={props.handleBlur}
+                        placeholder="text"
+                        autoFocus
+                    />
+                        ) : (
+                            <props.tag className={props.class} onClick={() => setShowInputEle(true)}>{fullName}</props.tag>
+                            )
+                        }
+        </Fragment>
+    );
+}
 const Introduction = ({ data, children,Libs, ...props }) => {
     const { state, dispatch } = useContext(AppContext);
     
@@ -56,28 +78,7 @@ const Introduction = ({ data, children,Libs, ...props }) => {
         handleUpdateValue(fullName);
     }
 
-    function ElementMaker(props) {
-        const [fullName, setFullName] = useState(props.data ? props.data : "text");
-        const [showInputEle, setShowInputEle] = useState(false);
-        return (
-            <Fragment>
-                {
-                    showInputEle ? (
-                        <input
-                            className={props.class}
-                            value={fullName}
-                            onChange={(e) => setFullName(e.target.value)}
-                            onBlur={props.handleBlur}
-                            placeholder="text"
-                            autoFocus
-                        />
-                            ) : (
-                                <props.tag className={props.class} onClick={() => setShowInputEle(true)}>{fullName}</props.tag>
-                                )
-                            }
-            </Fragment>
-        );
-    }
+    console.log('called')
     
     return (
         <Fragment>

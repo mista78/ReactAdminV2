@@ -3,7 +3,7 @@ import { AppContext } from '../../store';
 import updatePropertyById from '../../Utils/updatePropertyById';
 import search from '../../Utils/search';
 
-const Cols = ({ data, keys = "children" }) => {
+export const Cols = ({ data, keys = "children" }) => {
 
     const { state, dispatch } = useContext(AppContext);
     const cols = parseInt(data?.cols?.replace(/fr/g, ''));
@@ -33,5 +33,3 @@ const Cols = ({ data, keys = "children" }) => {
         </div>
     </Fragment>
 }
-
-export default Cols;

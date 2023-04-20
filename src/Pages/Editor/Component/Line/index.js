@@ -3,8 +3,7 @@ import { AppContext } from '../../../../store';
 import updatePropertyById from '../../../../Utils/updatePropertyById';
 import { kebabize, uuid } from '../../../../Utils/tools';
 import search from '../../../../Utils/search';
-import Portal from '../../../../Components/Portal';
-import Details from '../../../../Components/Details';
+import {Portal, Details} from '../../../../Components';
 import Test, { BorderRadius, Spaces, Background, References, EditorSetting } from '../../Helpers';
 import styled from 'styled-components';
 

@@ -36,7 +36,7 @@ const Detail = styled.details`
 `;
 
 
-const Details = ({ children, title, id, row = "row", visible = false, onClick, open = false }) => {
+export const Details = memo(({ children, title, id, row = "row", visible = false, onClick, open = false }) => {
     const { state } = useContext(AppContext);
     const ref = useRef(null);
     return <Fragment>
@@ -50,6 +50,4 @@ const Details = ({ children, title, id, row = "row", visible = false, onClick, o
         </Detail>}
     </Fragment>
 
-};
-
-export default memo(Details);
+});

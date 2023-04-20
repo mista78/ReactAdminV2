@@ -2,12 +2,7 @@ import React, { useState, useEffect, useRef, Fragment, useContext, memo } from '
 import { AppContext } from '../../../../store';
 import updatePropertyById from '../../../../Utils/updatePropertyById';
 import { kebabize, uuid } from '../../../../Utils/tools';
-import Portal from '../../../../Components/Portal';
-import Reorder from '../../../../Components/Reorder';
-import Tiptap from '../../../../Components/Tiptap';
-import Remove from '../../../../Components/Remove';
-import Details from '../../../../Components/Details';
-import Duplicate from '../../../../Components/Duplicate';
+import {Portal, Tiptap, Details} from '../../../../Components';
 import styled from 'styled-components';
 import Test, { BorderRadius, Spaces, Background, References, EditorSetting } from '../../Helpers';
 

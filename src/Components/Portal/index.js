@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useRef, Fragment, useContext, memo } from 'react';
 import { createPortal } from 'react-dom';
+
 const selector = (elements, root) => {
     const select = root || document;
     return [...select.querySelectorAll(elements)];
 }
+
 const build = (data, index) => {
     const { tags = 'div', children, content, event, attributes } = data;
     const elements = document.createElement(tags);
@@ -13,7 +15,8 @@ const build = (data, index) => {
     children && children.map(child => elements.appendChild(build(child, index)));
     return elements;
 };
-const Portal = ({ children, id = "portal", className, style }) => {
+
+export const Portal = ({ children, id = "portal", className, style }) => {
     className = className || id;
     const exisPortal = selector('#' + id);
     if (exisPortal.length) {
@@ -30,5 +33,3 @@ const Portal = ({ children, id = "portal", className, style }) => {
     document.body.appendChild(containerPortal);
     return createPortal(children, containerPortal);
 };
-
-export default Portal;

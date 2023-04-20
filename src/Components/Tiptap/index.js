@@ -189,7 +189,7 @@ const MenuBar = ({ editor }) => {
     )
 }
 
-const Tiptap = ({ data }) => {
+export const Tiptap = ({ data }) => {
     const {state, dispatch} = useContext(AppContext);
     const editor = useEditor({
         extensions: [
@@ -259,6 +259,3 @@ Tiptap.content = ({ data }) => {
         <div className="content" dangerouslySetInnerHTML={{ __html: data.content }} />
     )
 }
-
-
-export default Tiptap

@@ -2,11 +2,7 @@ import React, { useState, useEffect, useRef, Fragment, useContext, memo } from '
 import { AppContext } from '../../../../store';
 import updatePropertyById from '../../../../Utils/updatePropertyById';
 import { kebabize } from '../../../../Utils/tools';
-import Portal from '../../../../Components/Portal';
-import Reorder from '../../../../Components/Reorder';
-import Remove from '../../../../Components/Remove';
-import Details from '../../../../Components/Details';
-import MediaUploader from '../../../../Components/MediaUploader';
+import {Portal, Details, Remove, Reorder, MediaUploader} from '../../../../Components';
 import { Spaces, ScriptInject } from '../../Helpers';
 import styled from 'styled-components';
 
