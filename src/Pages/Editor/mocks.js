@@ -34,7 +34,13 @@ export default [
                 parent: '1',
                 cols: '1fr',
                 children: [
-                    
+                    {
+                        id: '5',
+                        name: 'Typographie',
+                        parent: '3',
+                        cols: '1fr',
+                        children: []
+                    }
                 ]
             }
 
