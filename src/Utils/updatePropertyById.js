@@ -1,4 +1,8 @@
 const updatePropertyById = (id, test, property, value) => {
+ /*    console.log("updateID", id);
+    console.log("updateTest", test);
+    console.log("updateProp", property);
+    console.log("updateVal", value); */
     if (test.id == id) {
         if (property === null) {
             test = value

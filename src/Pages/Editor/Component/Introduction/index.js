@@ -5,89 +5,116 @@ import { kebabize } from '../../../../Utils/tools';
 import {Portal, Details, Remove, Reorder, MediaUploader} from '../../../../Components';
 import { Spaces, ScriptInject } from '../../Helpers';
 import styled from 'styled-components';
+import ListItem from '@tiptap/extension-list-item';
 import Svg from '../../Helpers/Svg';
-
 const Lines = styled.div`
     border: 1px solid #000;
 `;
 
-const Hero = styled.div`
-    position: relative;
-    height: 100vh;
-    .heading {
-        position: absolute;
-        left: 1rem;
-        bottom: 1rem;
-        font-size: 2.5rem;
-        font-weight: 700;
-        color: #fff;
-        text-transform: uppercase;
+const Intro = styled.div`
+    display: flex;
+    flex-direction: column;
+    padding-inline: 10rem;
+    color: #fff;
+    background-color: #000;
+    font-weight: 700;
+    .text {
+        padding-block: 1rem;
+        font-size: 2rem;
     }
-    input {
-        background-color: #2F2F30;
+    .lists {
+        display: flex;
+        justify-content: space-between;
+        padding-block: 1rem;
+        & ul {
+            list-style-type: none;
+            & li {
+                line-height: 1.6rem;
+            }
+        }
+        &_heading {
+            color: #A7A7A7;
+            padding-block-end: 0.5rem;
+        }
     }
 `;
 
-
-const HeroBanner = ({ data, children,Libs, ...props }) => {
-    const { state, dispatch } = useContext(AppContext);
-
-    const [fullName, setFullName] = useState(data.value ? data.value : "heading");
+function ElementMaker(props) {
+    const [fullName, setFullName] = useState(props.data ? props.data : "text");
     const [showInputEle, setShowInputEle] = useState(false);
 
+    useEffect(() => {
+    }, [showInputEle])
+    return (
+        <Fragment>
+            {
+                showInputEle ? (
+                    <input
+                        className={props.class}
+                        value={fullName}
+                        onChange={(e) => setFullName(e.target.value)}
+                        onBlur={props.handleBlur}
+                        placeholder="text"
+                        autoFocus
+                    />
+                        ) : (
+                            <props.tag className={props.class} onClick={() => setShowInputEle(true)}>{fullName}</props.tag>
+                            )
+                        }
+        </Fragment>
+    );
+}
+const Introduction = ({ data, children,Libs, ...props }) => {
+    const { state, dispatch } = useContext(AppContext);
+    
     const handleUpdateValue = (value) => {
         const components = state.components.map(item => updatePropertyById(data.id, item, "value", value));
         dispatch({ type: "ADD_COMPONENT", components });
-        console.log("components ", components);
-        console.log("data", data);
     }
     
     const handleBlur = (e) => {
         fullName && setShowInputEle(false);
         handleUpdateValue(fullName);
     }
-
-    function ElementMaker(props) {
-        return (
-            <Fragment>
-                {
-                    props.showInputEle ? (
-                        <input
-                        className="heading"
-                        type="text"
-                        value={props.value}
-                        onChange={props.handleChange}
-                        onBlur={props.handleBlur}
-                        placeholder="heading"
-                        autoFocus
-                        />
-                        ) : (
-                            <h2 className="heading" onClick={props.handleClick}>{props.value}</h2>
-                            )
-                        }
-            </Fragment>
-        );
-    }
     
     return (
         <Fragment>
             <ScriptInject Libs={Libs} name="Slider" />
             <Lines style={(data[state?.devices] ? data[state.devices] : {})}>
-                <Hero>
-                    <ElementMaker
-                        value={fullName}
-                        handleChange={(e) => setFullName(e.target.value)}
-                        handleClick={() => setShowInputEle(true)}
+               <Intro>
+                    <ElementMaker 
+                        data={data.value}
+                        tag="p"
+                        class="text"
                         handleBlur={handleBlur}
-                        showInputEle={showInputEle}
                     />
-                </Hero>
+                    <div className='lists'>
+                        <ul>
+                            <ElementMaker 
+                                data={data.value}
+                                tag="li"
+                                class="lists_heading"
+                                handleBlur={handleBlur}
+                            />
+                            <li>ui design</li>
+                            <li>services</li>
+                        </ul>
+                        <ul>
+                            <li className='lists_heading'>Date</li>
+                            <li>ui design</li>
+                        </ul>
+                        <ul>
+                            <li className='lists_heading'>ui design</li>
+                            <li>ui design</li>
+                        </ul>
+                    </div>
+               </Intro>
             </Lines>
         </Fragment>
     );
 }
 
-HeroBanner.setting = ({ data, children, ...props }) => {
+Introduction.setting = ({ data, children, ...props }) => {
     const { state, dispatch } = useContext(AppContext);
     const handleUpdateStyle = (value = {}) => {
         value = { ...(data[state.devices] ? data[state.devices] : {}), ...value }
@@ -128,7 +155,7 @@ HeroBanner.setting = ({ data, children, ...props }) => {
     </Fragment>
 }
 
-HeroBanner.content = ({ data,Libs,children }) => {
+Introduction.content = ({ data,Libs,children }) => {
     const mobile = (data['mobile'] ? data['mobile'] : {});
     const desktop = (data['desktop'] ? data['desktop'] : {});
 
@@ -154,13 +181,19 @@ HeroBanner.content = ({ data,Libs,children }) => {
 
 }
 
-HeroBanner.icons = ({ handleAddComponent, name }) => {
+Introduction.icons = ({ handleAddComponent, name }) => {
     return <Fragment>
         <Svg handleAddComponent={handleAddComponent} name={name}>
-            <rect x="21" y="13" width="40" height="40" rx="3" stroke="white" strokeWidth="2" />
-            <rect x="25" y="48" width="27" height="4" rx="2" fill="#606060" />
+            <rect x="16" y="21.5" width="50" height="3" rx="1.5" fill="#606060"/>
+            <rect x="16" y="28.5" width="50" height="3" rx="1.5" fill="#606060"/>
+            <rect x="16" y="35.5" width="50" height="3" rx="1.5" fill="#606060"/>
+            <rect x="16" y="42.5" width="23" height="3" rx="1.5" fill="#606060"/>
+            <rect x="16" y="49.5" width="23" height="3" rx="1.5" fill="#606060"/>
+            <rect x="43" y="42.5" width="23" height="3" rx="1.5" fill="#606060"/>
+            <rect x="43" y="49.5" width="23" height="3" rx="1.5" fill="#606060"/>
         </Svg>
+
     </Fragment>
 }
 
-export default HeroBanner;
+export default Introduction;

@@ -2,13 +2,10 @@ import React, { useState, useEffect, useRef, Fragment, useContext, memo } from '
 import { AppContext } from '../../../../store';
 import updatePropertyById from '../../../../Utils/updatePropertyById';
 import { kebabize } from '../../../../Utils/tools';
-import Portal from '../../../../Components/Portal';
-import Reorder from '../../../../Components/Reorder';
-import Remove from '../../../../Components/Remove';
-import Details from '../../../../Components/Details';
-import MediaUploader from '../../../../Components/MediaUploader';
+import {Portal, Details, Remove, Reorder, MediaUploader} from '../../../../Components';
 import { Spaces, ScriptInject } from '../../Helpers';
 import styled from 'styled-components';
+import Svg from '../../Helpers/Svg';
 
 const Lines = styled.div`
     border: 1px solid #000;
@@ -116,8 +113,7 @@ HomePage.content = ({ data, Libs, children }) => {
 
 HomePage.icons = ({ handleAddComponent, name }) => {
     return <Fragment>
-        <svg viewBox="0 0 82 74" fill="none" onClick={(e) => handleAddComponent(name)} xmlns="http://www.w3.org/2000/svg">
-            <rect width="100%" height="100%"  rx="8" fill="#504F50" />
+        <Svg handleAddComponent={handleAddComponent} name={name}>
             <svg width="82" height="54" viewBox="0 0 82 74" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect width="82" height="54" rx="8" fill="#504F50" />
                 <rect x="8" y="9" width="66" height="56" rx="4" fill="#B8B8B8" />
@@ -125,13 +121,7 @@ HomePage.icons = ({ handleAddComponent, name }) => {
                 <rect x="50" y="34" width="5" height="18" rx="2" transform="rotate(90 50 34)" fill="#606060" />
                 <rect x="72" y="34" width="5" height="18" rx="2" transform="rotate(90 72 34)" fill="#606060" />
             </svg>
-
-
-            {/* text svg bottom */}
-            <text x="50%" y="80%" dominant-baseline="hanging" text-anchor="middle" fill="white" font-size="12" font-weight="bold">
-                {name}
-            </text>
-        </svg>
+        </Svg>
     </Fragment>
 }
 

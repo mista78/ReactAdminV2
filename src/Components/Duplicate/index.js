@@ -4,7 +4,7 @@ import updatePropertyById from '../../Utils/updatePropertyById';
 import search from '../../Utils/search';
 import { uuid } from '../../Utils/tools';
 
-const Duplicate = ({ data,keys = "children" }) => {
+export const Duplicate = ({ data,keys = "children" }) => {
 
     const { state, dispatch } = useContext(AppContext);
 
@@ -45,5 +45,3 @@ const Duplicate = ({ data,keys = "children" }) => {
         </div>
     </Fragment>
 }
-
-export default Duplicate;

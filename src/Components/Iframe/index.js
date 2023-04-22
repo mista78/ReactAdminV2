@@ -90,7 +90,7 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 
-const IFrames = ({
+export const IFrames = ({
     children,
     ...props
 }) => {
@@ -102,7 +102,7 @@ const IFrames = ({
         <Frame
             {...props}
             ref={setContentRef}
-            width={`${state.breaksize ? state.breaksize + "%" : "100%"}`}
+            width={`${state?.breaksize ? state.breaksize + "%" : "100%"}`}
             style={{
                 height: "100%",
                 border: "none",
@@ -112,14 +112,15 @@ const IFrames = ({
                 margin: "0 auto",
             }}
             height="100%">
+              <span>
+
             {mountNode && createPortal(<Fragment>
                 <InjectFrameStyles>
                     <GlobalStyle />
                     {children}
                 </InjectFrameStyles>
             </Fragment>, mountNode)}
+              </span>
         </Frame>
     </Fragment>;
 };
-
-export default IFrames;

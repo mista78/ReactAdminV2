@@ -3,11 +3,10 @@ import { AppContext } from '../../../../store';
 import updatePropertyById from '../../../../Utils/updatePropertyById';
 import { kebabize, uuid } from '../../../../Utils/tools';
 import search from '../../../../Utils/search';
-import Portal from '../../../../Components/Portal';
-import Details from '../../../../Components/Details';
+import {Portal, Details} from '../../../../Components';
 import Test, { BorderRadius, Spaces, Background, References, EditorSetting } from '../../Helpers';
 import styled from 'styled-components';
-
+import Svg from '../../Helpers/Svg';
 import AllComponent from '../index';
 const Lines = styled.div`
     display: grid;
@@ -54,8 +53,6 @@ const Lines = styled.div`
 const Line = ({ data, children, ...props }) => {
     const { state, dispatch } = useContext(AppContext);
 
-    console.log("test", Test);
-
     const handleUpdateStyle = (value = {}) => {
         value = { ...(data[state.devices] ? data[state.devices] : {}), ...value }
         const components = state.components.map(item => updatePropertyById(data.id, item, state.devices, value));
@@ -66,9 +63,9 @@ const Line = ({ data, children, ...props }) => {
     }
     return (
         <Fragment>
-            <References data={data}>
-                <Lines id={data.id} style={(data[state.devices] ? { ...data[state.devices], ...test } : { ...test })} child={data?.children.map(item => (item.cols))?.join(' ')} >
-                    {state.currentSetting == data.id && <EditorSetting data={data} />}
+            <References data={data} styled={Lines}>
+                <Lines id={data.id} style={(data[state?.devices] ? { ...data[state.devices], ...test } : { ...test })} child={data?.children.map(item => (item.cols))?.join(' ')} >
+                    {state?.currentSetting == data.id && <EditorSetting data={data} />}
                     {children && children}
                 </Lines>
             </References>
@@ -153,16 +150,11 @@ Line.content = ({ data, children }) => {
 
 Line.icons = ({ handleAddComponent, name }) => {
     return <Fragment>
-        <svg  viewBox="0 0 82 74" onClick={e => handleAddComponent(name)} fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="100%" height="100%" rx="8" fill="#504F50" />
+        <Svg handleAddComponent={handleAddComponent} name={name}>
             <rect x="9.5" y="18.5" width="63" height="37" rx="3.5" fill="#606060" />
             <rect x="13" y="22" width="56" height="30" rx="4" fill="#B8B8B8" />
-            <rect x="9.5" y="18.5" width="63" height="37" rx="3.5" stroke="white" stroke-dasharray="2 2" />
-            {/* center text svg */}
-            <text x="50%" y="80%" dominant-baseline="hanging" text-anchor="middle" fill="white" font-size="12" font-weight="bold">
-                {name}
-            </text>
-        </svg>
+            <rect x="9.5" y="18.5" width="63" height="37" rx="3.5" stroke="white" strokeDasharray="2 2" />
+        </Svg>
     </Fragment>
 
 }

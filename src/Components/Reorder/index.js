@@ -3,7 +3,7 @@ import { AppContext } from '../../store';
 import updatePropertyById from '../../Utils/updatePropertyById';
 import search from '../../Utils/search';
 
-const Reorder = ({ data, top = "Up", down = "Down", keys = "children" }) => {
+export const Reorder = ({ data, top = "Up", down = "Down", keys = "children" }) => {
 
     const { state, dispatch } = useContext(AppContext);
 
@@ -38,5 +38,3 @@ const Reorder = ({ data, top = "Up", down = "Down", keys = "children" }) => {
         </div>
     </Fragment>
 }
-
-export default Reorder;
