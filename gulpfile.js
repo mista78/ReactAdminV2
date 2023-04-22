@@ -6,6 +6,7 @@ const gls = require("gulp-live-server");
 const uglify = require('gulp-uglify');
 const uglifjs = require('uglify-js');
 const plumber = require('gulp-plumber');
+const jest = require('@jest/core');
 
 const through = require('through2');
 
@@ -17,7 +18,25 @@ const paths = {
     js: ["src/**/*.js*","!src/index2.js"]
 };
 
-gulp.task('js', async function () {
+let errors = null;
+async function testJS() {  
+    console.clear();
+    const testResults =  await jest.runCLI({json: false},[path.resolve(__dirname, 'src')])
+    const { results } = testResults
+    const isTestFailed = !results.success;
+    if (isTestFailed) {
+        errors = true;
+    } else {
+        errors = false;
+    }
+   
+ }
+
+async function js () {
+    if (errors) {
+        console.log('You have some failed test cases, kindly fix')
+        return
+    }
     const BuildJS = await new Promise((resolve, reject) => {
         gulp.src(path.resolve(__dirname, paths.main_js))
             .pipe(plumber())
@@ -73,13 +92,13 @@ gulp.task('js', async function () {
     });
     // build()
     return BuildJS
-});
+};
 
-gulp.task("dev", gulp.series("js", function () {
+gulp.task("dev", gulp.series(testJS,function () {
     // Generic watch tasks for SASS and Browserify
     // watch all js different from index2.js
 
-    gulp.watch(paths.js, gulp.series("js"));
+    gulp.watch(paths.js, gulp.series(testJS,js));
     // Start the app server. change port dynamically
     const server = gls("server/server.js", {
         stdio: "inherit"

@@ -5,7 +5,7 @@ import updatePropertyById from '../../../../Utils/updatePropertyById';
 const References = ({ data, children }) => {
     const { state, dispatch } = useContext(AppContext);
     const elements = React.Children.toArray(children);
-    const elementRef = useRef([elements.map((refs) => React.createRef())]);
+    const elementRef = useRef([elements.map(() => React.createRef())]);
 
     const ElementCloned = elements.map((nodeElem, i) => {
         const reference =
@@ -13,7 +13,6 @@ const References = ({ data, children }) => {
                 ? { refs: elementRef.current[i] }
                 : { ref: elementRef.current[i] };
         return React.cloneElement(nodeElem, {
-            ...reference,
             onClick: (e) => {
                 if (nodeElem.props.onClick) {
                     nodeElem.props.onClick();

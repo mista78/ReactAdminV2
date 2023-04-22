@@ -3,9 +3,6 @@ import ReactDom, { hydrate, render } from 'react-dom';
 import Data from "./Config/pages";
 import { StateProvider } from './store';
 import { createGlobalStyle } from 'styled-components';
-
-
-
 const GlobalStyle = createGlobalStyle`
     html, body, #root {
         height: 100%;
