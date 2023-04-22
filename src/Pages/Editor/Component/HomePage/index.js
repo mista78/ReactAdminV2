@@ -34,7 +34,7 @@ const HomePage = ({ data, children, Libs, ...props }) => {
 
     return (
         <Fragment>
-            <Lines style={(data[state.devices] ? data[state.devices] : {})}>
+            <Lines style={(data[state?.devices] ? data[state.devices] : {})}>
                 <Hero>
                 lorem ipsum
                 </Hero>

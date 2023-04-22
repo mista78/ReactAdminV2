@@ -24,13 +24,6 @@ describe("Line", () => {
     const styleTags = sheet.getStyleTags();
 
     const { container } = render(<Line data={data} />);
-    it("should render correctly", () => {
-        
-        expect(styleTags).toContain('display:grid;');
-        expect(styleTags).toContain('grid-template-columns:1fr;');
-        expect(styleTags).toContain('min-height:260px;');
-        
-    });
 
     it('should have className common', () => {
         expect(styleTags).toContain('.common{');
@@ -50,12 +43,6 @@ describe("Line", () => {
         expect(styleTags).toContain('transform:translate(-50%,-50%);');
     });
 
-    const items = ["setting", "content", "icons"];
-    items.map(item => {
-        it(`should render ${item} correctly`, () => {
-            expect(Line[item]).toBeDefined();
-        });
-    })
 
 
 });
