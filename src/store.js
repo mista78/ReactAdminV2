@@ -1,9 +1,8 @@
 // create store context
 import React from 'react';
-
 const storage = {
     get: (key, init) => {
-        const value = localStorage.getItem(key);
+        const value = window?.localStorage?.getItem(key);
         if (value) {
             const bool = ["true", "false"];
             if (bool[value] === "true") {
@@ -21,10 +20,10 @@ const storage = {
         return init;
     },
     set: (key, value) => {
-        localStorage.setItem(key, JSON.stringify(value));  
+        window?.localStorage?.setItem(key, JSON.stringify(value));  
     },
     remove: (key) => {
-        localStorage.removeItem(key);
+        window?.localStorage?.removeItem(key);
     }
 }
 

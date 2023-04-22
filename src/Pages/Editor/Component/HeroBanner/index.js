@@ -5,6 +5,7 @@ import { kebabize } from '../../../../Utils/tools';
 import {Portal, Details, Remove, Reorder, MediaUploader} from '../../../../Components';
 import { Spaces, ScriptInject } from '../../Helpers';
 import styled from 'styled-components';
+import Svg from '../../Helpers/Svg';
 
 const Lines = styled.div`
     border: 1px solid #000;
@@ -71,7 +72,7 @@ const HeroBanner = ({ data, children,Libs, ...props }) => {
     return (
         <Fragment>
             <ScriptInject Libs={Libs} name="Slider" />
-            <Lines style={(data[state.devices] ? data[state.devices] : {})}>
+            <Lines style={(data[state?.devices] ? data[state.devices] : {})}>
                 <Hero>
                     <ElementMaker
                         value={fullName}
@@ -113,7 +114,7 @@ HeroBanner.setting = ({ data, children, ...props }) => {
                     {[...new Array(4)].map((item, index) => {
                         const ratio = (index + 1) * 0.25;
                         const value = ratio * 100 + 'vh';
-                        return <option value={value}>{value}</option>
+                        return <option key={index} value={value}>{value}</option>
                     })}
                 </select>
                 <MediaUploader data={data} />
@@ -155,15 +156,10 @@ HeroBanner.content = ({ data,Libs,children }) => {
 
 HeroBanner.icons = ({ handleAddComponent, name }) => {
     return <Fragment>
-        <svg viewBox="0 0 82 74" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="100%" height="100%" onClick={(e) => handleAddComponent(name)} rx="8" fill="#504F50" />
-            <rect x="21" y="13" width="40" height="40" rx="3" stroke="white" stroke-width="2" />
+        <Svg handleAddComponent={handleAddComponent} name={name}>
+            <rect x="21" y="13" width="40" height="40" rx="3" stroke="white" strokeWidth="2" />
             <rect x="25" y="48" width="27" height="4" rx="2" fill="#606060" />
-            {/* text svg bottom */}
-            <text x="50%" y="80%" dominant-baseline="hanging" text-anchor="middle" fill="white" font-size="12" font-weight="bold">
-                {name}
-            </text>
-        </svg>
+        </Svg>
     </Fragment>
 }
 

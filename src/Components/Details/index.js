@@ -40,7 +40,7 @@ export const Details = memo(({ children, title, id, row = "row", visible = false
     const { state } = useContext(AppContext);
     const ref = useRef(null);
     return <Fragment>
-        {(state.currentSetting == id || visible) && <Detail  ref={ref} className='details' open={open}>
+        {(state?.currentSetting == id || visible) && <Detail  ref={ref} className='details' open={open}>
             <summary className='details__summary' onClick={() => {
                 onClick && onClick();
             }}>{title}</summary>

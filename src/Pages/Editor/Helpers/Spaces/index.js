@@ -89,10 +89,10 @@ const Spaces = ({ data }) => {
             </div>
             {<Fragment>
                 {["margin", "padding"].map(name => {
-                    return <Fragment>
+                    return <Fragment key={name}>
                         {[`Top`, `Right`, `Bottom`, `Left`].map(dir => {
                             const names = name + dir;
-                            return <Fragment>
+                            return <Fragment key={dir}>
                                 {style === `${names}` && <div>
                                     <div><label htmlFor={names}>{name} {dir}</label></div>
                                     <input

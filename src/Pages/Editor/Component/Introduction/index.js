@@ -6,7 +6,7 @@ import {Portal, Details, Remove, Reorder, MediaUploader} from '../../../../Compo
 import { Spaces, ScriptInject } from '../../Helpers';
 import styled from 'styled-components';
 import ListItem from '@tiptap/extension-list-item';
-
+import Svg from '../../Helpers/Svg';
 const Lines = styled.div`
     border: 1px solid #000;
 `;
@@ -44,7 +44,6 @@ function ElementMaker(props) {
     const [showInputEle, setShowInputEle] = useState(false);
 
     useEffect(() => {
-        console.log(showInputEle);
     }, [showInputEle])
     return (
         <Fragment>
@@ -77,13 +76,11 @@ const Introduction = ({ data, children,Libs, ...props }) => {
         fullName && setShowInputEle(false);
         handleUpdateValue(fullName);
     }
-
-    console.log('called')
     
     return (
         <Fragment>
             <ScriptInject Libs={Libs} name="Slider" />
-            <Lines style={(data[state.devices] ? data[state.devices] : {})}>
+            <Lines style={(data[state?.devices] ? data[state.devices] : {})}>
                <Intro>
                     <ElementMaker 
                         data={data.value}
@@ -144,7 +141,7 @@ Introduction.setting = ({ data, children, ...props }) => {
                     {[...new Array(4)].map((item, index) => {
                         const ratio = (index + 1) * 0.25;
                         const value = ratio * 100 + 'vh';
-                        return <option value={value}>{value}</option>
+                        return <option key={index} value={value}>{value}</option>
                     })}
                 </select>
                 <MediaUploader data={data} />
@@ -186,8 +183,7 @@ Introduction.content = ({ data,Libs,children }) => {
 
 Introduction.icons = ({ handleAddComponent, name }) => {
     return <Fragment>
-        <svg onClick={(e) => handleAddComponent(name)} viewBox="0 0 82 74" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="82" height="74" rx="8" fill="#504F50"/>
+        <Svg handleAddComponent={handleAddComponent} name={name}>
             <rect x="16" y="21.5" width="50" height="3" rx="1.5" fill="#606060"/>
             <rect x="16" y="28.5" width="50" height="3" rx="1.5" fill="#606060"/>
             <rect x="16" y="35.5" width="50" height="3" rx="1.5" fill="#606060"/>
@@ -195,10 +191,7 @@ Introduction.icons = ({ handleAddComponent, name }) => {
             <rect x="16" y="49.5" width="23" height="3" rx="1.5" fill="#606060"/>
             <rect x="43" y="42.5" width="23" height="3" rx="1.5" fill="#606060"/>
             <rect x="43" y="49.5" width="23" height="3" rx="1.5" fill="#606060"/>
-            <text x="50%" y="80%" dominant-baseline="hanging" text-anchor="middle" fill="white" font-size="12" font-weight="bold">
-                {name}
-            </text>        
-        </svg>
+        </Svg>
 
     </Fragment>
 }
