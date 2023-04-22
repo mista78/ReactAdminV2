@@ -33,7 +33,7 @@ afterEach(cleanup);
 import Data from "./mocks"
 
 describe("Editor", () => {
-    test("should render correctly", () => {
+    test("should render Editor correctly", () => {
         // fake store for testing
         const { container } = render(<Editor data={Data} />,);
         // screen.debug();

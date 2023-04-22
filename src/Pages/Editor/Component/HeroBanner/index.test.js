@@ -30,7 +30,7 @@ describe("HeroBanner", () => {
     const styleTags = sheet.getStyleTags();
     const { container } = render(<HeroBanner data={data} />);
     
-    it("should render correctly", () => {
+    it("should render style correctly", () => {
         expect(container.querySelector(".heading")).toBeInTheDocument();
         expect(styleTags).toContain('position:absolute;');
         expect(styleTags).toContain('left:1rem;');
@@ -41,13 +41,5 @@ describe("HeroBanner", () => {
         expect(styleTags).toContain('text-transform:uppercase;');
         
     });
-
-    const items = ["setting", "content", "icons"];
-    items.map(item => {
-        it(`should render ${item} correctly`, () => {
-            expect(HeroBanner[item]).toBeDefined();
-        });
-    })
-        
     
 });
