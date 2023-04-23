@@ -3,7 +3,7 @@ import { AppContext } from '../../../../store';
 import updatePropertyById from '../../../../Utils/updatePropertyById';
 import { kebabize, uuid } from '../../../../Utils/tools';
 import search from '../../../../Utils/search';
-import {Portal, Details} from '../../../../Components';
+import {Portal, Details, Duplicate, Remove, Reorder} from '../../../../Components';
 import Test, { BorderRadius, Spaces, Background, References, EditorSetting } from '../../Helpers';
 import Svg from '../../Helpers/Svg';
 import styled from 'styled-components';
@@ -132,7 +132,7 @@ Layouts.setting = ({ data, children, ...props }) => {
                     <rect x="43" y="49.5" width="23" height="3" rx="1.5" fill="#606060"/>
                     <text x="50%" y="80%" dominantBaseline="hanging" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">
                         Introduction
-                    </text>        
+                    </text>     
                 </svg>
             </SidebarLayout>
         </Details>
@@ -153,19 +153,19 @@ Layouts.content = ({ data, children }) => {
     const desktop = (data['desktop'] ? data['desktop'] : {});
 
     const Line = styled(Lines)`
-        border: none;
-        ${Object.keys(mobile).map((item, index) => {
+    border: none;
+    ${Object.keys(mobile).map((item, index) => {
         return kebabize(item) + ':' + mobile[item] + ';'
     }).join('')}
-
+    
         @media (min-width: 768px) {
             ${Object.keys(desktop).map((item, index) => {
-        return kebabize(item) + ':' + desktop[item] + ';'
-    }).join('')}
+                return kebabize(item) + ':' + desktop[item] + ';'
+            }).join('')}
         }
-    `;
-
-    return <Fragment>
+        `;
+        
+        return <Fragment>
         <Line >
             {children && children}
         </Line>

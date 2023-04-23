@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useRef, Fragment, useContext, memo } from 'react';
 import { AppContext } from '../../../../store';
 import updatePropertyById from '../../../../Utils/updatePropertyById';
-import { kebabize } from '../../../../Utils/tools';
+import { uuid, kebabize } from '../../../../Utils/tools';
 import {Portal, Details, Remove, Reorder, MediaUploader} from '../../../../Components';
 import { Spaces, ScriptInject } from '../../Helpers';
 import styled from 'styled-components';
 import ListItem from '@tiptap/extension-list-item';
 import Svg from '../../Helpers/Svg';
+import { useId } from 'react';
 const Lines = styled.div`
     border: 1px solid #000;
 `;
@@ -39,12 +40,20 @@ const Intro = styled.div`
     }
 `;
 
-function ElementMaker(props) {
-    const [fullName, setFullName] = useState(props.data ? props.data : "text");
+function ElementMaker({state, data, dispatch,  ...props}) {
+    const [fullName, setFullName] = useState(data.value ? data.value : "text");
     const [showInputEle, setShowInputEle] = useState(false);
 
-    useEffect(() => {
-    }, [showInputEle])
+    const handleUpdateValue = (value) => {
+        const components = state.components.map(item => updatePropertyById(data.id, item, "value", value));
+        dispatch({ type: "ADD_COMPONENT", components });
+    }
+    
+    const handleBlur = () => {
+        fullName && setShowInputEle(false);
+        handleUpdateValue(fullName);
+    }
+
     return (
         <Fragment>
             {
@@ -53,7 +62,7 @@ function ElementMaker(props) {
                         className={props.class}
                         value={fullName}
                         onChange={(e) => setFullName(e.target.value)}
-                        onBlur={props.handleBlur}
+                        onBlur={handleBlur}
                         placeholder="text"
                         autoFocus
                     />
@@ -64,37 +73,30 @@ function ElementMaker(props) {
         </Fragment>
     );
 }
-const Introduction = ({ data, children,Libs, ...props }) => {
+
+const Introduction = ({ data, children, Libs, ...props }) => {
     const { state, dispatch } = useContext(AppContext);
-    
-    const handleUpdateValue = (value) => {
-        const components = state.components.map(item => updatePropertyById(data.id, item, "value", value));
-        dispatch({ type: "ADD_COMPONENT", components });
-    }
-    
-    const handleBlur = (e) => {
-        fullName && setShowInputEle(false);
-        handleUpdateValue(fullName);
-    }
     
     return (
         <Fragment>
             <ScriptInject Libs={Libs} name="Slider" />
             <Lines style={(data[state?.devices] ? data[state.devices] : {})}>
-               <Intro>
+               <Intro id="Intro">
                     <ElementMaker 
-                        data={data.value}
+                        state={state}
+                        data={data}
+                        dispatch={dispatch}
                         tag="p"
                         class="text"
-                        handleBlur={handleBlur}
                     />
                     <div className='lists'>
                         <ul>
                             <ElementMaker 
-                                data={data.value}
+                                state={state}
+                                data={data}
+                                dispatch={dispatch}
                                 tag="li"
                                 class="lists_heading"
-                                handleBlur={handleBlur}
                             />
                             <li>ui design</li>
                             <li>services</li>
@@ -116,15 +118,32 @@ const Introduction = ({ data, children,Libs, ...props }) => {
 
 Introduction.setting = ({ data, children, ...props }) => {
     const { state, dispatch } = useContext(AppContext);
+
     const handleUpdateStyle = (value = {}) => {
         value = { ...(data[state.devices] ? data[state.devices] : {}), ...value }
         const components = state.components.map(item => updatePropertyById(data.id, item, state.devices, value));
         dispatch({ type: "ADD_COMPONENT", components });
     }
+
+    const handleAddElement = (tag, className) => {
+        const element = [...data.element] ? [...data.element, <ElementMaker tag={tag} class={className}/>] : [<ElementMaker tag={tag} class={className} />];
+        const components = state.components.map(item => updatePropertyById(data.id, item, 'element', element));
+        dispatch({ type: "ADD_COMPONENT", components });
+        return (
+            <Portal id="Intro">
+                {element}
+            </Portal>
+        )
+    } 
+
     return <Fragment>
         <button onClick={e => {
             dispatch({ type: 'CURRENT_SETTING', currentSetting: data.id });
         }}>Setting {data.id}</button>
+         <Details open={true} title="Elements" id={data.id}>
+            <button onClick={(e) => handleAddElement("li", "lists_heading")}>listItem</button>
+        </Details>
+
         <Portal id="setting">
             <Details title="Setting" id={data.id} open={true}>
                 <div>Setting : {data.id}</div>

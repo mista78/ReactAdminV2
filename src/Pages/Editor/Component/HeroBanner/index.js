@@ -38,8 +38,6 @@ const HeroBanner = ({ data, children,Libs, ...props }) => {
     const handleUpdateValue = (value) => {
         const components = state.components.map(item => updatePropertyById(data.id, item, "value", value));
         dispatch({ type: "ADD_COMPONENT", components });
-        console.log("components ", components);
-        console.log("data", data);
     }
     
     const handleBlur = (e) => {
