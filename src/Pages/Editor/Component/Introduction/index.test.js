@@ -29,9 +29,6 @@ const state = {
 
 
 
-
-
-
 // mock store for testing
 // jest.mock('../../../../store', () => {
 //     const React = require('react');
@@ -74,16 +71,62 @@ describe("Instroduction", () => {
         cols: '1fr',
         children: []
     };
-    const { container } = render(<Introduction.setting data={data} />);
-    const divIdIntro = document.createElement("div");
-    divIdIntro.id = "Intro";
-    container.appendChild(divIdIntro);
-    test("should render correctly", () => {
-        expect(container.querySelector('.Setting')).toBeInTheDocument();
-        const listItem = container.querySelector(".addItem");
-        listItem.click();
-        const item = container.querySelector(".toto");
-        expect(item).toBeInTheDocument();
+
+    test('should render correctly', () => {
+        render(<Introduction data={data} />);
     });
+
+    Object.keys(Introduction).map((key) => {
+        const Compo = Introduction[key];
+        test(`should render method ${key} correctly`, () => {
+            expect(Compo).toBeDefined();
+        });
+
+        if (key == "icons") {
+            test(`should render icon svg for ${key}  correctly`, () => {
+                const { container } = render(<Compo />);
+                const svg = container.querySelector("svg");
+                expect(svg).toBeInTheDocument();
+            });
+
+            test(`${key} icon svg is component svg with className svg-component`, () => {
+                const { container } = render(<Compo />);
+                const svg = container.querySelector("svg");
+                expect(svg).toHaveClass("svg-component");
+            });
+
+            test(`${key} icon svg not have 2 text tag`, () => {
+                const { container } = render(<Compo />);
+                const svg = container.querySelector("svg");
+                const text = svg.querySelectorAll("text");
+                expect(text.length).toBe(1);
+            });
+        }
+
+        if (key == "content") {
+
+            test(`should render method ${key} correctly`, () => {
+                const { container } = render(<Compo data={{...data, content: "lorem"}} />);
+                const lorem = screen.getByText("lorem");
+                expect(lorem).toBeInTheDocument();
+                console.log(container.innerHTML);
+            });
+
+        }
+
+        if (key == "setting") {
+            test(`should render method ${key} correctly`, () => {
+                const { container } = render(<Compo data={data} />);
+                const divIdIntro = document.createElement("div");
+                divIdIntro.setAttribute("id", "Intro");
+                container.appendChild(divIdIntro);
+                const addItem = container.querySelector(".addItem");
+                addItem.click();
+                addItem.click();
+                const toto = container.querySelector(".toto");
+                expect(toto).toBeInTheDocument();
+            });
+        }
+    })
 
 });

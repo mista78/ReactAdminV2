@@ -38,6 +38,12 @@ const Intro = styled.div`
             padding-block-end: 0.5rem;
         }
     }
+
+    ${props => props.mobile ? props.mobile : ''}
+
+@media (min-width: 768px) {
+    ${props => props.desktop ? props.desktop : ''}
+}
 `;
 
 function ElementMaker({ state, data, dispatch, className, ...props }) {
@@ -102,7 +108,7 @@ Introduction.setting = ({ data, children, ...props }) => {
     }
 
     const handleAddElement = (tag, className) => {
-        const element = current?.element ? [...current?.element, {tag, className}] : [{tag, className}];
+        const element = current?.element ? [...current?.element, { tag, className }] : [{ tag, className }];
         setCurrent({ ...current, element });
     }
 
@@ -159,24 +165,15 @@ Introduction.setting = ({ data, children, ...props }) => {
 Introduction.content = ({ data, Libs, children }) => {
     const mobile = (data['mobile'] ? data['mobile'] : {});
     const desktop = (data['desktop'] ? data['desktop'] : {});
-
-    const Line = styled.div`
-        ${Object.keys(mobile).map((item, index) => {
-        return kebabize(item) + ':' + mobile[item] + ';'
-    }).join('')}
-
-        @media (min-width: 768px) {
-            ${Object.keys(desktop).map((item, index) => {
-        return kebabize(item) + ':' + desktop[item] + ';'
-    }).join('')}
-        }
-    `;
-
     return <Fragment>
-        <Line >
+        <Intro mobile={Object.keys(mobile).map((item, index) => {
+            return kebabize(item) + ':' + mobile[item] + ';'
+        }).join('')} desktop={Object.keys(desktop).map((item, index) => {
+            return kebabize(item) + ':' + desktop[item] + ';'
+        }).join('')}  >
             <ScriptInject.content Libs={Libs} name="Slider" />
             {data?.content ? data?.content : 'Default content'}
-        </Line>
+        </Intro>
         {children && children}
     </Fragment>
 
