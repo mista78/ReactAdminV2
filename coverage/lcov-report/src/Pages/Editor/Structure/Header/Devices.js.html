@@ -1,0 +1,256 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Code coverage report for src/Pages/Editor/Structure/Header/Devices.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../../../../favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+    
+<body>
+<div class='wrapper'>
+    <div class='pad1'>
+        <h1><a href="../../../../../index.html">All files</a> / <a href="index.html">src/Pages/Editor/Structure/Header</a> Devices.js</h1>
+        <div class='clearfix'>
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Statements</span>
+                <span class='fraction'>0/9</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>0/6</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Functions</span>
+                <span class='fraction'>0/5</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Lines</span>
+                <span class='fraction'>0/9</span>
+            </div>
+        
+            
+        </div>
+        <p class="quiet">
+            Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
+        </p>
+        <template id="filterTemplate">
+            <div class="quiet">
+                Filter:
+                <input oninput="onInput()" type="search" id="fileSearch">
+            </div>
+        </template>
+    </div>
+    <div class='status-line low'></div>
+    <pre><table class="coverage">
+<tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
+<a name='L2'></a><a href='#L2'>2</a>
+<a name='L3'></a><a href='#L3'>3</a>
+<a name='L4'></a><a href='#L4'>4</a>
+<a name='L5'></a><a href='#L5'>5</a>
+<a name='L6'></a><a href='#L6'>6</a>
+<a name='L7'></a><a href='#L7'>7</a>
+<a name='L8'></a><a href='#L8'>8</a>
+<a name='L9'></a><a href='#L9'>9</a>
+<a name='L10'></a><a href='#L10'>10</a>
+<a name='L11'></a><a href='#L11'>11</a>
+<a name='L12'></a><a href='#L12'>12</a>
+<a name='L13'></a><a href='#L13'>13</a>
+<a name='L14'></a><a href='#L14'>14</a>
+<a name='L15'></a><a href='#L15'>15</a>
+<a name='L16'></a><a href='#L16'>16</a>
+<a name='L17'></a><a href='#L17'>17</a>
+<a name='L18'></a><a href='#L18'>18</a>
+<a name='L19'></a><a href='#L19'>19</a>
+<a name='L20'></a><a href='#L20'>20</a>
+<a name='L21'></a><a href='#L21'>21</a>
+<a name='L22'></a><a href='#L22'>22</a>
+<a name='L23'></a><a href='#L23'>23</a>
+<a name='L24'></a><a href='#L24'>24</a>
+<a name='L25'></a><a href='#L25'>25</a>
+<a name='L26'></a><a href='#L26'>26</a>
+<a name='L27'></a><a href='#L27'>27</a>
+<a name='L28'></a><a href='#L28'>28</a>
+<a name='L29'></a><a href='#L29'>29</a>
+<a name='L30'></a><a href='#L30'>30</a>
+<a name='L31'></a><a href='#L31'>31</a>
+<a name='L32'></a><a href='#L32'>32</a>
+<a name='L33'></a><a href='#L33'>33</a>
+<a name='L34'></a><a href='#L34'>34</a>
+<a name='L35'></a><a href='#L35'>35</a>
+<a name='L36'></a><a href='#L36'>36</a>
+<a name='L37'></a><a href='#L37'>37</a>
+<a name='L38'></a><a href='#L38'>38</a>
+<a name='L39'></a><a href='#L39'>39</a>
+<a name='L40'></a><a href='#L40'>40</a>
+<a name='L41'></a><a href='#L41'>41</a>
+<a name='L42'></a><a href='#L42'>42</a>
+<a name='L43'></a><a href='#L43'>43</a>
+<a name='L44'></a><a href='#L44'>44</a>
+<a name='L45'></a><a href='#L45'>45</a>
+<a name='L46'></a><a href='#L46'>46</a>
+<a name='L47'></a><a href='#L47'>47</a>
+<a name='L48'></a><a href='#L48'>48</a>
+<a name='L49'></a><a href='#L49'>49</a>
+<a name='L50'></a><a href='#L50'>50</a>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a>
+<a name='L54'></a><a href='#L54'>54</a>
+<a name='L55'></a><a href='#L55'>55</a>
+<a name='L56'></a><a href='#L56'>56</a>
+<a name='L57'></a><a href='#L57'>57</a>
+<a name='L58'></a><a href='#L58'>58</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { Fragment, useContext, useState, useEffect } from "react";
+import { AppContext } from "../../../../store";
+&nbsp;
+export const Devices = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
+&nbsp;
+    const { state, dispatch } = <span class="cstat-no" title="statement not covered" >useContext(AppContext);</span>
+&nbsp;
+    const handleBreaksite = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(v</span>alue, devices) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        dispatch({ type: "MODE_BREAKSIZE", breaksize: value });</span>
+<span class="cstat-no" title="statement not covered" >        dispatch({ type: "DEVICES", devices });</span>
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return &lt;Fragment&gt;</span>
+        &lt;div className='devices'&gt;
+            &lt;div className='btn' onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >handleBreaksite(100, "desktop")}</span>&gt;
+                &lt;svg width="45" height="44" viewBox="0 0 45 44" fill="none" xmlns="http://www.w3.org/2000/svg"&gt;
+                    &lt;g clipPath="url(#clip0_195_1207)"&gt;
+                        {state?.devices == "desktop" &amp;&amp; &lt;rect x="0.283447" width="44" height="44" rx="5.5" fill="#504F50" /&gt;}
+                        &lt;path d="M10.0437 11H33.9121C34.3278 11 34.7055 11.1627 34.979 11.4247C35.2525 11.6867 35.4223 12.0485 35.4223 12.4467V27.93C35.4223 28.3282 35.2525 28.69 34.979 28.952C34.7055 29.214 34.3278 29.3767 33.9121 29.3767H24.8231C24.8667 29.7203 24.9606 30.0757 25.114 30.4144C25.2582 30.7319 25.4553 31.0347 25.7124 31.2982H26.7982C27.043 31.2982 27.2652 31.3941 27.4258 31.5479C27.5864 31.7018 27.6865 31.9146 27.6865 32.1491V32.7051C27.6865 32.8678 27.5485 33 27.3786 33H16.5772C16.4073 33 16.2693 32.8678 16.2693 32.7051V32.1491C16.2693 31.9146 16.3693 31.7018 16.53 31.5479C16.6906 31.3941 16.9128 31.2982 17.1576 31.2982H18.2434C18.501 31.0347 18.6981 30.7319 18.8417 30.4144C18.9952 30.0757 19.0891 29.7208 19.1327 29.3767H10.0437C9.62801 29.3767 9.25033 29.214 8.97681 28.952C8.7033 28.69 8.53345 28.3282 8.53345 27.93V12.4467C8.53345 12.0485 8.7033 11.6867 8.97681 11.4247C9.25033 11.1627 9.62801 11 10.0437 11ZM25.1782 31.2987C24.9991 31.0711 24.8539 30.8253 24.7384 30.5717C24.5614 30.1819 24.4562 29.7719 24.4105 29.3777H19.5448C19.4996 29.7719 19.3944 30.1819 19.2174 30.5717C19.1019 30.8253 18.9567 31.0711 18.7776 31.2987H25.1782ZM26.7982 31.8886H17.1576C17.0831 31.8886 17.0149 31.9181 16.9656 31.9653C16.9164 32.0124 16.8856 32.0778 16.8856 32.1491V32.4101H27.0712V32.1491C27.0712 32.0778 27.0404 32.0124 26.9912 31.9653C26.9419 31.9181 26.8737 31.8886 26.7993 31.8886H26.7987H26.7982ZM21.9776 26.8746C22.1988 26.8746 22.4 26.9606 22.5452 27.1002H22.5457C22.6909 27.2403 22.7812 27.432 22.7812 27.6444C22.7812 27.8568 22.6914 28.049 22.5457 28.1886L22.5365 28.1964C22.3918 28.3306 22.1947 28.4137 21.9776 28.4137C21.7606 28.4137 21.5553 28.3277 21.4101 28.1881H21.4096C21.2638 28.0485 21.174 27.8563 21.174 27.6439C21.174 27.4315 21.2638 27.2393 21.4096 27.1002H21.4101C21.5558 26.9606 21.7565 26.8741 21.9776 26.8741V26.8746ZM22.3286 27.3082C22.2388 27.2226 22.1152 27.1695 21.9776 27.1695C21.8401 27.1695 21.7164 27.2226 21.6266 27.3082C21.5373 27.3942 21.4819 27.5127 21.4819 27.6444C21.4819 27.7761 21.5373 27.8941 21.6271 27.9801C21.717 28.0662 21.8406 28.1193 21.9781 28.1193C22.1157 28.1193 22.2327 28.0691 22.322 27.987L22.3281 27.9801C22.4179 27.8941 22.4733 27.7756 22.4733 27.6444C22.4733 27.5132 22.4179 27.3942 22.3286 27.3082ZM9.99286 12.2732H34.1682V26.1028H9.7876V12.2732H9.99286ZM33.7577 12.6664H10.1981V25.7096H33.7577V12.6664ZM33.9121 11.5899H10.0432C9.79735 11.5899 9.57413 11.6862 9.41146 11.8416C9.2493 11.9969 9.14872 12.2112 9.14872 12.4467V27.93C9.14872 28.1655 9.2493 28.3793 9.41146 28.5351C9.57362 28.6904 9.79735 28.7868 10.0432 28.7868H33.9116C34.1574 28.7868 34.3806 28.6904 34.5433 28.5351C34.7055 28.3798 34.806 28.1655 34.806 27.93V12.4472C34.806 12.2117 34.7055 11.9974 34.5433 11.8421C34.3811 11.6867 34.1574 11.5904 33.9116 11.5904L33.9121 11.5899Z" fill="white" /&gt;
+                    &lt;/g&gt;
+                    &lt;defs&gt;
+                        &lt;clipPath id="clip0_195_1207"&gt;
+                            &lt;rect x="0.283447" width="44" height="44" rx="11" fill="white" /&gt;
+                        &lt;/clipPath&gt;
+                    &lt;/defs&gt;
+                &lt;/svg&gt;
+            &lt;/div&gt;
+            &lt;div className='btn' onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >handleBreaksite(100 * (2 / 3), "tablette")}</span>&gt;
+                &lt;svg width="45" height="44" viewBox="0 0 45 44" fill="none" xmlns="http://www.w3.org/2000/svg"&gt;
+                    &lt;g clipPath="url(#clip0_195_1210)"&gt;
+                        {state?.devices == "tablette" &amp;&amp; &lt;rect x="0.283447" width="44" height="44" rx="5.5" fill="#504F50" /&gt;}
+                        &lt;path d="M29.4178 33H14.9912C14.4743 33 14.0536 32.5796 14.0536 32.0624V11.9376C14.0536 11.4204 14.4739 11 14.9912 11H29.4182C29.935 11 30.3558 11.4204 30.3558 11.9376V32.0628C30.3558 32.5796 29.935 33 29.4182 33H29.4178ZM14.9912 11.8036C14.9174 11.8036 14.8572 11.8638 14.8572 11.9376V32.0628C14.8572 32.1366 14.9174 32.1968 14.9912 32.1968H29.4182C29.492 32.1968 29.5522 32.1366 29.5522 32.0628V11.9376C29.5522 11.8638 29.492 11.8036 29.4182 11.8036H14.9912Z" fill="white" /&gt;
+                        &lt;path d="M22.9766 30.8821C22.9766 31.2903 22.6458 31.6207 22.2376 31.6207C21.8295 31.6207 21.4991 31.2903 21.4991 30.8821C21.4991 30.474 21.8299 30.1436 22.2376 30.1436C22.6453 30.1436 22.9766 30.474 22.9766 30.8821Z" fill="white" /&gt;
+                        &lt;path d="M28.2195 29.6389H16.1889C16.041 29.6389 15.9209 29.5193 15.9209 29.3709V13.0939C15.9209 12.946 16.041 12.8259 16.1889 12.8259H28.2195C28.3675 12.8259 28.4876 12.946 28.4876 13.0939V29.3713C28.4876 29.5193 28.368 29.6393 28.2195 29.6393V29.6389ZM16.457 29.1033H27.952V13.3615H16.457V29.1033Z" fill="white" /&gt;
+                    &lt;/g&gt;
+                    &lt;defs&gt;
+                        &lt;clipPath id="clip0_195_1210"&gt;
+                            &lt;rect x="0.303551" width="44" height="44" rx="11" fill="white" /&gt;
+                        &lt;/clipPath&gt;
+                    &lt;/defs&gt;
+                &lt;/svg&gt;
+            &lt;/div&gt;
+            &lt;div className='btn' onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >handleBreaksite(100 * (1 / 3), "mobile")}</span>&gt;
+                &lt;svg width="45" height="44" viewBox="0 0 45 44" fill="none" xmlns="http://www.w3.org/2000/svg"&gt;
+                    &lt;g clipPath="url(#clip0_195_1216)"&gt;
+                        {state?.devices == "mobile" &amp;&amp; &lt;rect x="0.283447" width="44" height="44" rx="5.5" fill="#504F50" /&gt;}
+                        &lt;path d="M17.8145 11H25.9157C26.5665 11 27.1584 11.2653 27.587 11.6936C28.0157 12.1218 28.282 12.7117 28.282 13.3616V30.6384C28.282 31.2883 28.0161 31.8786 27.587 32.3064C27.1584 32.7342 26.5669 33 25.9157 33H17.8145C17.1637 33 16.5718 32.7347 16.1432 32.3064C15.7145 31.8782 15.4487 31.2879 15.4487 30.638V13.3611C15.4487 12.7117 15.7145 12.1214 16.1436 11.6931C16.5727 11.2649 17.1637 11 17.8145 11ZM17.0426 14.1231H26.6881C26.781 14.1231 26.8563 14.1983 26.8563 14.2911V29.7077C26.8563 29.8005 26.781 29.8756 26.6881 29.8756H17.0426C16.9496 29.8756 16.8743 29.8005 16.8743 29.7077V14.2911C16.8743 14.1983 16.9496 14.1231 17.0426 14.1231ZM26.5198 14.459H17.2108V29.5397H26.5198V14.459ZM21.8655 30.3928C22.0935 30.3928 22.3001 30.4852 22.4494 30.6343C22.5988 30.7833 22.6913 30.9894 22.6913 31.217C22.6913 31.4445 22.5988 31.6507 22.4494 31.7997C22.3001 31.9487 22.0935 32.0411 21.8655 32.0411C21.6375 32.0411 21.431 31.9487 21.2816 31.7997C21.1323 31.6507 21.0398 31.4445 21.0398 31.217C21.0398 30.9894 21.1323 30.7833 21.2816 30.6343C21.431 30.4852 21.6375 30.3928 21.8655 30.3928ZM22.2711 30.8123C22.1676 30.709 22.0237 30.6447 21.8655 30.6447C21.7074 30.6447 21.5635 30.709 21.46 30.8123C21.3561 30.916 21.2922 31.0591 21.2922 31.217C21.2922 31.3748 21.3565 31.5184 21.46 31.6217C21.5635 31.725 21.7074 31.7892 21.8655 31.7892C22.0237 31.7892 22.1676 31.725 22.2711 31.6217C22.375 31.518 22.4389 31.3748 22.4389 31.217C22.4389 31.0591 22.3745 30.9155 22.2711 30.8123ZM20.3503 13.0446C20.2573 13.0446 20.182 12.9694 20.182 12.8766C20.182 12.7839 20.2573 12.7087 20.3503 12.7087H20.4092C20.5021 12.7087 20.5774 12.7839 20.5774 12.8766C20.5774 12.9694 20.5021 13.0446 20.4092 13.0446H20.3503ZM21.497 13.0446C21.4041 13.0446 21.3288 12.9694 21.3288 12.8766C21.3288 12.7839 21.4041 12.7087 21.497 12.7087H23.3808C23.4737 12.7087 23.549 12.7839 23.549 12.8766C23.549 12.9694 23.4737 13.0446 23.3808 13.0446H21.497ZM25.9161 11.5038H17.8149C17.3034 11.5038 16.8381 11.7129 16.5007 12.0496C16.1634 12.3863 15.9539 12.8506 15.9539 13.3611V30.638C15.9539 31.1485 16.1634 31.6129 16.5007 31.9496C16.8381 32.2863 17.3034 32.4954 17.8149 32.4954H25.9161C26.4277 32.4954 26.8929 32.2863 27.2303 31.9496C27.5677 31.6129 27.7772 31.1485 27.7772 30.638V13.3611C27.7772 12.8506 27.5677 12.3863 27.2303 12.0496C26.8929 11.7129 26.4277 11.5038 25.9161 11.5038Z" fill="white" /&gt;
+                    &lt;/g&gt;
+                    &lt;defs&gt;
+                        &lt;clipPath id="clip0_195_1216"&gt;
+                            &lt;rect x="0.323654" width="44" height="44" rx="11" fill="white" /&gt;
+                        &lt;/clipPath&gt;
+                    &lt;/defs&gt;
+                &lt;/svg&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/Fragment&gt;
+};</pre></td></tr></table></pre>
+
+                <div class='push'></div><!-- for sticky footer -->
+            </div><!-- /wrapper -->
+            <div class='footer quiet pad2 space-top1 center small'>
+                Code coverage generated by
+                <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
+                at 2023-04-22T19:31:22.009Z
+            </div>
+        <script src="../../../../../prettify.js"></script>
+        <script>
+            window.onload = function () {
+                prettyPrint();
+            };
+        </script>
+        <script src="../../../../../sorter.js"></script>
+        <script src="../../../../../block-navigation.js"></script>
+    </body>
+</html>
+    

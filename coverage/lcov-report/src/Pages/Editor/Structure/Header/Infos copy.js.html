@@ -1,0 +1,364 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Code coverage report for src/Pages/Editor/Structure/Header/Infos copy.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../../../../favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+    
+<body>
+<div class='wrapper'>
+    <div class='pad1'>
+        <h1><a href="../../../../../index.html">All files</a> / <a href="index.html">src/Pages/Editor/Structure/Header</a> Infos copy.js</h1>
+        <div class='clearfix'>
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Statements</span>
+                <span class='fraction'>0/44</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>0/17</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Functions</span>
+                <span class='fraction'>0/11</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Lines</span>
+                <span class='fraction'>0/39</span>
+            </div>
+        
+            
+        </div>
+        <p class="quiet">
+            Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
+        </p>
+        <template id="filterTemplate">
+            <div class="quiet">
+                Filter:
+                <input oninput="onInput()" type="search" id="fileSearch">
+            </div>
+        </template>
+    </div>
+    <div class='status-line low'></div>
+    <pre><table class="coverage">
+<tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
+<a name='L2'></a><a href='#L2'>2</a>
+<a name='L3'></a><a href='#L3'>3</a>
+<a name='L4'></a><a href='#L4'>4</a>
+<a name='L5'></a><a href='#L5'>5</a>
+<a name='L6'></a><a href='#L6'>6</a>
+<a name='L7'></a><a href='#L7'>7</a>
+<a name='L8'></a><a href='#L8'>8</a>
+<a name='L9'></a><a href='#L9'>9</a>
+<a name='L10'></a><a href='#L10'>10</a>
+<a name='L11'></a><a href='#L11'>11</a>
+<a name='L12'></a><a href='#L12'>12</a>
+<a name='L13'></a><a href='#L13'>13</a>
+<a name='L14'></a><a href='#L14'>14</a>
+<a name='L15'></a><a href='#L15'>15</a>
+<a name='L16'></a><a href='#L16'>16</a>
+<a name='L17'></a><a href='#L17'>17</a>
+<a name='L18'></a><a href='#L18'>18</a>
+<a name='L19'></a><a href='#L19'>19</a>
+<a name='L20'></a><a href='#L20'>20</a>
+<a name='L21'></a><a href='#L21'>21</a>
+<a name='L22'></a><a href='#L22'>22</a>
+<a name='L23'></a><a href='#L23'>23</a>
+<a name='L24'></a><a href='#L24'>24</a>
+<a name='L25'></a><a href='#L25'>25</a>
+<a name='L26'></a><a href='#L26'>26</a>
+<a name='L27'></a><a href='#L27'>27</a>
+<a name='L28'></a><a href='#L28'>28</a>
+<a name='L29'></a><a href='#L29'>29</a>
+<a name='L30'></a><a href='#L30'>30</a>
+<a name='L31'></a><a href='#L31'>31</a>
+<a name='L32'></a><a href='#L32'>32</a>
+<a name='L33'></a><a href='#L33'>33</a>
+<a name='L34'></a><a href='#L34'>34</a>
+<a name='L35'></a><a href='#L35'>35</a>
+<a name='L36'></a><a href='#L36'>36</a>
+<a name='L37'></a><a href='#L37'>37</a>
+<a name='L38'></a><a href='#L38'>38</a>
+<a name='L39'></a><a href='#L39'>39</a>
+<a name='L40'></a><a href='#L40'>40</a>
+<a name='L41'></a><a href='#L41'>41</a>
+<a name='L42'></a><a href='#L42'>42</a>
+<a name='L43'></a><a href='#L43'>43</a>
+<a name='L44'></a><a href='#L44'>44</a>
+<a name='L45'></a><a href='#L45'>45</a>
+<a name='L46'></a><a href='#L46'>46</a>
+<a name='L47'></a><a href='#L47'>47</a>
+<a name='L48'></a><a href='#L48'>48</a>
+<a name='L49'></a><a href='#L49'>49</a>
+<a name='L50'></a><a href='#L50'>50</a>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a>
+<a name='L54'></a><a href='#L54'>54</a>
+<a name='L55'></a><a href='#L55'>55</a>
+<a name='L56'></a><a href='#L56'>56</a>
+<a name='L57'></a><a href='#L57'>57</a>
+<a name='L58'></a><a href='#L58'>58</a>
+<a name='L59'></a><a href='#L59'>59</a>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a>
+<a name='L68'></a><a href='#L68'>68</a>
+<a name='L69'></a><a href='#L69'>69</a>
+<a name='L70'></a><a href='#L70'>70</a>
+<a name='L71'></a><a href='#L71'>71</a>
+<a name='L72'></a><a href='#L72'>72</a>
+<a name='L73'></a><a href='#L73'>73</a>
+<a name='L74'></a><a href='#L74'>74</a>
+<a name='L75'></a><a href='#L75'>75</a>
+<a name='L76'></a><a href='#L76'>76</a>
+<a name='L77'></a><a href='#L77'>77</a>
+<a name='L78'></a><a href='#L78'>78</a>
+<a name='L79'></a><a href='#L79'>79</a>
+<a name='L80'></a><a href='#L80'>80</a>
+<a name='L81'></a><a href='#L81'>81</a>
+<a name='L82'></a><a href='#L82'>82</a>
+<a name='L83'></a><a href='#L83'>83</a>
+<a name='L84'></a><a href='#L84'>84</a>
+<a name='L85'></a><a href='#L85'>85</a>
+<a name='L86'></a><a href='#L86'>86</a>
+<a name='L87'></a><a href='#L87'>87</a>
+<a name='L88'></a><a href='#L88'>88</a>
+<a name='L89'></a><a href='#L89'>89</a>
+<a name='L90'></a><a href='#L90'>90</a>
+<a name='L91'></a><a href='#L91'>91</a>
+<a name='L92'></a><a href='#L92'>92</a>
+<a name='L93'></a><a href='#L93'>93</a>
+<a name='L94'></a><a href='#L94'>94</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React,{ Fragment, useContext, useState, useEffect } from "react";
+import { AppContext } from "../../../../store";
+&nbsp;
+export const Infos = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
+&nbsp;
+    const { state, dispatch } = <span class="cstat-no" title="statement not covered" >useContext(AppContext);</span>
+    const [pages, setPages] = <span class="cstat-no" title="statement not covered" >useState([]);</span>
+    const [newPage, setNewPage] = <span class="cstat-no" title="statement not covered" >useState(false);</span>
+&nbsp;
+    const LoadPage = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >as</span>ync () =&gt; {</span>
+        const response = <span class="cstat-no" title="statement not covered" >await axios.get(RequestUrl.get.get_pages);</span>
+        const { data } = <span class="cstat-no" title="statement not covered" >response;</span>
+<span class="cstat-no" title="statement not covered" >        console.log(data, response);</span>
+<span class="cstat-no" title="statement not covered" >        if (data &amp;&amp; response.status === 200 &amp;&amp; Array.isArray(data)) {</span>
+<span class="cstat-no" title="statement not covered" >            setPages(data);</span>
+        }
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    useEffect(<span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        LoadPage();</span>
+    }, [])
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return &lt;Fragment&gt;</span>
+        &lt;div className="infos"&gt;
+            &lt;svg width="22" height="44" viewBox="0 0 22 44" fill="none" xmlns="http://www.w3.org/2000/svg"&gt;
+                &lt;g clipPath="url(#clip0_195_1184)"&gt;
+                    &lt;path d="M5.18879 5.13877H9.86282V6.78696H11.6441V5.13877H16.4092V13.1269H18.1859V3.3822H18.0948V3.37769H3.41211V3.3822V5.13877V10.4175H5.18879V5.13877Z" fill="#D03A2F" /&gt;
+                    &lt;path d="M5.18879 26.3214H9.86282V27.9696H11.6441V26.3214H16.4092V34.3411H18.1859V24.5603H18.0948H3.41211V26.3214V34.3411H5.18879V26.3214Z" fill="#D03A2F" /&gt;
+                    &lt;path d="M15.2658 13.1585V8.44873H15.2521H6.39606V10.2098H6.40061V13.1585H8.17729V10.2098H13.4891V13.1585H15.2658Z" fill="#D03A2F" /&gt;
+                    &lt;path d="M12.8194 11.8127H8.77405V13.1178H12.8194V11.8127Z" fill="#D03A2F" /&gt;
+                    &lt;path d="M5.18879 40.6313V37.7232H16.4092V40.6313H18.1859V35.9712H18.0948V35.9622H3.41211V37.7232V40.6313H5.18879Z" fill="#D03A2F" /&gt;
+                    &lt;path d="M21.6074 1.30952V0H0.00482178V1.21018V42.6453V44H21.6074V42.7447V1.30952ZM19.8307 42.2389H1.7815V1.76108H19.8307V42.2389Z" fill="#D03A2F" /&gt;
+                    &lt;path d="M15.3341 39.3264H6.17279V40.6314H15.3341V39.3264Z" fill="#D03A2F" /&gt;
+                    &lt;path d="M18.0948 14.7931H5.18879V12.0657H3.41211V14.7931V16.4774V16.5542H18.0948V14.7931Z" fill="#D03A2F" /&gt;
+                    &lt;path d="M18.0948 21.1871H11.6441V19.9227H18.0948V18.1616H3.41211V19.9227H9.86282V21.1871H3.41211V22.9527H18.0948V21.1871Z" fill="#D03A2F" /&gt;
+                    &lt;path d="M6.72406 32.5936V34.3592H14.7829V34.2779H14.8011V29.5681H14.7829H6.72406V31.3292H13.0244V32.5936H6.72406Z" fill="#D03A2F" /&gt;
+                &lt;/g&gt;
+                &lt;defs&gt;
+                    &lt;clipPath id="clip0_195_1184"&gt;
+                        &lt;rect width="21.6071" height="44" fill="white" /&gt;
+                    &lt;/clipPath&gt;
+                &lt;/defs&gt;
+            &lt;/svg&gt;
+            &lt;svg width="45" height="44" viewBox="0 0 45 44" fill="none" xmlns="http://www.w3.org/2000/svg"&gt;
+                &lt;path fillRule="evenodd" clipRule="evenodd" d="M27.1543 11.3755C27.9353 10.5944 27.9353 9.32807 27.1543 8.54703C26.3732 7.76598 25.1069 7.76598 24.3258 8.54703L12.2529 20.62C12.2471 20.6258 12.2413 20.6316 12.2356 20.6375C12.2299 20.6431 12.2241 20.6487 12.2185 20.6544C11.4374 21.4355 11.4374 22.7018 12.2185 23.4828L24.2914 35.5558C25.0725 36.3369 26.3388 36.3369 27.1199 35.5558C27.9009 34.7748 27.9009 33.5084 27.1199 32.7274L16.4611 22.0686L27.1543 11.3755Z" fill="white" /&gt;
+            &lt;/svg&gt;
+            &lt;div&gt;
+                &lt;p&gt;Page: &lt;select value={state?.currentPage} style={{ display: "inline-block" }}
+                    onClick={<span class="fstat-no" title="function not covered" >e </span>=&gt; {
+<span class="cstat-no" title="statement not covered" >                        console.log(e.target.value);</span>
+<span class="cstat-no" title="statement not covered" >                        setNewPage("");</span>
+                    }}
+                    onChange={<span class="fstat-no" title="function not covered" >e </span>=&gt; {
+                        const value = <span class="cstat-no" title="statement not covered" >e.target.value;</span>
+<span class="cstat-no" title="statement not covered" >                        console.log(value);</span>
+<span class="cstat-no" title="statement not covered" >                        if (!value) <span class="cstat-no" title="statement not covered" >return;</span></span>
+                        let data = <span class="cstat-no" title="statement not covered" >[];</span>
+<span class="cstat-no" title="statement not covered" >                        try {</span>
+<span class="cstat-no" title="statement not covered" >                            console.log(pages.find(<span class="fstat-no" title="function not covered" >it</span>em =&gt; <span class="cstat-no" title="statement not covered" >item.ID == value)</span>.post_content);</span>
+                            const page = <span class="cstat-no" title="statement not covered" >pages.find(<span class="fstat-no" title="function not covered" >it</span>em =&gt; <span class="cstat-no" title="statement not covered" >item.ID == value)</span>;</span>
+<span class="cstat-no" title="statement not covered" >                            setNewPage(page.post_name);</span>
+<span class="cstat-no" title="statement not covered" >                            data = JSON.parse(pages.find(<span class="fstat-no" title="function not covered" >it</span>em =&gt; <span class="cstat-no" title="statement not covered" >item.ID == value)</span>.post_content);</span>
+                        } catch (error) {
+<span class="cstat-no" title="statement not covered" >                            console.log(error);</span>
+                        }
+<span class="cstat-no" title="statement not covered" >                        console.log("comp", data.components);</span>
+<span class="cstat-no" title="statement not covered" >                        dispatch({ type: "ADD_COMPONENT", components: (data.components &amp;&amp; Array.isArray(data.components)) ? data.components : [] });</span>
+<span class="cstat-no" title="statement not covered" >                        dispatch({ type: "CURRENT_PAGE", currentPage: value });</span>
+                    }}&gt;
+                    &lt;option value=""&gt;Page&lt;/option&gt;
+                    {pages?.map(<span class="fstat-no" title="function not covered" >(i</span>tem, index) =&gt; {
+<span class="cstat-no" title="statement not covered" >                        return &lt;option key={index} value={item.ID}&gt;{item.post_name}&lt;/option&gt;</span>
+                    })}
+                &lt;/select&gt;&lt;/p&gt;
+                {newPage == "" ? &lt;input type='text' onBlur={<span class="fstat-no" title="function not covered" >e </span>=&gt; {
+<span class="cstat-no" title="statement not covered" >                    (<span class="fstat-no" title="function not covered" >as</span>ync () =&gt; {</span>
+                        const value = <span class="cstat-no" title="statement not covered" >e.target.value;</span>
+<span class="cstat-no" title="statement not covered" >                        if (!value) <span class="cstat-no" title="statement not covered" >return;</span></span>
+                        const request = <span class="cstat-no" title="statement not covered" >await axios.post(RequestUrl.post.add_page, {</span>
+                            name: value,
+                        });
+<span class="cstat-no" title="statement not covered" >                        console.log(request.data);</span>
+<span class="cstat-no" title="statement not covered" >                        if (request.data) {</span>
+<span class="cstat-no" title="statement not covered" >                            dispatch({ type: "ADD_COMPONENT", components: [] });</span>
+<span class="cstat-no" title="statement not covered" >                            dispatch({ type: "CURRENT_PAGE", currentPage: request.data });</span>
+<span class="cstat-no" title="statement not covered" >                            LoadPage();</span>
+                        }
+<span class="cstat-no" title="statement not covered" >                        setNewPage(value);</span>
+                    })();
+                }} /&gt; : &lt;a target='_blanc' href={`https://www.malimda.com/${newPage}`}&gt;www.malimda.com/{newPage}&lt;/a&gt;}
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/Fragment&gt;
+};</pre></td></tr></table></pre>
+
+                <div class='push'></div><!-- for sticky footer -->
+            </div><!-- /wrapper -->
+            <div class='footer quiet pad2 space-top1 center small'>
+                Code coverage generated by
+                <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
+                at 2023-04-22T18:09:19.651Z
+            </div>
+        <script src="../../../../../prettify.js"></script>
+        <script>
+            window.onload = function () {
+                prettyPrint();
+            };
+        </script>
+        <script src="../../../../../sorter.js"></script>
+        <script src="../../../../../block-navigation.js"></script>
+    </body>
+</html>
+    

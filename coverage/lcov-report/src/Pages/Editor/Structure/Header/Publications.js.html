@@ -1,0 +1,274 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Code coverage report for src/Pages/Editor/Structure/Header/Publications.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../../../../favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+    
+<body>
+<div class='wrapper'>
+    <div class='pad1'>
+        <h1><a href="../../../../../index.html">All files</a> / <a href="index.html">src/Pages/Editor/Structure/Header</a> Publications.js</h1>
+        <div class='clearfix'>
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Statements</span>
+                <span class='fraction'>0/29</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>0/11</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Functions</span>
+                <span class='fraction'>0/5</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Lines</span>
+                <span class='fraction'>0/29</span>
+            </div>
+        
+            
+        </div>
+        <p class="quiet">
+            Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
+        </p>
+        <template id="filterTemplate">
+            <div class="quiet">
+                Filter:
+                <input oninput="onInput()" type="search" id="fileSearch">
+            </div>
+        </template>
+    </div>
+    <div class='status-line low'></div>
+    <pre><table class="coverage">
+<tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
+<a name='L2'></a><a href='#L2'>2</a>
+<a name='L3'></a><a href='#L3'>3</a>
+<a name='L4'></a><a href='#L4'>4</a>
+<a name='L5'></a><a href='#L5'>5</a>
+<a name='L6'></a><a href='#L6'>6</a>
+<a name='L7'></a><a href='#L7'>7</a>
+<a name='L8'></a><a href='#L8'>8</a>
+<a name='L9'></a><a href='#L9'>9</a>
+<a name='L10'></a><a href='#L10'>10</a>
+<a name='L11'></a><a href='#L11'>11</a>
+<a name='L12'></a><a href='#L12'>12</a>
+<a name='L13'></a><a href='#L13'>13</a>
+<a name='L14'></a><a href='#L14'>14</a>
+<a name='L15'></a><a href='#L15'>15</a>
+<a name='L16'></a><a href='#L16'>16</a>
+<a name='L17'></a><a href='#L17'>17</a>
+<a name='L18'></a><a href='#L18'>18</a>
+<a name='L19'></a><a href='#L19'>19</a>
+<a name='L20'></a><a href='#L20'>20</a>
+<a name='L21'></a><a href='#L21'>21</a>
+<a name='L22'></a><a href='#L22'>22</a>
+<a name='L23'></a><a href='#L23'>23</a>
+<a name='L24'></a><a href='#L24'>24</a>
+<a name='L25'></a><a href='#L25'>25</a>
+<a name='L26'></a><a href='#L26'>26</a>
+<a name='L27'></a><a href='#L27'>27</a>
+<a name='L28'></a><a href='#L28'>28</a>
+<a name='L29'></a><a href='#L29'>29</a>
+<a name='L30'></a><a href='#L30'>30</a>
+<a name='L31'></a><a href='#L31'>31</a>
+<a name='L32'></a><a href='#L32'>32</a>
+<a name='L33'></a><a href='#L33'>33</a>
+<a name='L34'></a><a href='#L34'>34</a>
+<a name='L35'></a><a href='#L35'>35</a>
+<a name='L36'></a><a href='#L36'>36</a>
+<a name='L37'></a><a href='#L37'>37</a>
+<a name='L38'></a><a href='#L38'>38</a>
+<a name='L39'></a><a href='#L39'>39</a>
+<a name='L40'></a><a href='#L40'>40</a>
+<a name='L41'></a><a href='#L41'>41</a>
+<a name='L42'></a><a href='#L42'>42</a>
+<a name='L43'></a><a href='#L43'>43</a>
+<a name='L44'></a><a href='#L44'>44</a>
+<a name='L45'></a><a href='#L45'>45</a>
+<a name='L46'></a><a href='#L46'>46</a>
+<a name='L47'></a><a href='#L47'>47</a>
+<a name='L48'></a><a href='#L48'>48</a>
+<a name='L49'></a><a href='#L49'>49</a>
+<a name='L50'></a><a href='#L50'>50</a>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a>
+<a name='L54'></a><a href='#L54'>54</a>
+<a name='L55'></a><a href='#L55'>55</a>
+<a name='L56'></a><a href='#L56'>56</a>
+<a name='L57'></a><a href='#L57'>57</a>
+<a name='L58'></a><a href='#L58'>58</a>
+<a name='L59'></a><a href='#L59'>59</a>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { Fragment, useContext, useState, useEffect } from "react";
+import { AppContext } from "../../../../store";
+import { renderToStaticMarkup } from 'react-dom/server';
+import { ServerStyleSheet } from 'styled-components';
+&nbsp;
+import axios from "axios";
+import DataUrl from '../../Urls';
+&nbsp;
+import { GenerateUrl } from "../../../../Utils/tools";
+&nbsp;
+export const Publications = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
+&nbsp;
+    const { state, dispatch } = <span class="cstat-no" title="statement not covered" >useContext(AppContext);</span>
+    const RequestUrl = <span class="cstat-no" title="statement not covered" >GenerateUrl(DataUrl.Editor, ["GET", "POST"]);</span>
+&nbsp;
+    const LoadPage = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >as</span>ync () =&gt; {</span>
+        const response = <span class="cstat-no" title="statement not covered" >await axios.get(RequestUrl.get.get_pages);</span>
+        const { data } = <span class="cstat-no" title="statement not covered" >response;</span>
+<span class="cstat-no" title="statement not covered" >        console.log(data, response);</span>
+<span class="cstat-no" title="statement not covered" >        if (data &amp;&amp; response.status === 200 &amp;&amp; Array.isArray(data)) {</span>
+<span class="cstat-no" title="statement not covered" >            setPages(data);</span>
+        }
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return &lt;Fragment&gt;</span>
+        &lt;div className='publication'&gt;
+            &lt;svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg"&gt;
+                &lt;path d="M31 29.0627V18.362C31 18.0664 30.8818 17.7818 30.671 17.5729C30.4609 17.3632 30.1748 17.2457 29.8777 17.2457H16.8345L18.3439 15.783C18.5588 15.4964 18.6217 15.1252 18.5153 14.7843C18.4081 14.4434 18.1441 14.1739 17.8041 14.0591C17.4641 13.9443 17.0895 13.9986 16.7965 14.2049L13.3133 17.5536C13.2145 17.6533 13.1357 17.7708 13.0811 17.9001V17.9771C13.0369 18.0877 13.0106 18.2046 13.0037 18.3235C12.9775 18.6369 13.0908 18.9469 13.3133 19.1703L16.7965 22.6346C17.0819 22.9054 17.4897 23.0064 17.8698 22.9019C18.2499 22.7975 18.5471 22.5019 18.6521 22.1239C18.7571 21.7458 18.6549 21.341 18.3833 21.0564L16.7191 19.4013H28.7553V27.9849H14.0487C13.7031 28.0495 13.408 28.2716 13.2511 28.585C13.0943 28.8977 13.0943 29.2662 13.2511 29.5789C13.408 29.8916 13.7031 30.1144 14.0487 30.179H29.8777C30.1755 30.179 30.4609 30.0614 30.671 29.8518C30.8818 29.6428 31 29.3583 31 29.0627Z" fill="white" /&gt;
+            &lt;/svg&gt;
+            &lt;svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg"&gt;
+                &lt;path d="M13 29.0627V18.362C13 18.0664 13.1182 17.7818 13.329 17.5729C13.5391 17.3632 13.8252 17.2457 14.1223 17.2457H27.1655L25.6561 15.783C25.4412 15.4964 25.3783 15.1252 25.4847 14.7843C25.5919 14.4434 25.8559 14.1739 26.1959 14.0591C26.5359 13.9443 26.9105 13.9986 27.2035 14.2049L30.6867 17.5536C30.7855 17.6533 30.8643 17.7708 30.9189 17.9001V17.9771C30.9631 18.0877 30.9894 18.2046 30.9963 18.3235C31.0225 18.6369 30.9092 18.9469 30.6867 19.1703L27.2035 22.6346C26.9181 22.9054 26.5103 23.0064 26.1302 22.9019C25.7501 22.7975 25.4529 22.5019 25.3479 22.1239C25.2429 21.7458 25.3451 21.341 25.6167 21.0564L27.2809 19.4013H15.2447V27.9849H29.9513C30.2969 28.0495 30.592 28.2716 30.7489 28.585C30.9057 28.8977 30.9057 29.2662 30.7489 29.5789C30.592 29.8916 30.2969 30.1144 29.9513 30.179H14.1223C13.8245 30.179 13.5391 30.0614 13.329 29.8518C13.1182 29.6428 13 29.3583 13 29.0627Z" fill="white" /&gt;
+            &lt;/svg&gt;
+            &lt;div className='publication_btn' onClick={<span class="fstat-no" title="function not covered" >e </span>=&gt; {
+                let html = <span class="cstat-no" title="statement not covered" >'';</span>
+                const sheet = <span class="cstat-no" title="statement not covered" >new ServerStyleSheet();</span>
+                const render = <span class="cstat-no" title="statement not covered" >renderToStaticMarkup(sheet.collectStyles(&lt;View data={state?.components} Libs={Libs} type="content" /&gt;));</span>
+                const styleTags = <span class="cstat-no" title="statement not covered" >sheet.getStyleTags();</span> // or sheet.getStyleElement();
+                const test = <span class="cstat-no" title="statement not covered" >sheet.getStyleElement();</span>
+                const regex = <span class="cstat-no" title="statement not covered" >/\/\*.*\*\/n/gm;</span>
+<span class="cstat-no" title="statement not covered" >                html = styleTags.replaceAll(regex, '') + render;</span>
+                function <span class="fstat-no" title="function not covered" >remplaçant(</span>clé, valeur) {
+<span class="cstat-no" title="statement not covered" >                    if (typeof valeur === 'string') {</span>
+<span class="cstat-no" title="statement not covered" >                        return valeur.replaceAll(/"/g, "'").replaceAll('/*!sc*/\n', "");</span>
+                    }
+<span class="cstat-no" title="statement not covered" >                    return valeur;</span>
+                }
+<span class="cstat-no" title="statement not covered" >                (<span class="fstat-no" title="function not covered" >as</span>ync () =&gt; {</span>
+                    const { components, currentPage } = <span class="cstat-no" title="statement not covered" >state;</span>
+                    const response = <span class="cstat-no" title="statement not covered" >await axios.post(RequestUrl.post.save_page, {</span>
+                        ID: state?.currentPage,
+                        post_content: JSON.stringify({ components, html: html }, remplaçant),
+                    });
+                    const { data } = <span class="cstat-no" title="statement not covered" >response;</span>
+<span class="cstat-no" title="statement not covered" >                    console.log(response);</span>
+<span class="cstat-no" title="statement not covered" >                    if (data &amp;&amp; response.status == 200) {</span>
+<span class="cstat-no" title="statement not covered" >                        LoadPage();</span>
+<span class="cstat-no" title="statement not covered" >                        dispatch({ type: 'SET_HTML', html });</span>
+<span class="cstat-no" title="statement not covered" >                        dispatch({ type: "publish", publish: data.ID });</span>
+                    }
+                })();
+            }}&gt;Publication&lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/Fragment&gt;
+};</pre></td></tr></table></pre>
+
+                <div class='push'></div><!-- for sticky footer -->
+            </div><!-- /wrapper -->
+            <div class='footer quiet pad2 space-top1 center small'>
+                Code coverage generated by
+                <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
+                at 2023-04-22T19:31:22.009Z
+            </div>
+        <script src="../../../../../prettify.js"></script>
+        <script>
+            window.onload = function () {
+                prettyPrint();
+            };
+        </script>
+        <script src="../../../../../sorter.js"></script>
+        <script src="../../../../../block-navigation.js"></script>
+    </body>
+</html>
+    
