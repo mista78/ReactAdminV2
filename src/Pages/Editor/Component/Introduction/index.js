@@ -40,7 +40,7 @@ const Intro = styled.div`
     }
 `;
 
-function ElementMaker({state, data, dispatch,  ...props}) {
+function ElementMaker({state, data, dispatch, className,  ...props}) {
     const [fullName, setFullName] = useState(data.value ? data.value : "text");
     const [showInputEle, setShowInputEle] = useState(false);
 
@@ -59,7 +59,7 @@ function ElementMaker({state, data, dispatch,  ...props}) {
             {
                 showInputEle ? (
                     <input
-                        className={props.class}
+                        className={className}
                         value={fullName}
                         onChange={(e) => setFullName(e.target.value)}
                         onBlur={handleBlur}
@@ -67,7 +67,7 @@ function ElementMaker({state, data, dispatch,  ...props}) {
                         autoFocus
                     />
                         ) : (
-                            <props.tag className={props.class} onClick={() => setShowInputEle(true)}>{fullName}</props.tag>
+                            <props.tag className={className} onClick={() => setShowInputEle(true)}>{fullName}</props.tag>
                             )
                         }
         </Fragment>
@@ -82,22 +82,10 @@ const Introduction = ({ data, children, Libs, ...props }) => {
             <ScriptInject Libs={Libs} name="Slider" />
             <Lines style={(data[state?.devices] ? data[state.devices] : {})}>
                <Intro id="Intro">
-                    <ElementMaker 
-                        state={state}
-                        data={data}
-                        dispatch={dispatch}
-                        tag="p"
-                        class="text"
-                    />
+                    <p className='text'>ok tout est beau deppuis le début.</p>
                     <div className='lists'>
                         <ul>
-                            <ElementMaker 
-                                state={state}
-                                data={data}
-                                dispatch={dispatch}
-                                tag="li"
-                                class="lists_heading"
-                            />
+                            <li className='lists_heading'>Date</li>
                             <li>ui design</li>
                             <li>services</li>
                         </ul>
@@ -126,7 +114,7 @@ Introduction.setting = ({ data, children, ...props }) => {
     }
 
     const handleAddElement = (tag, className) => {
-        const element = [...data.element] ? [...data.element, <ElementMaker tag={tag} class={className}/>] : [<ElementMaker tag={tag} class={className} />];
+        const element = [...data.element] ? [...data.element, <ElementMaker tag={tag} className={className}/>] : [<ElementMaker tag={tag} className={className} />];
         const components = state.components.map(item => updatePropertyById(data.id, item, 'element', element));
         dispatch({ type: "ADD_COMPONENT", components });
         return (
