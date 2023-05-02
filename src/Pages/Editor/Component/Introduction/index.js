@@ -46,18 +46,18 @@ const Intro = styled.div`
 }
 `;
 
-function ElementMaker({ state, data, dispatch, className, ...props }) {
-    const [fullName, setFullName] = useState(data?.value ? data?.value : "text");
+function ElementMaker({ state, data, dispatch, className, key, ...props }) {
+    const [fullName, setFullName] = useState(data?.values ? data?.values : "text");
     const [showInputEle, setShowInputEle] = useState(false);
 
     const handleUpdateValue = (value) => {
-        const components = state.components.map(item => updatePropertyById(data?.id, item, "value", value));
+        const components = data.values ? state.components.map(item => updatePropertyById(data?.id, item, "values", [{...data.values}, {"value": value, "key": key}])) : state.components.map(item => updatePropertyById(data?.id, item, "values", [{"value": value, "key": key}]));
         dispatch({ type: "ADD_COMPONENT", components });
     }
 
     const handleBlur = () => {
         fullName && setShowInputEle(false);
-        handleUpdateValue(fullName);
+        handleUpdateValue(typeof fullName !== "string" ? fullName.map(item => item) : fullName);
     }
 
     return (
@@ -81,6 +81,7 @@ function ElementMaker({ state, data, dispatch, className, ...props }) {
 }
 
 const Introduction = ({ data, children, Libs, ...props }) => {
+    console.log("data", data);
     const { state, dispatch } = useContext(AppContext);
 
     return (
@@ -97,9 +98,8 @@ const Introduction = ({ data, children, Libs, ...props }) => {
 
 Introduction.setting = ({ data, children, ...props }) => {
     const { state, dispatch } = useContext(AppContext);
-
+    
     const [current, setCurrent] = useState(data);
-
 
     const handleUpdateStyle = (value = {}) => {
         value = { ...(data[state.devices] ? data[state.devices] : {}), ...value }
@@ -125,8 +125,8 @@ Introduction.setting = ({ data, children, ...props }) => {
         <Fragment>
             <Portal id="Intro">
                 {current?.element ? current?.element.map((item, index) => {
-                    return <Fragment key={index}>
-                        <ElementMaker state={state} data={data} dispatch={dispatch} tag={item.tag} className={item.className} />
+                    return <Fragment>
+                        <ElementMaker key={index} state={state} data={data} dispatch={dispatch} tag={item.tag} className={item.className} />
                     </Fragment>
                 }) : null}
             </Portal>
