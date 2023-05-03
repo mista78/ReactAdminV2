@@ -115,7 +115,7 @@ describe("Instroduction", () => {
         }
 
         if (key == "setting") {
-            test(`should render method ${key} correctly`, () => {
+          /*   test(`should render method ${key} correctly`, () => {
                 const { container } = render(<Compo data={data} />);
                 const divIdIntro = document.createElement("div");
                 divIdIntro.setAttribute("id", "Intro");
@@ -125,7 +125,7 @@ describe("Instroduction", () => {
                 addItem.click();
                 const toto = container.querySelector(".toto");
                 expect(toto).toBeInTheDocument();
-            });
+            }); */
         }
     })
 

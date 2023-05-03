@@ -46,18 +46,21 @@ const Intro = styled.div`
 }
 `;
 
-function ElementMaker({ state, data, dispatch, className, key, ...props }) {
-    const [fullName, setFullName] = useState(data?.values ? data?.values : "text");
+function ElementMaker({ state, data, dispatch, className, key, id, ...props }) {
+    const object = data.element.map(item => item);
+    console.log(object);
+    const [fullName, setFullName] = useState(data?.value ? data?.value : "text");
     const [showInputEle, setShowInputEle] = useState(false);
+    console.log("dada", data);
 
     const handleUpdateValue = (value) => {
-        const components = data.values ? state.components.map(item => updatePropertyById(data?.id, item, "values", [{...data.values}, {"value": value, "key": key}])) : state.components.map(item => updatePropertyById(data?.id, item, "values", [{"value": value, "key": key}]));
+        const components = state.components.map(item => updatePropertyById(data?.id, item, "value", value));
         dispatch({ type: "ADD_COMPONENT", components });
     }
 
     const handleBlur = () => {
         fullName && setShowInputEle(false);
-        handleUpdateValue(typeof fullName !== "string" ? fullName.map(item => item) : fullName);
+        handleUpdateValue(fullName);
     }
 
     return (
@@ -81,7 +84,6 @@ function ElementMaker({ state, data, dispatch, className, key, ...props }) {
 }
 
 const Introduction = ({ data, children, Libs, ...props }) => {
-    console.log("data", data);
     const { state, dispatch } = useContext(AppContext);
 
     return (
@@ -108,7 +110,8 @@ Introduction.setting = ({ data, children, ...props }) => {
     }
 
     const handleAddElement = (tag, className) => {
-        const element = current?.element ? [...current?.element, { tag, className }] : [{ tag, className }];
+        const id = uuid();
+        const element = current?.element ? [...current?.element, { id, tag, className }] : [{ id, tag, className }];
         setCurrent({ ...current, element });
     }
 
@@ -125,9 +128,7 @@ Introduction.setting = ({ data, children, ...props }) => {
         <Fragment>
             <Portal id="Intro">
                 {current?.element ? current?.element.map((item, index) => {
-                    return <Fragment>
-                        <ElementMaker key={index} state={state} data={data} dispatch={dispatch} tag={item.tag} className={item.className} />
-                    </Fragment>
+                    return <ElementMaker key={index} state={state} data={data} dispatch={dispatch} {...item} />
                 }) : null}
             </Portal>
         </Fragment>
